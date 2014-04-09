@@ -1,9 +1,15 @@
 package model;
 
-import java.lang.String;import java.lang.System;import java.util.Date;
+import java.io.Serializable;
+import java.lang.String;
+import java.lang.System;
+import java.util.Date;
 import java.util.List;
 
-public class User {
+import org.hibernate.annotations.*;
+
+@Entity
+public class User implements Serializable {
     long id;
     String firstName;
     String lastName;

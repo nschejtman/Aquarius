@@ -12,8 +12,9 @@
 </head>
 <body>
        <form>
+
            <h3>User</h3>
-           <input type="text" id="user" name="user" formmethod="post">
+           <input type="text" id="<%=Constants.LOGIN_USERNAME_FIELD%>" name="username" formmethod="post">
 
            <h3>Password</h3>
            <input type="password" id="password" name="password" formmethod="post">
