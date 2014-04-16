@@ -9,15 +9,27 @@
 <html>
 <head>
     <title></title>
+    <style type="text/css">
+        input {
+
+            border-radius: 5px;
+            border: 1 solid lightgray;
+
+        }
+        input::selection{
+            box-shadow: 5px;
+        }
+    </style>
 </head>
 <body>
        <form>
 
            <h3>User</h3>
-           <input type="text" id="<%=Constants.LOGIN_USERNAME_FIELD%>" name="username" formmethod="post">
+           <input type="text" name="username" formmethod="post">
 
            <h3>Password</h3>
            <input type="password" id="password" name="password" formmethod="post">
+           <br>
 
            <input type="submit">
        </form>

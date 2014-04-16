@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-           version="3.0">
+         version="3.0">
 
-<!--Test servlet start-->
+    <!--Test servlet start-->
 
-<servlet>
-    <servlet-name>HelloWorld</servlet-name>
-    <servlet-class>servlets.HelloWorld</servlet-class>    
-</servlet>
-    
-<servlet-mapping>
-    <servlet-name>HelloWorld</servlet-name>
-    <url-pattern>/HelloWorld</url-pattern>
-</servlet-mapping>
-<!--Test servlet end-->
+    <servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>servlets.HelloWorld</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
+    <!--Test servlet end-->
 
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -28,38 +28,48 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Main</servlet-name>
+        <servlet-class>servlets.Main</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Main</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
 
     <!--TODO-->
     <!--<security-constraint>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>profile</web-resource-name>-->
-            <!--<url-pattern>/*</url-pattern>-->
-        <!--</web-resource-collection>-->
+    <!--<web-resource-collection>-->
+    <!--<web-resource-name>profile</web-resource-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</web-resource-collection>-->
     <!--</security-constraint>-->
 
     <!--<security-constraint>-->
-        <!--<web-resource-collection>-->
-            <!--<web-resource-name>admin</web-resource-name>-->
-            <!--<url-pattern>/admin/*</url-pattern>-->
-        <!--</web-resource-collection>-->
-        <!--<auth-constraint>-->
-            <!--<role-name>admin</role-name>-->
-        <!--</auth-constraint>-->
+    <!--<web-resource-collection>-->
+    <!--<web-resource-name>admin</web-resource-name>-->
+    <!--<url-pattern>/admin/*</url-pattern>-->
+    <!--</web-resource-collection>-->
+    <!--<auth-constraint>-->
+    <!--<role-name>admin</role-name>-->
+    <!--</auth-constraint>-->
     <!--</security-constraint>-->
 
-    <filter>
-        <filter-name>secured</filter-name>
-        <filter-class>security.Secured</filter-class>
-        <init-param>
-            <param-name>login</param-name>
-            <param-value>logged</param-value>
-        </init-param>
-    </filter>
+    <!--<filter>-->
+    <!--<filter-name>secured</filter-name>-->
+    <!--<filter-class>security.Secured</filter-class>-->
+    <!--<init-param>-->
+    <!--<param-name>login</param-name>-->
+    <!--<param-value>logged</param-value>-->
+    <!--</init-param>-->
+    <!--</filter>-->
 
     <!-- Log for all URLs that use the "comingsoon" servlet -->
-    <filter-mapping>
-        <filter-name>secured</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
+    <!--<filter-mapping>-->
+    <!--<filter-name>secured</filter-name>-->
+    <!--<url-pattern>*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 </web-app>
