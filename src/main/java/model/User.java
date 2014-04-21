@@ -1,71 +1,159 @@
 package model;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import java.lang.String;
-import java.lang.System;
 import java.util.Date;
-import java.util.List;
-import org.hibernate.annotations.*;
-
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
-    long id;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private long id;
+    private String firstName;
+    private String lastName;
+    private Date birthday;
+    private long reputation;
+    private String userName;
+    private String email;
+    private String password;
+    private boolean active;
+
+//    @ManyToOne
+//    private Project projects;
+//
+//    @ManyToOne
+//    private Project favedProjects;
+//
+//    @ManyToOne
+//    private User followedUsers;
+//
+//    @ManyToOne
+//    private User allies;
+//
+//    @ManyToOne
+//    private Notification notifications;
+//
+//    @ManyToOne
+//    private Message messages;
+
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    private void setId(long id) {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "FIRSTNAME")
-    String firstName;
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    String lastName;
-    Date birthday;
-    long reputation;
-    String userName;
-    String email;
-    String password;
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-//    Project projects;
-//    List<Project> favedProjects;
-//    List<User> followedUsers;
-//    List<User> allies;
-//    List<Notification> notifications;
-//    List<Message> messages;
-    boolean active;
+    public Date getBirthday() {
+        return birthday;
+    }
 
-    /**
-     * Sends a message to a specific user
-     * @param recipient
-     * @param message
-     */
-//    public void sendMessage(User recipient, String message){
-//        Date now = new Date(System.currentTimeMillis());
-//        Message msg = new Message(message, this, now);
-//        recipient.receiveMessage(msg);
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public long getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(long reputation) {
+        this.reputation = reputation;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+//    public Project getProjects() {
+//        return projects;
 //    }
-
-    /**
-     * Recieves a message
-     * @param message
-     */
-//    public void receiveMessage(Message message){
-//        messages.add(message);
+//
+//    public void setProjects(Project projects) {
+//        this.projects = projects;
 //    }
-
-
-
-
+//
+//    public Project getFavedProjects() {
+//        return favedProjects;
+//    }
+//
+//    public void setFavedProjects(Project favedProjects) {
+//        this.favedProjects = favedProjects;
+//    }
+//
+//    public User getFollowedUsers() {
+//        return followedUsers;
+//    }
+//
+//    public void setFollowedUsers(User followedUsers) {
+//        this.followedUsers = followedUsers;
+//    }
+//
+//    public User getAllies() {
+//        return allies;
+//    }
+//
+//    public void setAllies(User allies) {
+//        this.allies = allies;
+//    }
+//
+//    public Notification getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void setNotifications(Notification notifications) {
+//        this.notifications = notifications;
+//    }
+//
+//    public Message getMessages() {
+//        return messages;
+//    }
+//
+//    public void setMessages(Message messages) {
+//        this.messages = messages;
+//    }
 }
