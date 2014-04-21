@@ -52,7 +52,7 @@
             <!--<description>Validate config file if set to true</description>-->
         </init-param>
     </filter>
-    <!-- map all requests to the SecurityFilter, model.control what it does with configuration settings -->
+    <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
     <filter-mapping>
         <filter-name>Security Filter</filter-name>
         <url-pattern>/*</url-pattern>

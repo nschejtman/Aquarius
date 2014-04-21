@@ -22,7 +22,7 @@
         <!-- Echo all executed SQL to stdout useful for debugging if set to true-->
         <property name="show_sql">false</property>
 
-        <property name="hbm2ddl.auto">validate</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <mapping class="model.User"/>
 
