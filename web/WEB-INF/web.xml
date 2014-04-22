@@ -44,14 +44,17 @@
         <init-param>
             <param-name>config</param-name>
             <param-value>/WEB-INF/securityfilter-config.xml</param-value>
+
             <!--<description>Configuration file location (this is the default value)</description>-->
         </init-param>
         <init-param>
             <param-name>validate</param-name>
             <param-value>true</param-value>
+
             <!--<description>Validate config file if set to true</description>-->
         </init-param>
     </filter>
+
     <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
     <filter-mapping>
         <filter-name>Security Filter</filter-name>

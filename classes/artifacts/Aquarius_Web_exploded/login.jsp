@@ -1,3 +1,4 @@
+<%@ page import="servlets.Constants" %>
 <%--
   Created by IntelliJ IDEA.
   User: nicolas
@@ -22,16 +23,25 @@
     </style>
 </head>
 <body>
-       <form name="myForm">
 
-           <h3>User</h3>
-           <input type="text" name="username" formmethod="post">
-
-           <h3>Password</h3>
-           <input type="password" id="password" name="password" formmethod="post">
-           <br>
-
-           <input type="submit">
+       <form id="<%=Constants.LOGIN_FORM_ID%>" action="<%=response.encodeURL(Constants.LOGIN_FORM_ACTION)%>" method="POST">
+           <table>
+               <tr>
+                   <td>User</td>
+                   <td><input type="text"
+                              name="<%=Constants.LOGIN_USERNAME_FIELD%>"
+                              value="<%=Constants.VALID_USERNAME%>"
+                           ></td>
+               </tr>
+               <tr>
+                   <td>Password</td>
+                   <td><input type="password"
+                              name="<%=Constants.LOGIN_PASSWORD_FIELD%>"
+                              value="<%=Constants.VALID_PASSWORD%>"
+                           ></td>
+               </tr>
+           </table>
+           <input type="Submit" value="<%=Constants.LOG_IN%>"/>
        </form>
 </body>
 </html>
