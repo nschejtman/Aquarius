@@ -2,34 +2,31 @@ package control;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-    private static HibernateUtil ourInstance = new HibernateUtil();
-    private final SessionFactory sessionFactory;
-    private final Session guestSession;
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    private HibernateUtil() {
+    private static SessionFactory buildSessionFactory(){
         try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            guestSession = sessionFactory.openSession();
+            // Create the SessionFactory from hibernate.cfg.xml file
+            Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+            SessionFactory factory = cfg.buildSessionFactory();
+            return new AnnotationConfiguration().configure().buildSessionFactory();
         } catch (Throwable ex) {
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
         }
     }
 
-    public static Session getGuestSession() {return ourInstance.guestSession;}
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
-//    private static SessionFactory buildSessionFactory() {}
 
-    public static SessionFactory getSessionFactory() {return ourInstance.sessionFactory;}
 
-    public static Session getSession() {return getSessionFactory().getCurrentSession();}
+
 }
