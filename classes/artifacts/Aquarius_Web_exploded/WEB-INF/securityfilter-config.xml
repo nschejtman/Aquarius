@@ -21,7 +21,7 @@
         <form-login-config>
             <form-login-page>/login.jsp</form-login-page>
             <form-error-page>/unsecured.jsp</form-error-page>
-            <form-default-page>/index.jsp</form-default-page>
+            <form-default-page>/secured.jsp</form-default-page>
         </form-login-config>
     </login-config>
 
