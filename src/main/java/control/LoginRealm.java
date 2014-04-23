@@ -1,8 +1,7 @@
 package control;
 
-import model.User;
 import control.dao.UserDAO;
-import org.hibernate.Session;
+import model.User;
 import org.securityfilter.realm.SimpleSecurityRealmBase;
 
 /**
@@ -11,8 +10,7 @@ import org.securityfilter.realm.SimpleSecurityRealmBase;
 public class LoginRealm extends SimpleSecurityRealmBase {
 
     public boolean booleanAuthenticate(String username, String password) {
-        Session session = HibernateUtil.getGuestSession();
-        User user = UserDAO.getInstance().getUser(session, username);
+        User user = UserDAO.getUser(username);
         return user.getPassword().equals(password);
     }
 }
