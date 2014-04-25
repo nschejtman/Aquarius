@@ -38,6 +38,7 @@
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
 
+
     <filter>
         <filter-name>Security Filter</filter-name>
         <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>

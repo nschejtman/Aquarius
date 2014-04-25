@@ -1,13 +1,16 @@
 package model;
 
-public class City {
-    long id;
-    String name;
+import javax.persistence.*;
 
-    public City(String name, long id) {
-        this.name = name;
-        this.id = id;
-    }
+@Entity
+public class City {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private String name;
+    @ManyToOne
+    private Country country;
 
     public long getId() {
         return id;
@@ -23,5 +26,13 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
@@ -23,7 +23,17 @@
         <property name="show_sql">false</property>
 
         <property name="hbm2ddl.auto">update</property>
+        <mapping class="model.City"></mapping>
+        <mapping class="model.Comment"></mapping>
+        <mapping class="model.Country"></mapping>
         <mapping class="model.HelloWorldHibernate"></mapping>
+        <mapping class="model.Location"></mapping>
+        <mapping class="model.Message"></mapping>
+        <mapping class="model.Notification"></mapping>
+        <mapping class="model.Project"></mapping>
+        <mapping class="model.State"></mapping>
+        <mapping class="model.Tag"></mapping>
+        <mapping class="model.Type"></mapping>
         <mapping class="model.User"></mapping>
 
     </session-factory>

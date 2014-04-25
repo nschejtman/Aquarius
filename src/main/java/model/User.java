@@ -2,46 +2,42 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String firstName;
     private String lastName;
     private Date birthday;
     private long reputation;
+    @Column(unique = true)
     private String userName;
     private String email;
     private String password;
     private boolean active;
-
-//    @ManyToOne
-//    private Project projects;
-//
-//    @ManyToOne
-//    private Project favedProjects;
-//
-//    @ManyToOne
-//    private User followedUsers;
-//
-//    @ManyToOne
-//    private User allies;
-//
-//    @ManyToOne
-//    private Notification notifications;
-//
-//    @ManyToOne
-//    private Message messages;
+    @OneToMany
+    private Collection<Project> projects;
+    @ManyToMany
+    private Collection<Project> favedProjects;
+    @OneToMany
+    private Collection<User> followedUsers;
+    @OneToMany
+    private Collection<User> allies;
+    @OneToMany
+    private Collection<Notification> notifications;
+    @OneToMany
+    private Collection<Message> messages;
 
     public long getId() {
         return id;
     }
 
-    private void setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -109,51 +105,72 @@ public class User implements Serializable {
         this.active = active;
     }
 
-//    public Project getProjects() {
-//        return projects;
-//    }
-//
-//    public void setProjects(Project projects) {
-//        this.projects = projects;
-//    }
-//
-//    public Project getFavedProjects() {
-//        return favedProjects;
-//    }
-//
-//    public void setFavedProjects(Project favedProjects) {
-//        this.favedProjects = favedProjects;
-//    }
-//
-//    public User getFollowedUsers() {
-//        return followedUsers;
-//    }
-//
-//    public void setFollowedUsers(User followedUsers) {
-//        this.followedUsers = followedUsers;
-//    }
-//
-//    public User getAllies() {
-//        return allies;
-//    }
-//
-//    public void setAllies(User allies) {
-//        this.allies = allies;
-//    }
-//
-//    public Notification getNotifications() {
-//        return notifications;
-//    }
-//
-//    public void setNotifications(Notification notifications) {
-//        this.notifications = notifications;
-//    }
-//
-//    public Message getMessages() {
-//        return messages;
-//    }
-//
-//    public void setMessages(Message messages) {
-//        this.messages = messages;
-//    }
+    public Collection<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Collection<Project> getFavedProjects() {
+        return favedProjects;
+    }
+
+    public void setFavedProjects(Collection<Project> favedProjects) {
+        this.favedProjects = favedProjects;
+    }
+
+    public Collection<User> getFollowedUsers() {
+        return followedUsers;
+    }
+
+    public void setFollowedUsers(Collection<User> followedUsers) {
+        this.followedUsers = followedUsers;
+    }
+
+    public Collection<User> getAllies() {
+        return allies;
+    }
+
+    public void setAllies(Collection<User> allies) {
+        this.allies = allies;
+    }
+
+    public Collection<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Collection<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public Collection<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Collection<Message> messages) {
+        this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthday=" + birthday +
+                ", reputation=" + reputation +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", projects=" + projects +
+                ", favedProjects=" + favedProjects +
+                ", followedUsers=" + followedUsers +
+                ", allies=" + allies +
+                ", notifications=" + notifications +
+                ", messages=" + messages +
+                '}';
+    }
 }
