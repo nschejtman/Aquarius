@@ -15,7 +15,6 @@ public class User implements Serializable {
     private String lastName;
     private Date birthday;
     private long reputation;
-    @Column(unique = true)
     private String userName;
     private String email;
     private String password;
@@ -32,6 +31,9 @@ public class User implements Serializable {
     private Collection<Notification> notifications;
     @OneToMany
     private Collection<Message> messages;
+
+    public User() {
+    }
 
     public long getId() {
         return id;
@@ -172,5 +174,14 @@ public class User implements Serializable {
                 ", notifications=" + notifications +
                 ", messages=" + messages +
                 '}';
+    }
+
+    public User(String firstName, String lastName, Date birthday, String userName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 }

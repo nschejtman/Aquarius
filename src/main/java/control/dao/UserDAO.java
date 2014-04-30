@@ -14,20 +14,23 @@ import java.util.List;
 
 public abstract class UserDAO {
 
-    public static void addUser(User user) {
+    public static boolean addUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
+        boolean ret = false;
         try {
             tx = session.beginTransaction();
             user.setActive(true);
             session.persist(user);
             tx.commit();
+            ret = true;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
+        return ret;
     }
 
     public static User getUser(long id) throws IllegalAccessException {
