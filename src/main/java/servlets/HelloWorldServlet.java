@@ -22,7 +22,7 @@ public class HelloWorldServlet extends HttpServlet {
         out.println("<HEAD><TITLE>Hello World</TITLE></HEAD>");
         out.println("<BODY>");
         out.println("<H1>Hello World</H1>");
-        out.println("Today is: " + (new java.util.Date().toString()) );
+        out.println("Today is: " + (new java.util.Date().toString()));
         out.println("</BODY></HTML>");
     } // doGet
 
