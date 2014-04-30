@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>servlets.HelloWorld</servlet-class>
+        <servlet-class>servlets.HelloWorldServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -20,7 +20,7 @@
 
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>servlets.Login</servlet-class>
+        <servlet-class>servlets.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -30,13 +30,14 @@
 
     <servlet>
         <servlet-name>Main</servlet-name>
-        <servlet-class>servlets.Main</servlet-class>
+        <servlet-class>servlets.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
+
 
     <filter>
         <filter-name>Security Filter</filter-name>
