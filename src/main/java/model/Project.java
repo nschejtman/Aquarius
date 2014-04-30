@@ -1,5 +1,6 @@
 package model;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -34,6 +35,8 @@ public class Project implements Serializable {
     @OneToMany
     private Collection<Comment> comments;
 
+    public Project(){}
+
     public long getId() {
         return id;
     }
@@ -41,6 +44,7 @@ public class Project implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;

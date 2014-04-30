@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class HelloWorld extends HttpServlet {
+public class HelloWorldServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -26,4 +26,4 @@ public class HelloWorld extends HttpServlet {
         out.println("</BODY></HTML>");
     } // doGet
 
-} // HelloWorld
+} // HelloWorldServlet
