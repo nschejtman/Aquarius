@@ -9,10 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
-<form name="myForm">
+    <form id="<%=Constants.LOGIN_FORM_ID%>" method="post" action="<%=Constants.LOGIN_FORM_ACTION%>">
+
 
     <h3>User</h3>
     <input type="text" name="<%=Constants.LOGIN_USERNAME_FIELD%>" formmethod="post">
@@ -22,6 +23,6 @@
     <br>
 
     <input type="submit">
-</form>
+    </form>
 </body>
 </html>

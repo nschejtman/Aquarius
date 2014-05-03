@@ -14,6 +14,12 @@ public class Tag implements Serializable {
     private long id;
     private String name;
 
+    public Tag(){}
+
+    public Tag(String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

@@ -19,9 +19,9 @@ public class User implements Serializable {
     private String email;
     private String password;
     private boolean active;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Project> projects;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Project> favedProjects;
     @OneToMany
     private Collection<User> followedUsers;
@@ -32,7 +32,19 @@ public class User implements Serializable {
     @OneToMany
     private Collection<Message> messages;
 
-    public User() {
+    public User() {}
+
+    public User(String userName){
+        this.userName = userName;
+    }
+
+    public User(String firstName, String lastName, Date birthday, String userName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
     }
 
     public long getId() {
@@ -174,14 +186,5 @@ public class User implements Serializable {
                 ", notifications=" + notifications +
                 ", messages=" + messages +
                 '}';
-    }
-
-    public User(String firstName, String lastName, Date birthday, String userName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthday = birthday;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
     }
 }

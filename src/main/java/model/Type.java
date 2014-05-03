@@ -13,6 +13,12 @@ public class Type {
     private long id;
     private String name;
 
+    public Type(String name) {
+        this.name = name;
+    }
+
+    public Type(){}
+
     public long getId() {
         return id;
     }

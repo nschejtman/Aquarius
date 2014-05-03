@@ -22,20 +22,23 @@ import java.util.List;
  */
 public abstract class ProjectDAO {
 
-    public static void addProject(Project project){
+    public static boolean addProject(Project project){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
+        boolean ret = false;
         try {
             tx = session.beginTransaction();
             project.setActive(true);
             session.persist(project);
             tx.commit();
+            ret = true;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
+        return ret;
     }
 
     public static Project getProject(long id){
@@ -92,22 +95,14 @@ public abstract class ProjectDAO {
             tx = session.beginTransaction();
             // Add restrictions unless parameter is null
             Criteria criteria = session.createCriteria(Project.class);
-            if(projectName != null)
-            criteria.add(Restrictions.eq("name", projectName));
-            if(description != null)
-                criteria.add(Restrictions.eq("description", description));
-            if(start != null)
-                criteria.add(Restrictions.eq("start", start));
-            if(end != null)
-                criteria.add(Restrictions.eq("end", end));
-            if(type != null)
-                criteria.add(Restrictions.eq("type", type));
-            if(user != null)
-                criteria.add(Restrictions.eq("user", user));
-            if(collaborators != null)
-                criteria.add(Restrictions.eq("collaborators", collaborators));
-            if(tags != null)
-                criteria.add(Restrictions.eq("tags", tags));
+            if(projectName != null) criteria.add(Restrictions.eq("name", projectName));
+            if(description != null) criteria.add(Restrictions.eq("description", description));
+            if(start != null) criteria.add(Restrictions.eq("start", start));
+            if(end != null) criteria.add(Restrictions.eq("end", end));
+            if(type != null) criteria.add(Restrictions.eq("type", type));
+            if(user != null) criteria.add(Restrictions.eq("user", user));
+            if(collaborators != null) criteria.add(Restrictions.eq("collaborators", collaborators));
+            if(tags != null) criteria.add(Restrictions.eq("tags", tags));
             // Add to display List
             List list = criteria.list();
             if (list.get(0) != null) projectList = (List<Project>) list;

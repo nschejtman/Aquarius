@@ -3,8 +3,8 @@ package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 public class Project implements Serializable {
@@ -21,7 +21,7 @@ public class Project implements Serializable {
     private Date lastUpdate;
     private int funds;
     private int objective;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Type type;
     @ManyToOne
     private User user;
@@ -30,12 +30,22 @@ public class Project implements Serializable {
     private Collection<User> donnors;
     @ManyToMany
     private Collection<User> collaborators;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Tag> tags;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Comment> comments;
 
     public Project(){}
+
+    public Project(String name, String description, Date start, Date end, Type type,
+                   User user) {
+        this.name = name;
+        this.description = description;
+        this.start = start;
+        this.end = end;
+        this.type = type;
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -126,12 +136,20 @@ public class Project implements Serializable {
         this.type = type;
     }
 
+    public void setTypeByName(String type){
+        this.type = new Type(type);
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setUserByName(String name){
+        this.user = new User(name);
     }
 
     public int getFavs() {

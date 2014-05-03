@@ -1,3 +1,4 @@
+<%@ page import="servlets.Constants" %>
 <%--
   Created by IntelliJ IDEA.
   User: nicolas
@@ -12,7 +13,7 @@
 </head>
 <body>
 
-<form id="userform" method="post" action="register">
+<form id="<%=Constants.REGISTER_FORM_ID%>" method="post" action="register">
     <input type="text" name="firstname" placeholder="First Name" value="Nicolas"><br>
     <input type="text" name="lastname" placeholder="Last Name" value="Schejtman"><br>
     <input type="date" name="birthday" placeholder="Birth Date" value="19/11/1993"><br>
