@@ -21,9 +21,9 @@
         <property name="current_session_context_class">thread</property>
 
         <!-- Echo all executed SQL to stdout useful for debugging if set to true-->
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
 
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <mapping class="model.City"></mapping>
         <mapping class="model.Comment"></mapping>
         <mapping class="model.Country"></mapping>
