@@ -1,5 +1,10 @@
 package servlets;
 
+import control.dao.ProjectDAO;
+import control.dao.UserDAO;
+import model.Project;
+import model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +26,18 @@ public class SaveProjectServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        System.out.println(req.getUserPrincipal());
-//        Project project = new Project();
-//        project.setName(req.getParameter("projectName"));
-//
-//        project.setDescription(req.getParameter("description"));
+        Project project = new Project();
+        project.setName(req.getParameter("projectName"));
+        User user = UserDAO.getUser(req.getUserPrincipal().getName().toString());
+        project.setUser(user);
+        project.setDescription(req.getParameter("description"));
 //        project.setStart(Date.valueOf(req.getParameter("startDate")));
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
-//        project.setTypeByName(req.getParameter("type"));
-//
-//        System.out.println("Result: " + ProjectDAO.addProject(project));
+        project.setTypeByName(req.getParameter("type"));
+
+
+
+        System.out.println("Result: " + ProjectDAO.addProject(project));
 
     }
 }

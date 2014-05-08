@@ -50,7 +50,7 @@ public abstract class UserDAO {
         return (User) user;
     }
 
-    public static User getUser(@NotNull String username) throws IllegalAccessError {
+    public static User getUser( String username) throws IllegalAccessError {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object user = null;

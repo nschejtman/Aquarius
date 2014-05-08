@@ -11,7 +11,8 @@
     <title>Project</title>
 </head>
 <body>
-    <form id="projectform" method="post" action="saveproject">
+    <form id="projectForm" method="post" action="saveproject">
+            <input type="text" id="userName" name="userName" placeholder="User Name" value="ccc"><br>
             <input type="text" id="projectName" name="projectName" placeholder="Project Name" value="aaa"><br>
             <input type="text" id="description" name="description" placeholder="Description" value="bbb"><br>
             <input type="date" id="startDate" name="startDate" placeholder="Start" value="19/11/1993"><br>

@@ -44,7 +44,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="/login.jsp">Log in</a></li>
-                        <li><a href="/register">Register</a></li>
+                        <li><a href="/register.jsp">Register</a></li>
                     </ul>
                 </li>
             </ul>

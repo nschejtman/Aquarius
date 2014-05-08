@@ -65,7 +65,7 @@
 
     <servlet-mapping>
         <servlet-name>Save Project</servlet-name>
-        <url-pattern>/secured/saveproject</url-pattern>
+        <url-pattern>/saveproject</url-pattern>
     </servlet-mapping>
 
     <filter>

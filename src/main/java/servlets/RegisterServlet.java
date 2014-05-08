@@ -19,11 +19,11 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        String username = req.getParameter(Constants.REGISTER_USERNAME_FIELD);
         String firstName = req.getParameter("firstname");
         String lastName = req.getParameter("lastname");
         String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        String password = req.getParameter(Constants.REGISTER_PASSWORD_FIELD);
         User user = new User(firstName, lastName, null, username, email, password);
         System.out.println(UserDAO.addUser(user));
 

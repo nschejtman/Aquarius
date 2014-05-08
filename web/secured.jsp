@@ -12,5 +12,10 @@
 </head>
 <body>
 Swimming in the sea!
+
+Hello <%=request.getUserPrincipal().getName().toString()%>
+
+
+You are able to view this page because you are authorized user.
 </body>
 </html>
