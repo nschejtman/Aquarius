@@ -12,7 +12,13 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 
-public abstract class UserDAO {
+public  class UserDAO {
+
+    public static UserDAO ourInstance = new UserDAO();
+
+    public UserDAO(){}
+
+    public static UserDAO getInstance(){return ourInstance;}
 
     public static boolean addUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -50,7 +56,7 @@ public abstract class UserDAO {
         return (User) user;
     }
 
-    public static User getUser( String username) throws IllegalAccessError {
+    public static User getUser(@NotNull String username) throws IllegalAccessError {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object user = null;
@@ -103,5 +109,7 @@ public abstract class UserDAO {
         }
     }
 
-
+    public boolean exists(String userName) {
+        return getUser(userName) != null;
+    }
 }

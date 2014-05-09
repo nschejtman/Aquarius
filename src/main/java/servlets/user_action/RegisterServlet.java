@@ -1,14 +1,17 @@
-package servlets;
+package servlets.user_action;
 
 import control.dao.UserDAO;
 import model.User;
+import servlets.Constants;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@WebServlet(name = "Register", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
 
     @Override
@@ -24,8 +27,8 @@ public class RegisterServlet extends HttpServlet {
         String lastName = req.getParameter("lastname");
         String email = req.getParameter("email");
         String password = req.getParameter(Constants.REGISTER_PASSWORD_FIELD);
-        User user = new User(firstName, lastName, null, username, email, password);
-        System.out.println(UserDAO.addUser(user));
 
+        User user = new User(firstName, lastName, null, username, email, password);
+        if(UserDAO.getInstance().exists(username))UserDAO.getInstance().addUser(user);
     }
 }

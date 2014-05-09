@@ -1,7 +1,6 @@
 package control;
 
 import control.dao.UserDAO;
-import model.User;
 import org.securityfilter.realm.SimpleSecurityRealmBase;
 
 /**
@@ -10,7 +9,7 @@ import org.securityfilter.realm.SimpleSecurityRealmBase;
 public class LoginRealm extends SimpleSecurityRealmBase {
 
     public boolean booleanAuthenticate(String username, String password) {
-        User user = UserDAO.getUser(username);
-        return user.getPassword().equals(password);
+        //Checks if instance exists previously + analyse if password is correct
+        return UserDAO.getInstance().exists(username)&&UserDAO.getInstance().getUser(username).getPassword().equals(password);
     }
 }

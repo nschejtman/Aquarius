@@ -19,7 +19,13 @@ import java.util.List;
 /**
  * Created by franco on 25/04/2014.
  */
-public abstract class ProjectDAO {
+public  class ProjectDAO {
+
+    private static ProjectDAO ourInstance = new ProjectDAO();
+
+    private ProjectDAO(){}
+
+    public static ProjectDAO getInstance(){return ourInstance;}
 
     public static boolean addProject(Project project){
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -57,14 +63,14 @@ public abstract class ProjectDAO {
         return (Project) project;
     }
 
-    public static Project getProject(String projectName) throws IllegalAccessError{
+    public static Project getProject(String name) throws IllegalAccessError{
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object project = null;
         try {
             tx = session.beginTransaction();
             Criteria criteria = session.createCriteria(Project.class);
-            criteria.add(Restrictions.eq("name", projectName));
+            criteria.add(Restrictions.eq("name", name));
             List list = criteria.list();
             if (list.get(0) != null) project = list.get(0);
             tx.commit();

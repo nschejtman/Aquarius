@@ -1,10 +1,8 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 public class Tag implements Serializable {
@@ -15,11 +13,16 @@ public class Tag implements Serializable {
 
     private String name;
 
+    @ManyToMany
+    private Collection<Project> projects;
+
     public Tag(){}
 
     public Tag(String name) {
         this.name = name;
     }
+
+    public void addProject(Project project){ projects.add(project);}
 
     public long getId() {
         return id;
@@ -36,4 +39,8 @@ public class Tag implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Collection<Project> getProjects() {return projects;}
+
+    public void setProjects(Collection<Project> projects) {this.projects = projects;}
 }

@@ -20,7 +20,7 @@
 
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>servlets.LoginServlet</servlet-class>
+        <servlet-class>servlets.user_action.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
