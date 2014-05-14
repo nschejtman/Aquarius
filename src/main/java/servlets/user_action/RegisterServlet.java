@@ -29,6 +29,6 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter(Constants.REGISTER_PASSWORD_FIELD);
 
         User user = new User(firstName, lastName, null, username, email, password);
-        if(UserDAO.getInstance().exists(username))UserDAO.getInstance().addUser(user);
+        UserDAO.addUser(user);
     }
 }

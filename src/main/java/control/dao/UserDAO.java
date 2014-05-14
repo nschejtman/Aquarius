@@ -12,13 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 
-public  class UserDAO {
-
-    public static UserDAO ourInstance = new UserDAO();
-
-    public UserDAO(){}
-
-    public static UserDAO getInstance(){return ourInstance;}
+public class UserDAO {
 
     public static boolean addUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -109,7 +103,4 @@ public  class UserDAO {
         }
     }
 
-    public boolean exists(String userName) {
-        return getUser(userName) != null;
-    }
 }

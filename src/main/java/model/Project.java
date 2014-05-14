@@ -146,6 +146,15 @@ public class Project implements Serializable {
 
     public Collection<Tag> getTags() {return tags;}
 
+    public String getStringTags(){
+       String stringTags = "";
+        for(Tag tag : this.tags){
+            stringTags.concat(tag.getName());
+            stringTags.concat(";");
+        }
+        return stringTags;
+    }
+
     public void setTags(Collection<Tag> tags) {this.tags = tags;}
 
     public void addTags(Tag...tags){

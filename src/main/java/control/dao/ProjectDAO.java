@@ -21,12 +21,6 @@ import java.util.List;
  */
 public  class ProjectDAO {
 
-    private static ProjectDAO ourInstance = new ProjectDAO();
-
-    private ProjectDAO(){}
-
-    public static ProjectDAO getInstance(){return ourInstance;}
-
     public static boolean addProject(Project project){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -81,6 +75,11 @@ public  class ProjectDAO {
             session.close();
         }
         return (Project) project;
+    }
+
+    public static List<Project> getAll(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (List<Project>) session.createCriteria(Project.class).list();
     }
 
     public static List<Project> getProjectList(Project project) {

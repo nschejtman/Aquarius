@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {processRequest(req,resp);}
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {resp.sendRedirect("/login.jsp");}
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String user = req.getParameter(Constants.LOGIN_USERNAME_FIELD);

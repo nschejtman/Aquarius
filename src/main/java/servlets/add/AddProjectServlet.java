@@ -1,4 +1,4 @@
-package servlets.post;
+package servlets.add;
 
 import control.dao.ProjectDAO;
 import control.dao.TagDAO;
@@ -19,8 +19,8 @@ import java.io.IOException;
  * Created by franco on 30/04/2014.
  */
 
-@WebServlet(name = "PostProject", urlPatterns = "/post_project")
-public class PostProjectServlet extends HttpServlet {
+@WebServlet(name = "AddProject", urlPatterns = "/addproject")
+public class AddProjectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,23 +34,21 @@ public class PostProjectServlet extends HttpServlet {
 
         Project project = new Project();
         project.setName(req.getParameter("projectName"));
-        project.setUser(UserDAO.getInstance().getUser(req.getUserPrincipal().getName()));
+        project.setUser(UserDAO.getUser(req.getRemoteUser()));
+
         project.setDescription(req.getParameter("description"));
         String[] strTags = req.getParameter("tags").split(";");
         for (String strTag : strTags) {
             Tag tag = new Tag(strTag);
-            TagDAO.getInstance().addType(tag);
+            TagDAO.addType(tag);
             project.addTags(tag);
         }
 //        project.setStart(Date.valueOf(req.getParameter("startDate")));
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
         Type type = new Type(req.getParameter("type"));
-        TypeDAO.getInstance().addTag(type);
+        TypeDAO.addTag(type);
         project.setType(type);
 
-
-
-        System.out.println("Result: " + ProjectDAO.addProject(project));
-
+        ProjectDAO.addProject(project);
     }
 }

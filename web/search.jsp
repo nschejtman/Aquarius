@@ -11,13 +11,11 @@
     <title>Search</title>
 </head>
 <body>
-    <form id="projectSearch" method="post" action="search.jsp">
-        <input type="text" name="projectName" placeholder="Project Name"><br>
-        <input type="text" name="description" placeholder="Description"><br>
-        <input type="text" name="type" placeholder="Project Type" value="A Type"><br>
-        <input type="text" name="userName" placeholder="Username" value="yourUsername"><br>
-        <input type="text" name="collaborator" placeholder="Collaborator User" value="anotherUsername"><br>
-        <input type="text" name="tag" placeholder="Tag" value="#Tag"><br>
+    <form id="projectSearch" method="post" action="search">
+        <input type="text" name="projectName" ><br>
+        <input type="text" name="type" ><br>
+        <input type="text" name="userName" ><br>
+        <input type="text" name="tags" ><br>
         <input type="submit">
     </form>
 </body>

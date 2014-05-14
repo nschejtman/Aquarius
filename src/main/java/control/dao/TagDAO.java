@@ -11,11 +11,6 @@ import org.hibernate.Transaction;
  */
 public  class TagDAO {
 
-    private static TagDAO ourInstance = new TagDAO();
-
-    public TagDAO(){}
-
-    public static TagDAO getInstance(){return ourInstance;}
 
     public static boolean addType(Tag tag){
         Session session = HibernateUtil.getSessionFactory().openSession();
