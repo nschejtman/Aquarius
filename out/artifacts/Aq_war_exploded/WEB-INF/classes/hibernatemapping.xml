@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model">
+    <class name="model.HelloWorldHibernate" table="HELLO_WORLD">
+        <id name="id" column="HELLO_WORLD_ID"></id>
+    </class>
+
+</hibernate-mapping>

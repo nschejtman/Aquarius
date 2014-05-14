@@ -12,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 
-public abstract class UserDAO {
+public class UserDAO {
 
     public static boolean addUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();

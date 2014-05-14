@@ -30,7 +30,7 @@
 
     <servlet>
         <servlet-name>Main</servlet-name>
-        <servlet-class>servlets.MainServlet</servlet-class>
+        <servlet-class>servlets.IndexServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -11,8 +11,6 @@
     <title></title>
 </head>
 <body>
-
-
-
+Fin up! You are sinking into the depths of Aquarius!
 </body>
 </html>
