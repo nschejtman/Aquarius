@@ -1,5 +1,8 @@
 package model;
 
+import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -11,24 +14,45 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
     private Date birthday;
+
     private long reputation;
+
+    @NotNull
     private String userName;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String password;
+
     private boolean active;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Collection<Project> projects;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Project> favedProjects;
+
     @OneToMany
     private Collection<User> followedUsers;
+
     @OneToMany
     private Collection<User> allies;
+
     @OneToMany
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Collection<Notification> notifications;
+
     @OneToMany
     private Collection<Message> messages;
 

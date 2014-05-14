@@ -1,6 +1,11 @@
 package model;
 
 
+import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -21,18 +26,32 @@ public class Project implements Serializable {
     private Date lastUpdate;
     private int funds;
     private int objective;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @NotNull
+    //@BatchSize(size = 10)
     private Type type;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.SELECT)
+    @NotNull
     private User user;
+
     private int favs;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<User> donnors;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<User> collaborators;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Collection<Tag> tags;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Collection<Comment> comments;
 
     public Project(){}

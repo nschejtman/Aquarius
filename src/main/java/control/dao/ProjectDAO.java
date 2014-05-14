@@ -1,7 +1,6 @@
 package control.dao;
 
 
-import com.sun.istack.internal.NotNull;
 import control.HibernateUtil;
 import model.Project;
 import model.Tag;
@@ -58,7 +57,7 @@ public abstract class ProjectDAO {
         return (Project) project;
     }
 
-    public static Project getProject(@NotNull String projectName) throws IllegalAccessError{
+    public static Project getProject(String projectName) throws IllegalAccessError{
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object project = null;
@@ -78,7 +77,7 @@ public abstract class ProjectDAO {
         return (Project) project;
     }
 
-    public static List<Project> getProjectList(@NotNull Project project) {
+    public static List<Project> getProjectList(Project project) {
         List<Project> projectList = null;
         //Set search parameters
         String projectName = project.getName();
