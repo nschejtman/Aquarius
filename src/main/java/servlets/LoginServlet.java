@@ -16,13 +16,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String user = req.getParameter(Constants.LOGIN_USERNAME_FIELD);
-        String pass = req.getParameter(Constants.LOGIN_PASSWORD_FIELD);
-        LoginRealm realm = new LoginRealm();
-        if (realm.booleanAuthenticate(user, pass)) {
-            resp.sendRedirect(resp.encodeRedirectURL("/secured.jsp"));
-        } else
-            resp.sendRedirect("/login.jsp");
+
     }
 
     @Override

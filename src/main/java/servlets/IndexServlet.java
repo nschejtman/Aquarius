@@ -21,11 +21,11 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User user = new User("nschejtman");
-
-        ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/index.jsp");
-        req.setAttribute("user", user);
-        requestDispatcher.forward(req, resp);
+//        User user = new User("nschejtman");
+//
+//        ServletContext servletContext = getServletContext();
+//        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/index.jsp");
+//        req.setAttribute("user", user);
+//        requestDispatcher.forward(req, resp);
     }
 }

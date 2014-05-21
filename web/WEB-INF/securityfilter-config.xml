@@ -8,11 +8,11 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>SecuredPage</web-resource-name>
+            <web-resource-name>SecuredPage</web-resource-name> <!--TODO descablear para que empieze a filtrar-->
             <url-pattern>/secured/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>admin</role-name>
+            <role-name>inthisrole</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -20,13 +20,11 @@
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/login.jsp</form-login-page>
-            <form-error-page>/unsecured.jsp</form-error-page>
-            <form-default-page>/secured.jsp</form-default-page>
+            <form-error-page>/login.jsp?error=true</form-error-page>
+            <form-default-page>/secured/index.jsp</form-default-page>
         </form-login-config>
     </login-config>
 
-    <realm className="control.LoginRealm">
-
-    </realm>
+    <realm className="control.LoginRealm"></realm>
 
 </securityfilter-config>
