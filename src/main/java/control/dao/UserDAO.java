@@ -59,7 +59,7 @@ public class UserDAO {
             Criteria criteria = session.createCriteria(User.class);
             criteria.add(Restrictions.eq("userName", username));
             List list = criteria.list();
-            if (list.get(0) != null) user = list.get(0);
+            if (list.size()>0 && list.get(0) != null) user = list.get(0);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

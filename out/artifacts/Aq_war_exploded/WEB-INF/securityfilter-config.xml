@@ -8,7 +8,7 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>SecurePage</web-resource-name>
+            <web-resource-name>SecuredPage</web-resource-name> <!--TODO descablear para que empieze a filtrar-->
             <url-pattern>/secured/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
@@ -19,14 +19,12 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/loginjsp/contextualloginform.jsp</form-login-page>
-            <form-error-page>/index.jsp</form-error-page>
-            <form-default-page>/index.jsp</form-default-page>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/login.jsp?error=true</form-error-page>
+            <form-default-page>/secured/index.jsp</form-default-page>
         </form-login-config>
     </login-config>
 
-    <realm className="model.user.LoginRealm">
-        <realm-param name="exampleProperty" value="it works!"/>
-    </realm>
+    <realm className="control.LoginRealm"></realm>
 
 </securityfilter-config>

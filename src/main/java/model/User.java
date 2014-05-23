@@ -23,6 +23,7 @@ public class User implements Serializable {
 
     private Date birthday;
 
+
     private long reputation;
 
     @NotNull
@@ -210,5 +211,9 @@ public class User implements Serializable {
                 ", notifications=" + notifications +
                 ", messages=" + messages +
                 '}';
+    }
+
+    public int unreadNotifications(){
+        return 5; //TODO descablear
     }
 }

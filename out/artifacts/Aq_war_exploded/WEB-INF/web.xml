@@ -18,6 +18,7 @@
     </servlet-mapping>
     <!--Test servlet end-->
 
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlets.user_action.LoginServlet</servlet-class>
@@ -30,7 +31,7 @@
 
     <servlet>
         <servlet-name>Main</servlet-name>
-        <servlet-class>servlets.MainServlet</servlet-class>
+        <servlet-class>servlets.IndexServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -38,38 +39,64 @@
         <url-pattern>/main</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>servlets.RegisterServlet</servlet-class>
+    </servlet>
 
-    <!--TODO-->
-    <!--<security-constraint>-->
-    <!--<web-resource-collection>-->
-    <!--<web-resource-name>profile</web-resource-name>-->
-    <!--<url-pattern>/*</url-pattern>-->
-    <!--</web-resource-collection>-->
-    <!--</security-constraint>-->
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
 
-    <!--<security-constraint>-->
-    <!--<web-resource-collection>-->
-    <!--<web-resource-name>admin</web-resource-name>-->
-    <!--<url-pattern>/admin/*</url-pattern>-->
-    <!--</web-resource-collection>-->
-    <!--<auth-constraint>-->
-    <!--<role-name>admin</role-name>-->
-    <!--</auth-constraint>-->
-    <!--</security-constraint>-->
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>servlets.SearchServlet</servlet-class>
+    </servlet>
 
-    <!--<filter>-->
-    <!--<filter-name>secured</filter-name>-->
-    <!--<filter-class>security.Secured</filter-class>-->
-    <!--<init-param>-->
-    <!--<param-name>login</param-name>-->
-    <!--<param-value>logged</param-value>-->
-    <!--</init-param>-->
-    <!--</filter>-->
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
 
-    <!-- Log for all URLs that use the "comingsoon" servlet -->
-    <!--<filter-mapping>-->
-    <!--<filter-name>secured</filter-name>-->
-    <!--<url-pattern>*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <servlet>
+        <servlet-name>Save Project</servlet-name>
+        <servlet-class>servlets.SaveProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Save Project</servlet-name>
+        <url-pattern>/secured/saveproject</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>Security Filter</filter-name>
+        <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>/WEB-INF/securityfilter-config.xml</param-value>
+
+            <!--<description>Configuration file location (this is the default value)</description>-->
+        </init-param>
+        <init-param>
+            <param-name>validate</param-name>
+            <param-value>true</param-value>
+
+            <!--<description>Validate config file if set to true</description>-->
+        </init-param>
+    </filter>
+
+    <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
+    <filter-mapping>
+        <filter-name>Security Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>/login.jsp</welcome-file>
+    </welcome-file-list>
+
+
+
 
 </web-app>

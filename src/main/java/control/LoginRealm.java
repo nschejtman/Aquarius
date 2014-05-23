@@ -12,6 +12,11 @@ public class LoginRealm extends SimpleSecurityRealmBase {
     public boolean booleanAuthenticate(String username, String password) {
         //Checks if instance exists previously + analyse if password is correct
         User user = UserDAO.getUser(username);
-        return user.getPassword().equals(password);
+        if (user == null) return false;
+        else return user.getPassword().equals(password);
+    }
+
+    public boolean isUserInRole(String username, String role) {
+        return true;
     }
 }
