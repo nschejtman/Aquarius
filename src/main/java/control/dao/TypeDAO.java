@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
  */
 public class TypeDAO {
 
-    public static boolean addTag(Type type){
+    public static boolean addType(Type type){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         boolean ret = false;

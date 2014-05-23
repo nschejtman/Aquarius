@@ -1,4 +1,4 @@
-package servlets.user_action;
+package servlets.user;
 
 import control.LoginRealm;
 import servlets.Constants;

@@ -1,4 +1,4 @@
-package servlets.load;
+package servlets.project;
 
 import control.dao.ProjectDAO;
 import model.Project;
@@ -46,10 +46,14 @@ public class EditProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long projectID = (long) req.getAttribute("projectID");
+
+        System.out.println(projectID);
+
         Project project = ProjectDAO.getProject(projectID);
+        if(project == null) //do something
         req.setAttribute("project",project);
         ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/secured/editproject.jsp?projectID=" + projectID);
         rd.forward(req, resp);
 
     }

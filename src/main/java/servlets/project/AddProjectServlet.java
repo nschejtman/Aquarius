@@ -1,4 +1,4 @@
-package servlets.add;
+package servlets.project;
 
 import control.dao.ProjectDAO;
 import control.dao.TagDAO;
@@ -19,7 +19,7 @@ import java.io.IOException;
  * Created by franco on 30/04/2014.
  */
 
-@WebServlet(name = "AddProject", urlPatterns = "/addproject")
+@WebServlet(name = "AddProject", urlPatterns = "/secured/addproject")
 public class AddProjectServlet extends HttpServlet {
 
     @Override
@@ -46,9 +46,8 @@ public class AddProjectServlet extends HttpServlet {
 //        project.setStart(Date.valueOf(req.getParameter("startDate")));
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
         Type type = new Type(req.getParameter("type"));
-        TypeDAO.addTag(type);
         project.setType(type);
-
+        TypeDAO.addType(type);
         ProjectDAO.addProject(project);
     }
 }

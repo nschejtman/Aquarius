@@ -66,7 +66,7 @@ public  class ProjectDAO {
             Criteria criteria = session.createCriteria(Project.class);
             criteria.add(Restrictions.eq("name", name));
             List list = criteria.list();
-            if (list.get(0) != null) project = list.get(0);
+            if (list.size() > 0 && list.get(0) != null) project = list.get(0);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -109,7 +109,7 @@ public  class ProjectDAO {
             if(tags != null) criteria.add(Restrictions.eq("tags", tags));
             // Add to display List
             List list = criteria.list();
-            if (list.get(0) != null) projectList = (List<Project>) list;
+            if (list.size() > 0 && list.get(0) != null) projectList = (List<Project>) list;
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

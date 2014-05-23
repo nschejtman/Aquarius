@@ -1,9 +1,7 @@
-package servlets.load;
+package servlets.user;
 
-import control.dao.ProjectDAO;
-import control.dao.UserDAO;
-import model.Project;
-import model.User;
+import control.dao.TagDAO;
+import model.Tag;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,22 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
- * Created by franco on 10/05/2014.
+ * Created by franco on 21/05/2014.
  */
-@WebServlet(name = "ViewProjects", urlPatterns = "/viewproject")
-public class ViewProjectServlet extends HttpServlet {
-
+@WebServlet(name = "FilterTagServlet", urlPatterns = "/filtertag")
+public class FilterTagServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = UserDAO.getUser(req.getRemoteUser());
-        Project project = new Project();
-        project.setUser(user);
-        List<Project> projects = ProjectDAO.getProjectList(project) ;
-        req.setAttribute("projects", projects);
+        Long tagId = (long) req.getAttribute("tagID");
+        Tag tag = TagDAO.getTag(tagId);
+        req.setAttribute("tag", tag);
+        req.setAttribute("projectByTag", tag.getProjects());
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
-        rd.forward(req, resp);    }
+        rd.forward(req, resp);
+    }
 }

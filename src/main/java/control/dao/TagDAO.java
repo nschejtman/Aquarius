@@ -30,4 +30,21 @@ public  class TagDAO {
         return ret;
     }
 
+    public static Tag getTag(long id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Object tag = null;
+        try {
+            tx = session.beginTransaction();
+            tag = session.get(Tag.class, id);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return (Tag) tag;
+    }
+
 }
