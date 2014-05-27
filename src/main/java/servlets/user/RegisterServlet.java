@@ -23,9 +23,9 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter(Constants.REGISTER_USERNAME_FIELD);
-        String firstName = req.getParameter("firstname");
-        String lastName = req.getParameter("lastname");
-        String email = req.getParameter("email");
+        String firstName = req.getParameter("reg_first_name");
+        String lastName = req.getParameter("reg_last_name");
+        String email = req.getParameter("reg_email");
         String password = req.getParameter(Constants.REGISTER_PASSWORD_FIELD);
 
         User user = new User(firstName, lastName, null, username, email, password);

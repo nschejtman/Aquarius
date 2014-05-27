@@ -23,5 +23,9 @@ public interface Constants {
     public static final String REGISTER_PASSWORD_FIELD = "r_password";
     public static final String LOG_IN = "Log In";
     public static final String REGISTER = "Sign In";
-
+    // project list progress bars
+    public static final String SUCCESS_BAR = "progress-bar progress-bar-success animate-progress-bar";
+    public static final String DANGER_BAR = "progress-bar progress-bar-danger animate-progress-bar";
+    public static final String WARNING_BAR = "progress-bar progress-bar-warning animate-progress-bar";
+    public static final String PRIMARY_BAR = "progress-bar progress-bar-primary animate-progress-bar";
 }

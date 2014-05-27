@@ -114,6 +114,10 @@ public class Project implements Serializable {
 
     public void setObjective(int objective) {this.objective = objective;}
 
+    public String getProgress(){
+        return (objective - funds) + "%";
+    }
+
 
     public Type getType() {return type;}
 

@@ -1,11 +1,9 @@
 package servlets.project;
 
 import control.dao.ProjectDAO;
-import control.dao.TagDAO;
 import control.dao.TypeDAO;
 import control.dao.UserDAO;
 import model.Project;
-import model.Tag;
 import model.Type;
 
 import javax.servlet.ServletException;
@@ -37,12 +35,12 @@ public class AddProjectServlet extends HttpServlet {
         project.setUser(UserDAO.getUser(req.getRemoteUser()));
 
         project.setDescription(req.getParameter("description"));
-        String[] strTags = req.getParameter("tags").split(";");
-        for (String strTag : strTags) {
-            Tag tag = new Tag(strTag);
-            TagDAO.addType(tag);
-            project.addTags(tag);
-        }
+//        String[] strTags = req.getParameter("tags").split(";");
+//        for (String strTag : strTags) {
+//            Tag tag = new Tag(strTag);
+//            TagDAO.addTag(tag);
+//            project.addTags(tag);
+//        }
 //        project.setStart(Date.valueOf(req.getParameter("startDate")));
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
         Type type = new Type(req.getParameter("type"));

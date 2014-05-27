@@ -1,4 +1,4 @@
-package servlets.user;
+package servlets.project;
 
 import control.dao.ProjectDAO;
 import model.Project;
@@ -22,6 +22,7 @@ public class GoToProjectServlet extends HttpServlet {
         long projectID = Long.parseLong(req.getAttribute("projectID").toString());
         Project project = ProjectDAO.getProject(projectID);
         req.setAttribute("project", project);
+        req.setAttribute("filterByGoTo", true);
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
         rd.forward(req, resp);

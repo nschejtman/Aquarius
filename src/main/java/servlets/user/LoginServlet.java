@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String pass = req.getParameter(Constants.LOGIN_PASSWORD_FIELD);
         LoginRealm realm = new LoginRealm();
         if (realm.booleanAuthenticate(user, pass)) {
-            resp.sendRedirect(resp.encodeRedirectURL("/secured.jsp"));
+            resp.sendRedirect(resp.encodeRedirectURL("/secured/index.jsp"));
         } else
             resp.sendRedirect("/login.jsp");
     }

@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 public  class TagDAO {
 
 
-    public static boolean addType(Tag tag){
+    public static boolean addTag(Tag tag){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         boolean ret = false;

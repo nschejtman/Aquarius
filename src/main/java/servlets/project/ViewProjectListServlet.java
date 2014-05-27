@@ -27,9 +27,11 @@ public class ViewProjectListServlet extends HttpServlet {
         Project project = new Project();
         project.setUser(user);
         List<Project> projects = ProjectDAO.getProjectList(project) ;
-        req.setAttribute("projects", projects);
-        ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/projectlist.jsp");
-        rd.forward(req, resp);
+        if(projects.size() > 0 && projects.get(0) != null ) {
+            req.setAttribute("projects", projects);
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/secured/projectlist.jsp");
+            rd.forward(req, resp);
+        } else resp.sendRedirect("/secured/index.jsp");
     }
 }

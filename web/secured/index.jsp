@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title><%=request.getUserPrincipal().getName()%>ius</title>
+    <title><%=request.getRemoteUser()%>ius</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!--import css files-->
     <import:css_files/>
