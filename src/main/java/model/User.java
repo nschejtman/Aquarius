@@ -57,9 +57,10 @@ public class User implements Serializable {
     @OneToMany
     private Collection<Message> messages;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String userName){
+    public User(String userName) {
         this.userName = userName;
     }
 
@@ -213,7 +214,18 @@ public class User implements Serializable {
                 '}';
     }
 
-    public int unreadNotifications(){
-        return 5; //TODO descablear
+    //Nav display methods start-------------------------------------------
+    //TODO descablear
+    public int getUnreadNotificationsQty() {
+        return 5;
     }
+
+    public int getUnreadMessagesQty() {
+        return 50;
+    }
+
+    public int getCommunityUpdatesQty() {
+        return 10;
+    }
+    //Nav display methods end---------------------------------------------
 }

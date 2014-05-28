@@ -8,7 +8,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title><%=request.getRemoteUser()%>ius</title>
+    <title><%=request.getUserPrincipal().getName()%>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!--import css files-->
     <import:css_files/>
@@ -16,13 +17,10 @@
 </head>
 <body>
 
-<navigation:main_nav title="Home">
+<navigation:main_nav title="Home" active="home">
 
 
 </navigation:main_nav>
 
-
-<!--import js files-->
-<import:js_files/>
 </body>
 </html>
