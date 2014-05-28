@@ -1,6 +1,9 @@
 <%@ tag import="control.dao.UserDAO" %>
+<!--define tag library for imports-->
+<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>
 <%@tag body-content="tagdependent" %>
 <%@ attribute name="title" required="true" %>
+<%@ attribute name="active" required="true" %>
 <%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
 
 
@@ -30,6 +33,10 @@
 
     div.page-sidebar{
         position: fixed;
+    }
+
+    span.space {
+        margin-left: 5px;
     }
 
 </style>
@@ -62,7 +69,7 @@
                        data-toggle="dropdown" data-original-title="Notifications">
                         <div class="user-details">
                             <div class="username">
-                                <span class="badge badge-important"><%=user.unreadNotifications()%></span>
+                                <span class="badge badge-important">1</span>
                                 <%=user.getFirstName()%> <span class="bold"><%=user.getLastName()%></span>
                             </div>
                         </div>
@@ -108,60 +115,70 @@
     <!-- BEGIN SIDEBAR MENU -->
     <br>
     <ul>
-        <li class="start active ">
+        <li id="sidenav-home">
             <a href="/index">
                 <i class="icon-custom-home"></i>
                 <span class="title">Home</span>
-                <span class="selected"></span>
-                <span class="badge badge-important pull-right">5</span>
+
+
             </a>
         </li>
-        <li class="">
+        <li id="sidenav-notifications">
             <a href="">
                 <i class="fa fa-flag"></i>
                 <span class="title">Notifications</span>
+                <span class="badge badge-important pull-right"><%=user.getUnreadNotificationsQty()%></span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-messages">
+            <a href="javascript:;">
                 <i class="fa fa-envelope"></i>
                 <span class="title">Messages</span>
-                <span class=" badge badge-disable pull-right ">203</span>
+                <span class="arrow"></span>
+                <span class=" badge badge-disable pull-right "><%=user.getUnreadMessagesQty()%></span>
             </a>
+            <ul class="sub-menu" style="overflow: hidden; display: block;">
+                <li><a href=""> Inbox </a></li>
+                <li><a href=""> Sent </a></li>
+                <li><a href=""> Create new </a></li>
+
+            </ul>
+
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-profile">
+        <a href="">
                 <i class="fa fa-user"></i>
                 <span class="title">Profile</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-projects">
+        <a href="">
                 <i class="icon-custom-chart"></i>
                 <span class="title">Projects</span>
             </a>
         </li>
-        <li>
+        <li id="sidenav-community">
             <a href="">
                 <i class="fa fa-users"></i>
                 <span class="title">Community</span>
+                <span class=" badge badge-disable pull-right "><%=user.getCommunityUpdatesQty()%></span>
             </a>
         </li>
-        <li>
-            <a href="">
+        <li id="sidenav-advanced_search">
+        <a href="">
                 <i class="fa fa-search"></i>
                 <span class="title">Advanced Search</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-settings">
+        <a href="">
                 <i class="icon-custom-settings"></i>
                 <span class="title">Settings</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
-                <i class="fa fa-info"></i>
+        <li id="sidenav-about">
+            <a onclick="sayHi()">
+            <i class="fa fa-info"></i>
                 <span class="title">About</span>
             </a>
 
@@ -182,10 +199,19 @@
             <h3>${title} </h3>
         </div>
         <div id="container">
-
+            <jsp:doBody/>
             <!-- END PAGE -->
         </div>
     </div>
     <!-- END CONTAINER -->
 </div>
+
+<import:js_files/>
+
+
+<script>
+    //Sets the corresponding section to the side nav as active
+    $("#sidenav-${active}").addClass("start active");
+</script>
+
 
