@@ -5,8 +5,6 @@ import control.dao.UserDAO;
 import model.Project;
 import model.User;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+//import javax.servlet.RequestDispatcher;
+//import javax.servlet.ServletContext;
+
 /**
  * Created by franco on 10/05/2014.
  */
-@WebServlet(name = "ViewProjectList", urlPatterns = "/projectlist")
+@WebServlet(name = "ViewProjectList", urlPatterns = "/secured/projectlist")
 public class ViewProjectListServlet extends HttpServlet {
 
     @Override
@@ -27,11 +28,10 @@ public class ViewProjectListServlet extends HttpServlet {
         Project project = new Project();
         project.setUser(user);
         List<Project> projects = ProjectDAO.getProjectList(project) ;
-        if(projects.size() > 0 && projects.get(0) != null ) {
+        if(projects.size() > 0) {
             req.setAttribute("projects", projects);
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/secured/projectlist.jsp");
-            rd.forward(req, resp);
+//            ServletContext context = getServletContext();
+            req.getRequestDispatcher("/secured/projectlist.jsp").forward(req, resp);
         } else resp.sendRedirect("/secured/index.jsp");
     }
 }

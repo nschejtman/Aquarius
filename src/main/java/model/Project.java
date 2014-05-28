@@ -115,7 +115,7 @@ public class Project implements Serializable {
     public void setObjective(int objective) {this.objective = objective;}
 
     public String getProgress(){
-        return (objective - funds) + "%";
+        return ((objective - funds)/100) + "%";
     }
 
 

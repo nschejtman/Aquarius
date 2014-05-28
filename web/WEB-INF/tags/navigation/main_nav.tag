@@ -1,4 +1,7 @@
 <%@ tag import="control.dao.UserDAO" %>
+
+
+
 <%@tag body-content="tagdependent" %>
 <%@ attribute name="title" required="true" %>
 <%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
@@ -6,7 +9,7 @@
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
-<% User user = UserDAO.getUser(request.getRemoteUser()); %>
+<% User user = UserDAO.getUser(request.getUserPrincipal().getName()); %>
 <base href="../../../">
 
 <!--TODO agregarlo en un css aparte-->
@@ -182,7 +185,7 @@
             <h3>${title} </h3>
         </div>
         <div id="container">
-
+            <jsp:doBody/>
             <!-- END PAGE -->
         </div>
     </div>

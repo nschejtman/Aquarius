@@ -15,8 +15,7 @@
     </div>
 </c:if>
 <div class="UserProject">
-    <a href="${pageContext.request.contextPath}/viewProfile?u=${project.getUser().getUserName()}"> <c:out
-            value="${project.getUser().getUserName()}"/></a>
+    <c:out value="${project.getUser().getUserName()}"/>
 </div>
 <div class="Title">
     <c:out value="${project.getName()}"/>

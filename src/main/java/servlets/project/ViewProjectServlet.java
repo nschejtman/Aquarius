@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by franco on 21/05/2014.
  */
-@WebServlet(name = "ViewProject", urlPatterns = "/project")
+@WebServlet(name = "ViewProject", urlPatterns = "/secured/project")
 public class ViewProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
