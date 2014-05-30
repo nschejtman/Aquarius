@@ -37,3 +37,10 @@
 <script src="../../../assets/js/chat.js" type="text/javascript"></script>
 <script src="../../../assets/js/demo.js" type="text/javascript"></script>
 <!-- END CORE TEMPLATE JS -->
+
+<!-- ADD PROJECT PLUGINS-->
+<script src="../../../assets/plugins/bootstrap-select2/select2.min.js" type="text/javascript"></script>
+<script src="../../../assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+<script src="../../../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
+<script src="../../../assets/plugins/bootstrap-tag/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+<script src="../../../assets/plugins/jquery-inputmask/jquery.inputmask.min.js" type="text/javascript"></script>

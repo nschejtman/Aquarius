@@ -1,11 +1,12 @@
 <%@ tag import="control.dao.UserDAO" %>
+
 <!--define tag library for imports-->
-<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>
+<%--<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>--%>
 <%@tag body-content="tagdependent" %>
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="active" required="true" %>
-<%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
 
+<%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
@@ -30,17 +31,13 @@
         /*url('../../../assets/fonts/PeachMilk.ttf')  format('truetype'),*/
         /*url('../../../assets/fonts/PeachMilk.svg#PeachMilk') format('svg');*/
     /*}*/
-
     div.page-sidebar{
         position: fixed;
     }
-
     span.space {
         margin-left: 5px;
     }
-
 </style>
-
 
 <!-- NAVBAR START -->
 <div class="header navbar navbar-inverse ">
@@ -188,7 +185,6 @@
     <!-- END SIDEBAR MENU -->
 </div>
 
-
 </div>
 <!-- END SIDEBAR -->
 <!-- BEGIN PAGE CONTAINER-->
@@ -206,8 +202,7 @@
     <!-- END CONTAINER -->
 </div>
 
-<import:js_files/>
-
+<%--<import:js_files/>--%>
 
 <script>
     //Sets the corresponding section to the side nav as active
