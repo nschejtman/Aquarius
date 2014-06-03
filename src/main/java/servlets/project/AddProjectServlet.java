@@ -37,9 +37,9 @@ public class AddProjectServlet extends HttpServlet {
         Project project = new Project();
         project.setUser(UserDAO.getUser(req.getRemoteUser()));
         project.setName(req.getParameter("projectName"));
-        Type type = new Type(req.getParameter("type"));
+        project.setObjective(Integer.parseInt(req.getParameter("objective")));
+        Type type = TypeDAO.getType(req.getParameter("type"));
         project.setType(type);
-        TypeDAO.addType(type);
         project.setDescription(req.getParameter("description"));
 //        String[] strTags = req.getParameter("tags").split(";");
 //        for (String strTag : strTags) {

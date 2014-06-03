@@ -201,13 +201,14 @@
         <div class="page-title">
             <h3>${title} </h3>
         </div>
-    <form id = "projectForm" method = "post" action ="secured/addproject">
+
+        <form id = "projectForm" method = "post" action ="secured/addproject">
         <!-- BEGIN BASIC FORM ELEMENTS-->
         <div class="row">
             <div class="col-md-12">
                 <div class="grid simple">
                     <div class="grid-title no-border">
-                        <h4>Introduce <span class="semi-bold">Name</span></h4>
+                        <h4>Project <span class="semi-bold">Data</span></h4>
                         <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
                     </div>
                     <div class="grid-body no-border"> <br>
@@ -216,7 +217,14 @@
                                 <div class="form-group">
                                     <label class="form-label">Project Name</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control">
+                                        <input name="projectName" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Objective</label>
+                                    <span class="help">e.g. "$45.50"</span>
+                                    <div class="controls">
+                                        <input name="objective" type="text" class="form-control" data-a-sign="$ ">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +247,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <br>
-                                <select id="source" style="width:100%">
+                                <select id="source" name = "type" style="width:100%">
                                         <optgroup label="TYPES">
                                             <c:forEach var="type" items="${requestScope.types}" >
                                             <option> ${type.name} </option>
@@ -302,7 +310,7 @@
                         <h3>Write <span class="semi-bold">Description</span></h3>
                         <code>textarea</code> </p>
                         <br>
-                        <textarea id="text-editor" placeholder="Enter text ..." class="form-control" rows="10"></textarea>
+                        <textarea id="text-editor" name="description" placeholder="Enter text ..." class="form-control" rows="10"></textarea>
 
                     </div>
                 </div>
@@ -324,7 +332,6 @@
                                 <div class="row-fluid">
                                     <h3>Tag <span class="semi-bold">Input</span></h3>
                                     <br>
-                                    <input class="span12 tagsinput" type="text" value="Amsterdam,Washington" data-role="tagsinput" />
                                     <input class="span12 tagsinput" id="source-tags" type="text"  />
                                 </div>
                             </div>
@@ -334,6 +341,8 @@
             </div>
         </div>
         <!-- END TAG INPUTS -->
+        <button type="submit" class="btn btn-primary btn-cons"><i class="fa fa-check"></i>&nbsp;Submit</button>
+
 
     </form>
 </div>
