@@ -5,19 +5,6 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <!--Test servlet start-->
-
-    <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>servlets.HelloWorldServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>HelloWorld</servlet-name>
-        <url-pattern>/HelloWorld</url-pattern>
-    </servlet-mapping>
-    <!--Test servlet end-->
-
 
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -69,6 +56,17 @@
         <url-pattern>/secured/saveproject</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>View Project</servlet-name>
+        <servlet-class>servlets.project.ViewProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>View Project</servlet-name>
+        <url-pattern>/secured/project</url-pattern>
+    </servlet-mapping>
+
+
     <filter>
         <filter-name>Security Filter</filter-name>
         <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>
@@ -95,8 +93,6 @@
     <welcome-file-list>
         <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
-
-
 
 
 </web-app>

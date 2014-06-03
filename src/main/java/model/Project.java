@@ -30,7 +30,6 @@ public class Project implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @NotNull
-    //@BatchSize(size = 10)
     private Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,11 +37,15 @@ public class Project implements Serializable {
     @NotNull
     private User user;
 
+    @OneToMany
+    private Collection<Update> updates;
+
     private int favs;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<User> donnors;
 
+    //Esto queda para el final
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<User> collaborators;
 
@@ -54,7 +57,11 @@ public class Project implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Collection<Comment> comments;
 
-    public Project(){}
+    @OneToMany
+    private Collection<Image> images;
+
+    public Project() {
+    }
 
     public Project(String name, String description, Date start, Date end, Type type,
                    User user) {
@@ -155,7 +162,7 @@ public class Project implements Serializable {
         this.type = type;
     }
 
-    public void setTypeByName(String type){
+    public void setTypeByName(String type) {
         this.type = new Type(type);
     }
 
@@ -167,7 +174,7 @@ public class Project implements Serializable {
         this.user = user;
     }
 
-    public void setUserByName(String name){
+    public void setUserByName(String name) {
         this.user = new User(name);
     }
 
@@ -210,4 +217,6 @@ public class Project implements Serializable {
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;
     }
+
+
 }
