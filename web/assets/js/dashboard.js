@@ -1,9 +1,9 @@
-$(document).ready(function() {	
-	var graph;
-	var rick;
-	loadServerChart();
-	loadSampleChart();
-	loadAnimatedWeatherIcons();
+$(document).ready(function () {
+//	var graph;
+//	var rick;
+//	loadServerChart();
+//	loadSampleChart();
+//	loadAnimatedWeatherIcons();
 	
 //Ricksaw Chart for Server Load - Autoupdate
 function loadServerChart(){
@@ -42,9 +42,13 @@ function loadServerChart(){
 	},1000);
 }
 
-//Ricksaw Chart Sample 
-function loadSampleChart(){
-var seriesData = [ [], [],[]];
+//Ricksaw Chart Sample
+    function loadSampleChart() {
+        var seriesData = [
+            [],
+            [],
+            []
+        ];
 	var random = new Rickshaw.Fixtures.RandomData(50);
 
 	for (var i = 0; i < 50; i++) {
@@ -75,13 +79,13 @@ var seriesData = [ [], [],[]];
 	var hoverDetail = new Rickshaw.Graph.HoverDetail( {
 		graph: rick
 	});
-	
-	random.addData(seriesData);
+
+        random.addData(seriesData);
 	rick.update();
-	
-	var ticksTreatment = 'glow';
-	
-	var xAxis = new Rickshaw.Graph.Axis.Time( {
+
+        var ticksTreatment = 'glow';
+
+        var xAxis = new Rickshaw.Graph.Axis.Time({
 	graph: rick,
 	ticksTreatment: ticksTreatment,
 	timeFixture: new Rickshaw.Fixtures.Time.Local()
@@ -94,15 +98,15 @@ var seriesData = [ [], [],[]];
 		tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
 		ticksTreatment: ticksTreatment
 	});
-	
-	var legend = new Rickshaw.Graph.Legend( {
+
+        var legend = new Rickshaw.Graph.Legend({
 	graph: rick,
 	element: document.getElementById('legend')
-	});	
-	
+        });
+
 	yAxis.render();
-	
-	var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+
+        var shelving = new Rickshaw.Graph.Behavior.Series.Toggle({
 		graph: rick,
 		legend: legend
 	} );
@@ -115,8 +119,8 @@ var seriesData = [ [], [],[]];
 	var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight( {
 		graph: rick,
 		legend: legend
-	} );	
-}
+    });
+    }
 
 //Jquery vector map
 var cityAreaData = [
@@ -196,7 +200,7 @@ $('#world-map').vectorMap({
         scale: [3, 7],
         values: cityAreaData
       }]
-    },
+    }
   });
   
 	//Simple todolist

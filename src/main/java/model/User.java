@@ -57,6 +57,9 @@ public class User implements Serializable {
     @OneToMany
     private Collection<Message> messages;
 
+    @OneToOne
+    private Image profilePicture;
+
     public User() {
     }
 

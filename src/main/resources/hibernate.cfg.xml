@@ -26,6 +26,7 @@
         <property name="hbm2ddl.auto">update</property>
         <mapping class="model.City"></mapping>
         <mapping class="model.Comment"></mapping>
+
         <mapping class="model.Country"></mapping>
         <mapping class="model.HelloWorldHibernate"></mapping>
         <mapping class="model.Location"></mapping>
@@ -36,6 +37,8 @@
         <mapping class="model.Tag"></mapping>
         <mapping class="model.Type"></mapping>
         <mapping class="model.User"></mapping>
+        <mapping class="model.Update"></mapping>
+        <mapping class="model.Image"></mapping>
 
     </session-factory>
 </hibernate-configuration>

@@ -1,17 +1,14 @@
 <%@ tag import="control.dao.UserDAO" %>
-
-<!--define tag library for imports-->
-<%--<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>--%>
 <%@tag body-content="tagdependent" %>
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="active" required="true" %>
-
-<%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
+<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
 <% User user = UserDAO.getUser(request.getRemoteUser()); %>
 <base href="../../../">
+
 
 <!--TODO agregarlo en un css aparte-->
 <style>
@@ -23,20 +20,15 @@
         margin-top: 12px;
         margin-left: 28px;
     }
-    /*TODO agregarlo al css del login
-    /*@font-face {*/
-        /*font-family: 'FontsGotSwag';*/
-        /*src: url('../../../assets/fonts/PeachMilk.eot?') format('eot'),*/
-        /*url('../../../assets/fonts/PeachMilk.woff') format('woff'),*/
-        /*url('../../../assets/fonts/PeachMilk.ttf')  format('truetype'),*/
-        /*url('../../../assets/fonts/PeachMilk.svg#PeachMilk') format('svg');*/
-    /*}*/
-    div.page-sidebar{
+
+    div.page-sidebar {
         position: fixed;
     }
+
     span.space {
         margin-left: 5px;
     }
+
 </style>
 
 <!-- NAVBAR START -->
@@ -44,7 +36,7 @@
     <div class="navbar-inner">
         <!--LOGO START-->
         <div class="header-seperation">
-            <a href="/index"><img src="assets/img/logo.png" class="logo"></a>
+            <a href="/index"><img src="/assets/img/logo.png" class="logo"></a>
         </div>
         <!--LOGO END-->
 
@@ -121,7 +113,7 @@
             </a>
         </li>
         <li id="sidenav-notifications">
-            <a href="">
+            <a>
                 <i class="fa fa-flag"></i>
                 <span class="title">Notifications</span>
                 <span class="badge badge-important pull-right"><%=user.getUnreadNotificationsQty()%></span>
@@ -132,50 +124,49 @@
                 <i class="fa fa-envelope"></i>
                 <span class="title">Messages</span>
                 <span class="arrow"></span>
-                <span class=" badge badge-disable pull-right "><%=user.getUnreadMessagesQty()%></span>
             </a>
-            <ul class="sub-menu" style="overflow: hidden; display: block;">
-                <li><a href=""> Inbox </a></li>
-                <li><a href=""> Sent </a></li>
-                <li><a href=""> Create new </a></li>
+            <ul class="sub-menu" style="overflow: hidden;">
+                <li><a> Inbox </a></li>
+                <li><a> Sent </a></li>
+                <li><a> Create new </a></li>
 
             </ul>
 
         </li>
         <li id="sidenav-profile">
-        <a href="">
+            <a>
                 <i class="fa fa-user"></i>
                 <span class="title">Profile</span>
             </a>
         </li>
         <li id="sidenav-projects">
-        <a href="">
+            <a>
                 <i class="icon-custom-chart"></i>
                 <span class="title">Projects</span>
             </a>
         </li>
         <li id="sidenav-community">
-            <a href="">
+            <a>
                 <i class="fa fa-users"></i>
                 <span class="title">Community</span>
                 <span class=" badge badge-disable pull-right "><%=user.getCommunityUpdatesQty()%></span>
             </a>
         </li>
         <li id="sidenav-advanced_search">
-        <a href="">
+            <a>
                 <i class="fa fa-search"></i>
                 <span class="title">Advanced Search</span>
             </a>
         </li>
         <li id="sidenav-settings">
-        <a href="">
+            <a>
                 <i class="icon-custom-settings"></i>
                 <span class="title">Settings</span>
             </a>
         </li>
         <li id="sidenav-about">
-            <a onclick="sayHi()">
-            <i class="fa fa-info"></i>
+            <a>
+                <i class="fa fa-info"></i>
                 <span class="title">About</span>
             </a>
 
@@ -185,6 +176,7 @@
     <!-- END SIDEBAR MENU -->
 </div>
 
+
 </div>
 <!-- END SIDEBAR -->
 <!-- BEGIN PAGE CONTAINER-->
@@ -192,7 +184,7 @@
     <div class="clearfix"></div>
     <div class="content">
         <div class="page-title">
-            <h3>${title} </h3>
+            <h3><span class="semi-bold">${title}</span></h3>
         </div>
         <div id="container">
             <jsp:doBody/>
@@ -201,9 +193,7 @@
     </div>
     <!-- END CONTAINER -->
 </div>
-
-<%--<import:js_files/>--%>
-
+<import:js_files></import:js_files>
 <script>
     //Sets the corresponding section to the side nav as active
     $("#sidenav-${active}").addClass("start active");

@@ -6,26 +6,27 @@ import model.Project;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by franco on 21/05/2014.
- */
-@WebServlet(name = "ViewProject", urlPatterns = "/secured/project")
 public class ViewProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long projectID = (long) req.getAttribute("projectID");
-        Project project = ProjectDAO.getProject(projectID);
-        if(project == null) //do something
+        //Get the project id from the url
+        Long id = Long.parseLong(req.getParameter("id"));
+        Project project = ProjectDAO.getProject(id);
 
-        req.setAttribute("project",project);
-        ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/secured/project.jsp?projectID=" + projectID );
-        rd.forward(req, resp);
+        //Forward request to the project_view.jsp
+        ServletContext servletContext = getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/project_view.jsp");
+        req.setAttribute("project", project);
+        requestDispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }
