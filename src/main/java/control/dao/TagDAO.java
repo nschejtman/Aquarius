@@ -1,10 +1,15 @@
 package control.dao;
 
+import com.sun.istack.internal.NotNull;
 import control.HibernateUtil;
 import model.Tag;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import java.util.List;
 
 /**
  * Created by franco on 09/05/2014.
@@ -45,6 +50,27 @@ public  class TagDAO {
             session.close();
         }
         return (Tag) tag;
+    }
+
+    public static Tag getSingleTag(@NotNull String tag) throws IllegalAccessError {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Object user = null;
+        try {
+            tx = session.beginTransaction();
+            Criteria criteria = session.createCriteria(Tag.class);
+            criteria.add(Restrictions.eq("tag", tag));
+            List list = criteria.list();
+            if (list.size()>0 && list.get(0) != null) user = list.get(0);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return (Tag) user;
+
     }
 
 }
