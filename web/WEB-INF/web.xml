@@ -5,68 +5,6 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>servlets.LoginServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Main</servlet-name>
-        <servlet-class>servlets.IndexServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>servlets.RegisterServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>servlets.SearchServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Search</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Save Project</servlet-name>
-        <servlet-class>servlets.SaveProjectServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Save Project</servlet-name>
-        <url-pattern>/secured/saveproject</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>View Project</servlet-name>
-        <servlet-class>servlets.project.ViewProjectServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>View Project</servlet-name>
-        <url-pattern>/secured/project</url-pattern>
-    </servlet-mapping>
-
-
     <filter>
         <filter-name>Security Filter</filter-name>
         <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>

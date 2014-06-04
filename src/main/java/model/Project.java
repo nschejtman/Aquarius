@@ -81,7 +81,6 @@ public class Project implements Serializable {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -210,6 +209,19 @@ public class Project implements Serializable {
         this.tags = tags;
     }
 
+    public void deleteTag(Tag... tags) {
+        for (Tag tag : tags) {
+
+        }
+    }
+
+    public void addTags(Tag... tags) {
+        for (Tag tag : tags) {
+            this.tags.add(tag);
+            tag.addProject(this);
+        }
+    }
+
     public Collection<Comment> getComments() {
         return comments;
     }
@@ -218,5 +230,11 @@ public class Project implements Serializable {
         this.comments = comments;
     }
 
-
+    public String getProgress(){
+        if (objective == 0){
+            return "100%";}
+        else {
+            return ((funds * 100) / objective) + "%";
+        }
+    }
 }
