@@ -7,6 +7,7 @@
 <!-- Get user -->
 <%@ tag import="model.User" %>
 <% User user = UserDAO.getUser(request.getRemoteUser()); %>
+<%@ attribute name="body" fragment="true" %>
 <base href="../../../">
 
 
@@ -187,7 +188,7 @@
             <h3><span class="semi-bold">${title}</span></h3>
         </div>
         <div id="container">
-            <jsp:doBody/>
+            <jsp:invoke fragment="body"/>
             <!-- END PAGE -->
         </div>
     </div>
