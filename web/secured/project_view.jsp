@@ -8,14 +8,14 @@
 </head>
 <body>
 <nav:main_nav title="Project" active="projects">
-    <div class="row">
-        <div class="grid simple">
-            <div class="grid-body no-border invoice-body"><br>
+    <jsp:attribute name="body">
+        <div class="row">
+            <div class="grid simple">
+                <div class="grid-body no-border invoice-body"><br>
 
-                <h1>
-                </h1>
+                    <h1>${requestScope.project}</h1>
 
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
                 <br>
                 <br>
                 <br>
@@ -101,6 +101,7 @@
             </div>
         </div>
     </div>
+    </jsp:attribute>
 
 
 </nav:main_nav>
