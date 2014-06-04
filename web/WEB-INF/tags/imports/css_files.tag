@@ -9,7 +9,6 @@
 <link href="../../../assets/plugins/jquery-slider/css/jquery.sidr.light.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="../../../assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="../../../assets/plugins/jquery-jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="../../../assets/plugins/boostrap-checkbox/css/bootstrap-checkbox.css" rel="stylesheet" type="text/css" media="screen"/>
 <!-- END PLUGIN CSS -->
 
 <!-- BEGIN CORE CSS FRAMEWsORK -->
@@ -26,10 +25,5 @@
 <link href="../../../assets/css/custom-icon-set.css" rel="stylesheet" type="text/css"/>
 <!-- END CSS TEMPLATE -->
 
-<!-- ADD PROJECT TAGS -->
-<link href="../../../assets/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css"/>
-<link href="../../../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css"/>
-<link href="../../../assets/plugins/boostrap-slider/css/slider.css" rel="stylesheet" type="text/css"/>
-<link href="../../../assets/plugins/boostrap-slider/css/slider.css" rel="stylesheet" type="text/css"/>
-<link href="../../../assets/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css"/>
+
 
