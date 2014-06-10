@@ -1,4 +1,3 @@
-<%@ page import="servlets.Constants" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports"%>
 <%@taglib prefix="navigation" tagdir="/WEB-INF/tags/navigation" %>
@@ -16,7 +15,7 @@
                     <div class="grid simple ">
                         <div class="grid-title">
                             <h4><span class="semi-bold">Projects</span></h4>
-                            <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> </div>
+                            <div class="tools"> <a href="javascript:;" class="collapse"></a>  <a href="javascript:;" class="reload"></a> </div>
                         </div>
                         <div class="grid-body ">
                             <table class="table table-hover table-condensed" id="example">
@@ -44,7 +43,7 @@
                                         <td><span class="muted"><c:out value="${project.objective}"/></span></td>
                                         <td class="v-align-middle">
                                             <div class="progress ">
-                                                <div data-percentage="<c:out value="${project.getProgress()}"/>"  class=<%=Constants.PRIMARY_BAR%>></div>
+                                                <div data-percentage="<c:out value="${project.getProgress()}"/>"  class="progress-bar progress-bar-primary animate-progress-bar"></div>
                                             </div>
                                         </td>
                                     </tr>

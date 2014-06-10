@@ -25,9 +25,7 @@ public class ViewProjectListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserDAO.getUser(req.getRemoteUser());
-        Project project = new Project();
-        project.setUser(user);
-        List<Project> projects = ProjectDAO.getProjectList(project) ;
+        List<Project> projects = ProjectDAO.getProjectsByUser(user) ;
         if(projects.size() > 0) {
             req.setAttribute("projects", projects);
 //            ServletContext context = getServletContext();

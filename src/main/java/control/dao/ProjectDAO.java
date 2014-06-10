@@ -1,6 +1,7 @@
 package control.dao;
 
 
+import com.sun.istack.internal.NotNull;
 import control.HibernateUtil;
 import model.Project;
 import model.Tag;
@@ -80,6 +81,25 @@ public  class ProjectDAO {
     public static List<Project> getAll(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         return (List<Project>) session.createCriteria(Project.class).list();
+    }
+
+    public static List<Project> getProjectsByUser(@NotNull User user){
+        List<Project> projectList = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            Criteria criteria = session.createCriteria(Project.class);
+            criteria.add(Restrictions.eq("user", user));
+            projectList = (List<Project>) criteria.list();
+            tx.commit();
+        } catch (HibernateException e){
+            if(tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return projectList;
     }
 
     public static List<Project> getProjectList(Project project) {

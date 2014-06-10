@@ -27,7 +27,7 @@ public class AddProjectServlet extends HttpServlet {
         if(types.size() > 0){
             req.setAttribute("types", types);
             req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
-        } else resp.sendRedirect("/secured/index.jsp");
+        } else resp.sendRedirect("/secured/addproject.jsp");
     }
 
     @Override

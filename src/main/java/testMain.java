@@ -1,18 +1,15 @@
-import control.dao.ProjectDAO;
-import control.dao.UserDAO;
-import model.Project;
-
-import java.util.List;
+import control.dao.TypeDAO;
+import model.Type;
 
 public class testMain {
     public static void main(String[] args) {
 
-        Project project = new Project();
-        project.setUser(UserDAO.getUser("ftestori"));
-        List<Project> projects = ProjectDAO.getProjectList(project);
-        for(Project p: projects ){
-            System.out.println(p.getName());
-        }
+        Type type = new Type("Admin");
+        Type type2 = new Type("Root");
+        Type type3 = new Type("Beta");
+        TypeDAO.addType(type);
+        TypeDAO.addType(type2);
+        TypeDAO.addType(type3);
 
 
     }
