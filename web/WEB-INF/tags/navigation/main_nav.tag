@@ -32,11 +32,19 @@
 
 </style>
 
+
 <!-- NAVBAR START -->
 <div class="header navbar navbar-inverse ">
     <div class="navbar-inner">
         <!--LOGO START-->
         <div class="header-seperation">
+            <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper"
+                style="display:none; background: none">
+                <li class="dropdown"><a id="main-menu-toggle" href="#main-menu" class=""
+                                        style="background-color: #80C9C3;">
+                    <div class="iconset top-menu-toggle-white"></div>
+                </a></li>
+            </ul>
             <a href="/index"><img src="/assets/img/logo.png" class="logo"></a>
         </div>
         <!--LOGO END-->
@@ -44,9 +52,15 @@
         <div class="header-quick-nav">
             <div class="pull-left">
                 <ul class="nav quick-section">
+                    <li class="quicklinks"><a class="" id="layout-condensed-toggle">
+                        <div class="iconset top-menu-toggle-dark"></div>
+                    </a></li>
+                </ul>
+                <ul class="nav quick-section">
+
                     <li class="m-r-10 input-prepend inside search-form no-boarder">
                         <span class="add-on"> <span class="iconset top-search"></span></span>
-                        <input name="navSearch" type="text" class="no-boarder " placeholder="Search"
+                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard"
                                style="width:250px;">
                     </li>
                 </ul>
@@ -141,22 +155,36 @@
             </a>
         </li>
         <li id="sidenav-projects">
-            <a>
+            <a href="javascript:;">
                 <i class="icon-custom-chart"></i>
                 <span class="title">Projects</span>
+                <span class="arrow"></span>
+
+
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Projects </a></li>
+                    <li><a> Followed projects </a></li>
+                    <li><a> Faved projects </a></li>
+                    <li><a> Recomended me! <span class="badge">beta</span> </a></li>
+                    <li><a> Create new project</a></li>
+                </ul>
             </a>
         </li>
         <li id="sidenav-community">
-            <a>
+            <a href="javascript:;">
                 <i class="fa fa-users"></i>
                 <span class="title">Community</span>
-                <span class=" badge badge-disable pull-right "><%=user.getCommunityUpdatesQty()%></span>
+                <span class="arrow"></span>
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Community </a></li>
+                    <li><a> Followed users </a></li>
+                </ul>
             </a>
         </li>
         <li id="sidenav-advanced_search">
             <a>
                 <i class="fa fa-search"></i>
-                <span class="title">Advanced Search</span>
+                <span class="title">Search</span>
             </a>
         </li>
         <li id="sidenav-settings">

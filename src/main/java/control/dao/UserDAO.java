@@ -20,7 +20,7 @@ public class UserDAO {
         boolean ret = false;
         try {
             tx = session.beginTransaction();
-            user.setActive(true);
+//            user.setActive(true);
             session.persist(user);
             tx.commit();
             ret = true;
@@ -59,7 +59,7 @@ public class UserDAO {
             Criteria criteria = session.createCriteria(User.class);
             criteria.add(Restrictions.eq("userName", username));
             List list = criteria.list();
-            if (list.size()>0 && list.get(0) != null) user = list.get(0);
+            if (list.size() > 0 && list.get(0) != null) user = list.get(0);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -94,6 +94,21 @@ public class UserDAO {
         try {
             tx = session.beginTransaction();
             session.delete(user);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void updateUser(@NotNull User user) throws IllegalAccessException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

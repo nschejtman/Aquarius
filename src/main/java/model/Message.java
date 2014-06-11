@@ -1,57 +1,62 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Entity
 public class Message {
+
+    //Constructor variables
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String comment;
-    private boolean read;
+
+    private String message;
+    private long date;
+
     @ManyToOne
-    private User source;
-    private Date date;
+    private User sender;
+
+    @ManyToOne
+    private User recipient;
+
+    //Non-constructor variables
+    private boolean read;
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getMessage() {
+        return message;
     }
 
-    public String getComment() {
-        return comment;
+    public long getDate() {
+        return date;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public User getSender() {
+        return sender;
+    }
+
+    public User getRecipient() {
+        return recipient;
     }
 
     public boolean isRead() {
         return read;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
-    }
-
-    public User getSource() {
-        return source;
-    }
-
-    public void setSource(User source) {
-        this.source = source;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
+    public Message(User recipient, User sender, long date, String message) {
+        this.recipient = recipient;
+        this.sender = sender;
         this.date = date;
+        this.message = message;
+
+        //Initialize
+        read = false;
+    }
+
+    public Message() {
     }
 }

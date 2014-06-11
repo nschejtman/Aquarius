@@ -1,61 +1,65 @@
 package model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 
 @Entity
-public class Comment implements Serializable {
+public class Comment {
 
+    //Constructor variables
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String comment;
+    long id;
+
+    String comment;
+    long date;
+
     @ManyToOne
-    private User user;
+    User user;
+
+    @ManyToOne
+    Project project;
+
+    //Non-constructor variables
     @OneToMany
-    private Collection<Comment> answers;
-    private Date date;
+    @JoinTable(name = "ANSWER", inverseJoinColumns = {@JoinColumn(name = "ANSWER_ID")})
+    Collection<Comment> answers;
+
+    public Comment() {
+    }
+
+    public Comment(Project project, User user, String comment, long date) {
+        this.project = project;
+        this.user = user;
+        this.comment = comment;
+        this.date = date;
+        //Initialize
+        answers = new ArrayList<Comment>();
+    }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public long getDate() {
+        return date;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public Project getProject() {
+        return project;
     }
 
     public Collection<Comment> getAnswers() {
         return answers;
-    }
-
-    public void setAnswers(Collection<Comment> answers) {
-        this.answers = answers;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

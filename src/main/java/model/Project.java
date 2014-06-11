@@ -1,222 +1,144 @@
 package model;
 
 
-import com.sun.istack.internal.NotNull;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class Project implements Serializable {
+public class Project {
 
+    //Constructor variables
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String name;
-    private String description;
-    private String FAQ;
-    private boolean active;
-    private Date start;
-    private Date end;
-    private Date lastUpdate;
-    private int funds;
-    private int objective;
+    long id;
+    String name;
+    String description;
+    String faq;
+    long start;
+    long end;
+    int objective;
+    String html;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @NotNull
-    private Type type;
+    @ManyToOne
+    Country country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    @NotNull
-    private User user;
+    @ManyToOne
+    Type type;
 
-    @OneToMany
-    private Collection<Update> updates;
+    @ManyToOne
+    User user;
 
-    private int favs;
+    @ManyToMany
+    Collection<Tag> tags;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<User> donnors;
-
-    //Esto queda para el final
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<User> collaborators;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private Collection<Tag> tags;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Collection<Comment> comments;
-
-    @OneToMany
-    private Collection<Image> images;
-
-    public Project() {
-    }
-
-    public Project(String name, String description, Date start, Date end, Type type,
-                   User user) {
-        this.name = name;
-        this.description = description;
-        this.start = start;
-        this.end = end;
-        this.type = type;
-        this.user = user;
-    }
+    //Non-constructor variables
+    @OneToMany(mappedBy = "project")
+    Collection<Update> updates;
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getFaq() {
+        return faq;
     }
 
-    public String getFAQ() {
-        return FAQ;
-    }
-
-    public void setFAQ(String FAQ) {
-        this.FAQ = FAQ;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public Date getStart() {
+    public long getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
+    public long getEnd() {
         return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
-
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public int getFunds() {
-        return funds;
-    }
-
-    public void setFunds(int funds) {
-        this.funds = funds;
     }
 
     public int getObjective() {
         return objective;
     }
 
-    public void setObjective(int objective) {
-        this.objective = objective;
+    public String getHtml() {
+        return html;
+    }
+
+    public Country getCountry() {
+        return country;
     }
 
     public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public void setTypeByName(String type) {
-        this.type = new Type(type);
-    }
-
     public User getUser() {
         return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setUserByName(String name) {
-        this.user = new User(name);
-    }
-
-    public int getFavs() {
-        return favs;
-    }
-
-    public void setFavs(int favs) {
-        this.favs = favs;
-    }
-
-    public Collection<User> getDonnors() {
-        return donnors;
-    }
-
-    public void setDonnors(Collection<User> donnors) {
-        this.donnors = donnors;
-    }
-
-    public Collection<User> getCollaborators() {
-        return collaborators;
-    }
-
-    public void setCollaborators(Collection<User> collaborators) {
-        this.collaborators = collaborators;
     }
 
     public Collection<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Collection<Tag> tags) {
-        this.tags = tags;
+    public Collection<Update> getUpdates() {
+        return updates;
+    }
+
+    public Collection<User> getFollowers() {
+        return followers;
     }
 
     public Collection<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Collection<Comment> comments) {
-        this.comments = comments;
+    public Collection<Image> getImages() {
+        return images;
     }
 
+    public Collection<Fund> getFunds() {
+        return funds;
+    }
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
+    Collection<User> followers;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
+    Collection<Comment> comments;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    Collection<Image> images;
+
+    @OneToMany(mappedBy = "project")
+    Collection<Fund> funds;
+
+    public Project() {
+    }
+
+    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user, Collection<Tag> tags) {
+        this.name = name;
+        this.description = description;
+        this.faq = faq;
+        this.start = start;
+        this.end = end;
+        this.objective = objective;
+        this.html = html;
+        this.country = country;
+        this.type = type;
+        this.user = user;
+        this.tags = tags;
+
+        //Initialize
+        updates = new ArrayList<Update>();
+        followers = new ArrayList<User>();
+        comments = new ArrayList<Comment>();
+        images = new ArrayList<Image>();
+        funds = new ArrayList<Fund>();
+
+    }
 }

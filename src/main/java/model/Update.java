@@ -1,7 +1,6 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Update {
@@ -12,30 +11,32 @@ public class Update {
     @ManyToOne
     private Project project;
 
-    private Date date;
-    private String comment;
+    private long date;
 
-    public Date getDate() {
-        return date;
-    }
+    private String message;
 
-    public void setDate(Date date) {
+    public Update(Project project, long date, String message) {
+        this.project = project;
         this.date = date;
+        this.message = message;
     }
 
-    public String getComment() {
-        return comment;
+    public Update() {
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public long getId() {
+        return id;
     }
 
     public Project getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public long getDate() {
+        return date;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
