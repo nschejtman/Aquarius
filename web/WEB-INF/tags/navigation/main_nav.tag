@@ -73,7 +73,7 @@
                        data-toggle="dropdown" data-original-title="Notifications">
                         <div class="user-details">
                             <div class="username">
-                                <span class="badge badge-important">1</span>
+                                <span class="badge badge-important" id="top-unread-notifications"></span>
                                 <%=user.getFirstName()%> <span class="bold"><%=user.getLastName()%></span>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                     </a>
 
                     <div class="profile-pic">
-                        <img src="assets/img/profiles/avatar_small.jpg" width="35" height="35"/>
+                        <img src="<%=user.getProfilePicture().getPath()%>" width="35" height="35"/>
                     </div>
                 </div>
                 <ul class="nav quick-section ">
@@ -131,7 +131,7 @@
             <a>
                 <i class="fa fa-flag"></i>
                 <span class="title">Notifications</span>
-                <span class="badge badge-important pull-right"><%=user.getUnreadNotificationsQty()%></span>
+                <span class="badge badge-important pull-right" id="side-unread-notifications"></span>
             </a>
         </li>
         <li id="sidenav-messages">
@@ -223,9 +223,20 @@
     <!-- END CONTAINER -->
 </div>
 <import:js_files></import:js_files>
+
+<!--Lights up active in side menu-->
 <script>
     //Sets the corresponding section to the side nav as active
     $("#sidenav-${active}").addClass("start active");
+</script>
+
+<!--Notifications-->
+<script>
+    var unreadNotifications = <%=user.getUnreadNotificationsQty()%>;
+    if (unreadNotifications != 0) {
+        $("#side-unread-notifications").innerHTML(unreadNotifications);
+        $("#top-unread-notifications").innerHTML(unreadNotifications);
+    }
 </script>
 
 

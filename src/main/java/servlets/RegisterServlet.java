@@ -1,5 +1,9 @@
 package servlets;
 
+import control.dao.ImageDAO;
+import control.dao.UserDAO;
+import model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +27,9 @@ public class RegisterServlet extends HttpServlet {
         String username = req.getParameter("reg_username");
         String email = req.getParameter("reg_email");
         String password = req.getParameter("reg_password");
-        String birthdate = req.getParameter("reg_birthdate");
-        Date date = Date.valueOf(birthdate);
-//        User user = new User(firstname, lastname, System.currentTimeMillis(), username, email, password);
-//        UserDAO.addUser(user);
+        long birthdate = Date.valueOf(req.getParameter("reg_birthdate")).getTime();
+        User user = new User(firstname, lastname, birthdate, username, email, password, ImageDAO.getImage(1));
+        UserDAO.addUser(user);
         //TODO apendearle el nuevo user a la session para que lo deje pasar el security filter
 
 

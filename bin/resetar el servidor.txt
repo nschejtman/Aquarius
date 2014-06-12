@@ -1,0 +1,6 @@
+1. eliminar la base vieja
+2. correr la base
+3. compilar el modelo
+4. compliar los tests
+5. correr el initializer
+6. iniciar el servidor

@@ -6,4 +6,5 @@ public class UpdateDBSchema {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.close();
     }
+
 }

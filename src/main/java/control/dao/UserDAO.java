@@ -12,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 
-public class UserDAO {
+public abstract class UserDAO {
 
     public static boolean addUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -20,7 +20,6 @@ public class UserDAO {
         boolean ret = false;
         try {
             tx = session.beginTransaction();
-//            user.setActive(true);
             session.persist(user);
             tx.commit();
             ret = true;
@@ -33,7 +32,7 @@ public class UserDAO {
         return ret;
     }
 
-    public static User getUser(long id) throws IllegalAccessException {
+    public static User getUser(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object user = null;
@@ -50,7 +49,7 @@ public class UserDAO {
         return (User) user;
     }
 
-    public static User getUser(@NotNull String username) throws IllegalAccessError {
+    public static User getUser(@NotNull String username) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object user = null;
@@ -71,7 +70,7 @@ public class UserDAO {
 
     }
 
-    public static void deleteUser(long id) throws IllegalAccessException {
+    public static void deleteUser(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -88,7 +87,7 @@ public class UserDAO {
         }
     }
 
-    public static void deleteUser(@NotNull User user) throws IllegalAccessException {
+    public static void deleteUser(@NotNull User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -103,12 +102,12 @@ public class UserDAO {
         }
     }
 
-    public static void updateUser(@NotNull User user) throws IllegalAccessException {
+    public static void updateUser(@NotNull User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-
+            //TODO
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();

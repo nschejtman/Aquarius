@@ -1,38 +1,20 @@
 package control.dao;
 
 import control.HibernateUtil;
-import model.Type;
+import model.Image;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class TypeDAO {
+public abstract class ImageDAO {
 
-    public static boolean addType(Type type) {
+
+    public static void addImage(Image image) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        boolean ret = false;
         try {
             tx = session.beginTransaction();
-            session.persist(type);
-            tx.commit();
-            ret = true;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return ret;
-    }
-
-    public static Type getType(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Object type = null;
-        try {
-            tx = session.beginTransaction();
-            type = session.get(Type.class, id);
+            session.persist(image);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -40,8 +22,23 @@ public abstract class TypeDAO {
         } finally {
             session.close();
         }
-        return (Type) type;
+
     }
 
-
+    public static Image getImage(long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Object image = null;
+        try {
+            tx = session.beginTransaction();
+            image = session.get(Image.class, id);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return (Image) image;
+    }
 }

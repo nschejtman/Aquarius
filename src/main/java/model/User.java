@@ -33,7 +33,7 @@ public class User implements Serializable {
     @JoinTable(name = "USER_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
     Collection<User> followers;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Collection<Notification> notifications;
 
     @OneToMany(mappedBy = "recipient")
