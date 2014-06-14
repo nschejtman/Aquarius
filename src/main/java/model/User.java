@@ -1,64 +1,47 @@
 package model;
 
-import com.sun.istack.internal.NotNull;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 public class User implements Serializable {
 
+    //Constructor variables
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @NotNull
-    private String firstName;
-
-    @NotNull
-    private String lastName;
-
-    private Date birthday;
-
-
-    private long reputation;
-
-    @NotNull
-    private String userName;
-
-    @NotNull
-    private String email;
-
-    @NotNull
-    private String password;
-
-    private boolean active;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Collection<Project> projects;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Project> favedProjects;
-
-    @OneToMany
-    private Collection<User> followedUsers;
-
-    @OneToMany
-    private Collection<User> allies;
-
-    @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Collection<Notification> notifications;
-
-    @OneToMany
-    private Collection<Message> messages;
+    long id;
+    String userName;
+    String firstName;
+    String lastName;
+    long birthday;
+    String email;
+    String password;
 
     @OneToOne
-    private Image profilePicture;
+    Image profilePicture;
+
+
+    //Non-constructor variables
+    long reputation;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    Collection<Project> projects;
+
+    @OneToMany
+    @JoinTable(name = "USER_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
+    Collection<User> followers;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Collection<Notification> notifications;
+
+    @OneToMany(mappedBy = "recipient")
+    Collection<Message> inbox;
+
+    @OneToMany(mappedBy = "user")
+    Collection<Fund> funds;
+
 
     public User() {
     }
@@ -67,168 +50,104 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public User(String firstName, String lastName, Date birthday, String userName, String email, String password) {
+    public User(String firstName, String lastName, long birthday, String userName, String email, String password, Image profilePicture) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.profilePicture = profilePicture;
+
+        //Initialize
+        notifications = new ArrayList<Notification>();
+        followers = new ArrayList<User>();
+        projects = new ArrayList<Project>();
+        inbox = new ArrayList<Message>();
+        funds = new ArrayList<Fund>();
+        reputation = 0;
+
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getUserName() {
+        return userName;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getBirthday() {
+    public long getBirthday() {
         return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public long getReputation() {
-        return reputation;
-    }
-
-    public void setReputation(long reputation) {
-        this.reputation = reputation;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Image getProfilePicture() {
+        return profilePicture;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
+    public long getReputation() {
+        return reputation;
     }
 
     public Collection<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(Collection<Project> projects) {
-        this.projects = projects;
-    }
-
-    public Collection<Project> getFavedProjects() {
-        return favedProjects;
-    }
-
-    public void setFavedProjects(Collection<Project> favedProjects) {
-        this.favedProjects = favedProjects;
-    }
-
-    public Collection<User> getFollowedUsers() {
-        return followedUsers;
-    }
-
-    public void setFollowedUsers(Collection<User> followedUsers) {
-        this.followedUsers = followedUsers;
-    }
-
-    public Collection<User> getAllies() {
-        return allies;
-    }
-
-    public void setAllies(Collection<User> allies) {
-        this.allies = allies;
+    public Collection<User> getFollowers() {
+        return followers;
     }
 
     public Collection<Notification> getNotifications() {
         return notifications;
     }
 
-    public void setNotifications(Collection<Notification> notifications) {
-        this.notifications = notifications;
+    public Collection<Message> getInbox() {
+        return inbox;
     }
 
-    public Collection<Message> getMessages() {
-        return messages;
+    public Collection<Fund> getFunds() {
+        return funds;
     }
 
-    public void setMessages(Collection<Message> messages) {
-        this.messages = messages;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", reputation=" + reputation +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", active=" + active +
-                ", projects=" + projects +
-                ", favedProjects=" + favedProjects +
-                ", followedUsers=" + followedUsers +
-                ", allies=" + allies +
-                ", notifications=" + notifications +
-                ", messages=" + messages +
-                '}';
-    }
-
-    //Nav display methods start-------------------------------------------
-    //TODO descablear
     public int getUnreadNotificationsQty() {
-        return 5;
+        return getUnreadNotifications().size();
+    }
+
+    public Collection<Notification> getUnreadNotifications() {
+        ArrayList<Notification> unread = new ArrayList<>();
+        for (Notification notification : notifications) {
+            if (!notification.isRead()) unread.add(notification);
+        }
+        return unread;
     }
 
     public int getUnreadMessagesQty() {
-        return 50;
+        return getUnreadMessages().size();
     }
 
-    public int getCommunityUpdatesQty() {
-        return 10;
+    public Collection<Message> getUnreadMessages() {
+        ArrayList<Message> unread = new ArrayList<>();
+        for (Message message : inbox) {
+            if (!message.isRead()) unread.add(message);
+        }
+        return unread;
     }
-    //Nav display methods end---------------------------------------------
+
+
 }

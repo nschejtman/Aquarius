@@ -1,53 +1,65 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>
 <%@ taglib prefix="nav" tagdir="/WEB-INF/tags/navigation" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title></title>
     <import:css_files/>
+    <link rel="stylesheet" type="text/css" href="../assets/plugins/jquery-superbox/css/style.css">
 </head>
 <body>
-<nav:main_nav title="Project" active="projects">
+<style type="text/css">
+    h1.project-title {
+        font-weight: bold;
+        font-size: 90px;
+        text-align: center;
+    }
+</style>
+<nav:main_nav title="Projects - ${requestScope.project.getName()}" active="projects">
     <jsp:attribute name="body">
         <div class="row">
             <div class="grid simple">
                 <div class="grid-body no-border invoice-body"><br>
 
-                    <h1>${requestScope.project}</h1>
+                    <h1 class="project-title">${requestScope.project.getName()}</h1>
 
                     <div class="clearfix"></div>
-                <br>
-                <br>
-                <br>
+                    <br>
+                    <br>
+
+                    <!--Images start-->
+                    <div class="superbox">
+                        <c:forEach var="image" items="${requestScope.project.images}">
+                            <div class="superbox-list">
+                                    <%--<img src="${image.path}" class="superbox-img">--%>
+                            </div>
+
+                        </c:forEach>
 
 
+                        <div class="superbox-float"></div>
+                    </div>
+                    <!--Images end-->
+
+
+                </div>
             </div>
         </div>
-    </div>
 
 
     <div class="col-md-12">
         <ul class="nav nav-tabs" id="tab-01">
-            <li class="active"><a href="#tab1hellowWorld">FAQ</a></li>
-            <li class=""><a href="#tab1FollowUs">Updates</a></li>
-            <li class=""><a href="#tab1Inspire">Comments</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Dropdown <b
-                    class="caret"></b> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">New Project</a></li>
-                    <li><a href="#">Edit Details</a></li>
-                    <li><a href="#">View More</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#" class="text-error">Delete Project</a></li>
-                </ul>
-            </li>
+            <li class="active"><a href="#faq">FAQ</a></li>
+            <li class=""><a href="#updates">Updates</a></li>
+            <li class=""><a href="#comments">Comments</a></li>
         </ul>
         <div class="tools"><a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal"
                                                                            class="config"></a> <a href="javascript:;"
                                                                                                   class="reload"></a> <a
                 href="javascript:;" class="remove"></a></div>
         <div class="tab-content">
-            <div class="tab-pane active" id="tab1hellowWorld">
+            <div class="tab-pane active" id="faq">
                 <div class="row column-seperation">
                     <div class="col-md-6">
                         <h3><span class="semi-bold">Sometimes</span> Small
@@ -63,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="tab1FollowUs">
+            <div class="tab-pane" id="updates">
                 <div class="row">
                     <div class="col-md-12">
                         <h3>“ Nothing is<span class="semi-bold"> impossible</span>, the word itself says 'I'm <span
@@ -80,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="tab1Inspire">
+            <div class="tab-pane" id="comments">
                 <div class="row">
                     <div class="col-md-12">
                         <h3>Follow us &amp; get updated!</h3>
@@ -106,6 +118,7 @@
 
 </nav:main_nav>
 
+<script src="../assets/plugins/jquery-superbox/js/superbox.js" type="text/javascript"></script>
 <script src="../assets/js/tabs_accordian.js" type="text/javascript" rel="script"></script>
 </body>
 </html>

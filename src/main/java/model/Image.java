@@ -7,10 +7,15 @@ import javax.persistence.Id;
 
 @Entity
 public class Image {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String path;
+
+    public Image() {
+    }
 
     public long getId() {
         return id;
@@ -20,7 +25,8 @@ public class Image {
         return path;
     }
 
-    public void setPath(String path) {
+    public Image(String path) {
+
         this.path = path;
     }
 }

@@ -32,11 +32,19 @@
 
 </style>
 
+
 <!-- NAVBAR START -->
 <div class="header navbar navbar-inverse ">
     <div class="navbar-inner">
         <!--LOGO START-->
         <div class="header-seperation">
+            <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper"
+                style="display:none; background: none">
+                <li class="dropdown"><a id="main-menu-toggle" href="#main-menu" class=""
+                                        style="background-color: #80C9C3;">
+                    <div class="iconset top-menu-toggle-white"></div>
+                </a></li>
+            </ul>
             <a href="/index"><img src="/assets/img/logo.png" class="logo"></a>
         </div>
         <!--LOGO END-->
@@ -44,9 +52,15 @@
         <div class="header-quick-nav">
             <div class="pull-left">
                 <ul class="nav quick-section">
+                    <li class="quicklinks"><a class="" id="layout-condensed-toggle">
+                        <div class="iconset top-menu-toggle-dark"></div>
+                    </a></li>
+                </ul>
+                <ul class="nav quick-section">
+
                     <li class="m-r-10 input-prepend inside search-form no-boarder">
                         <span class="add-on"> <span class="iconset top-search"></span></span>
-                        <input name="navSearch" type="text" class="no-boarder " placeholder="Search"
+                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard"
                                style="width:250px;">
                     </li>
                 </ul>
@@ -59,7 +73,7 @@
                        data-toggle="dropdown" data-original-title="Notifications">
                         <div class="user-details">
                             <div class="username">
-                                <span class="badge badge-important">1</span>
+                                <span class="badge badge-important" id="top-unread-notifications"></span>
                                 <%=user.getFirstName()%> <span class="bold"><%=user.getLastName()%></span>
                             </div>
                         </div>
@@ -67,7 +81,7 @@
                     </a>
 
                     <div class="profile-pic">
-                        <img src="assets/img/profiles/avatar_small.jpg" width="35" height="35"/>
+                        <img src="<%=user.getProfilePicture().getPath()%>" width="35" height="35"/>
                     </div>
                 </div>
                 <ul class="nav quick-section ">
@@ -117,7 +131,7 @@
             <a>
                 <i class="fa fa-flag"></i>
                 <span class="title">Notifications</span>
-                <span class="badge badge-important pull-right"><%=user.getUnreadNotificationsQty()%></span>
+                <span class="badge badge-important pull-right" id="side-unread-notifications"></span>
             </a>
         </li>
         <li id="sidenav-messages">
@@ -141,22 +155,36 @@
             </a>
         </li>
         <li id="sidenav-projects">
-            <a>
+            <a href="javascript:;">
                 <i class="icon-custom-chart"></i>
                 <span class="title">Projects</span>
+                <span class="arrow"></span>
+
+
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Projects </a></li>
+                    <li><a> Followed projects </a></li>
+                    <li><a> Faved projects </a></li>
+                    <li><a> Recomended me! <span class="badge">beta</span> </a></li>
+                    <li><a> Create new project</a></li>
+                </ul>
             </a>
         </li>
         <li id="sidenav-community">
-            <a>
+            <a href="javascript:;">
                 <i class="fa fa-users"></i>
                 <span class="title">Community</span>
-                <span class=" badge badge-disable pull-right "><%=user.getCommunityUpdatesQty()%></span>
+                <span class="arrow"></span>
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Community </a></li>
+                    <li><a> Followed users </a></li>
+                </ul>
             </a>
         </li>
         <li id="sidenav-advanced_search">
             <a>
                 <i class="fa fa-search"></i>
-                <span class="title">Advanced Search</span>
+                <span class="title">Search</span>
             </a>
         </li>
         <li id="sidenav-settings">
@@ -195,9 +223,20 @@
     <!-- END CONTAINER -->
 </div>
 <import:js_files></import:js_files>
+
+<!--Lights up active in side menu-->
 <script>
     //Sets the corresponding section to the side nav as active
     $("#sidenav-${active}").addClass("start active");
+</script>
+
+<!--Notifications-->
+<script>
+    var unreadNotifications = <%=user.getUnreadNotificationsQty()%>;
+    if (unreadNotifications != 0) {
+        $("#side-unread-notifications").innerHTML(unreadNotifications);
+        $("#top-unread-notifications").innerHTML(unreadNotifications);
+    }
 </script>
 
 

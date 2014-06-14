@@ -1,57 +1,55 @@
 package model;
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 public class Notification {
+
+    //Constructor variables
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    private String comment;
-    private boolean read;
-    private Date date;
+    private long id;
+
+    private String message;
+
+    private long date;
 
     @ManyToOne
     private User user;
 
-    public String getId() {
+    //Non-constructor variables
+    private boolean read;
+
+    public Notification() {
+    }
+
+    public Notification(String message, long date, User user) {
+        this.message = message;
+        this.date = date;
+        this.user = user;
+
+        //Initialize
+        read = false;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getMessage() {
+        return message;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public boolean isRead() {
-        return read;
-    }
-
-    public void setRead(boolean read) {
-        this.read = read;
-    }
-
-    public Date getDate() {
+    public long getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public boolean isRead() {
+        return read;
     }
 }

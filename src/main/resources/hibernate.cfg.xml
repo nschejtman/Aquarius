@@ -24,21 +24,19 @@
         <property name="show_sql">false</property>
 
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="model.City"></mapping>
-        <mapping class="model.Comment"></mapping>
 
+
+        <mapping class="model.Comment"></mapping>
         <mapping class="model.Country"></mapping>
-        <mapping class="model.HelloWorldHibernate"></mapping>
-        <mapping class="model.Location"></mapping>
         <mapping class="model.Message"></mapping>
+        <mapping class="model.User"></mapping>
         <mapping class="model.Notification"></mapping>
         <mapping class="model.Project"></mapping>
-        <mapping class="model.State"></mapping>
         <mapping class="model.Tag"></mapping>
         <mapping class="model.Type"></mapping>
-        <mapping class="model.User"></mapping>
         <mapping class="model.Update"></mapping>
         <mapping class="model.Image"></mapping>
+        <mapping class="model.Fund"></mapping>
 
     </session-factory>
 </hibernate-configuration>

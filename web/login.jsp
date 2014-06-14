@@ -36,8 +36,12 @@
       style="background-image: url('../assets/img/work.jpg')">
 
 <style type="text/css">
-    div.hidden{
+    div.hidden {
         display: none;
+    }
+
+    div.container {
+        margin-bottom: 20px;
     }
 </style>
 
@@ -48,9 +52,11 @@
             <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
                 <h2 class="normal">Sign in to Aquarius</h2>
 
-                <p>Ideas matter!<br></p>
+                <p><b>Aquarius</b> is a web based platform for project funding. It's <b>free</b> to use, anyone from
+                    anywhere can use
+                    it. <b>Register</b> now if you haven't done it yet and start using Aquarius.</p>
+                <br>
 
-                <p class="p-b-20">Sign up Now for webarch accounts, it's free and always will be..</p>
                 <button type="submit" class="btn btn-primary btn-cons" id="loginBtn">Login</button>
                 or&nbsp;&nbsp;
                 <button type="button" class="btn btn-info btn-cons" id="register_toggle"> Create an account</button>
@@ -83,37 +89,64 @@
                         </div>
                     </div>
                 </form>
-                <form id="frm_register" class="animated fadeIn" style="display:none">
+                <!--Start register form-->
+                <form id="frm_register" action="/register" class="animated fadeIn" style="display:none" method="post">
+
                     <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                         <div class="col-md-6 col-sm-6">
-                            <input name="reg_username" id="reg_username" type="text" class="form-control"
+                            <input name="reg_firstname" type="text" class="form-control" placeholder="First Name">
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <input name="reg_lastname" type="text" class="form-control" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                        <div class="col-md-6 col-sm-6">
+                        <input name="reg_username" id="reg_username" type="text" class="form-control"
                                    placeholder="Username">
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <input name="reg_pass" id="reg_pass" type="password" class="form-control"
+                            <input name="reg_email" id="reg_pass" type="text" class="form-control"
+                                   placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                        <div class="col-md-6 col-sm-6">
+                            <input name="reg_password" type="password" class="form-control"
+                                   placeholder="Password" id="reg_password">
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <input name="reg_confirmpass" type="password" class="form-control"
+                                   placeholder="Confirm password" id="reg_confirmpass">
+                        </div>
+                    </div>
+                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                        <div class="col-md-6 col-sm-6">
+                            <input name="reg_birthdate" type="date" class="form-control"
                                    placeholder="Password">
                         </div>
-                    </div>
-                    <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                        <div class="col-md-12">
-                            <input name="reg_mail" id="reg_mail" type="text" class="form-control"
-                                   placeholder="Mailing Address">
+                        <div class="col-md-6 col-sm-6">
+                            <input name="reg_country" type="text" class="form-control"
+                                   placeholder="Country">
                         </div>
                     </div>
                     <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                         <div class="col-md-6 col-sm-6">
-                            <input name="reg_first_Name" type="text" class="form-control" placeholder="First Name">
+                            <input name="reg_state" type="text" class="form-control"
+                                   placeholder="State">
                         </div>
                         <div class="col-md-6 col-sm-6">
-                            <input name="reg_first_Name" type="password" class="form-control" placeholder="Last Name">
+                            <input name="reg_city" type="text" class="form-control"
+                                   placeholder="City">
                         </div>
                     </div>
                     <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
-                        <div class="col-md-12 ">
-                            <input name="reg_email" id="reg_email" type="text" class="form-control" placeholder="Email">
+                        <div class="col-md-6 col-sm-6">
+                            <button type="submit" class="btn btn-info btn-cons" id="register"> Register!</button>
                         </div>
                     </div>
                 </form>
+                <!--End register form-->
             </div>
         </div>
     </div>
@@ -132,11 +165,9 @@
         $("#<%=Constants.LOGIN_FORM_ID%>").submit();
     });
 
-    //Toggle error message
-    $(document).onload(function(){
-        if(XMLHttpRequest.getAttribute("error") == true){
-            $("#error-message").toggle(true);
-        }
+
+    $("#register").click(function () {
+        $("#<%=Constants.REGISTER_FORM_ID%>").submit();
 
     })
 </script>

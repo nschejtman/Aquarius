@@ -1,38 +1,35 @@
 package control.dao;
 
 import control.HibernateUtil;
-import model.Type;
+import model.Country;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public abstract class TypeDAO {
-
-    public static boolean addType(Type type) {
+public abstract class CountryDAO {
+    public static void addCountry(Country country) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        boolean ret = false;
         try {
             tx = session.beginTransaction();
-            session.persist(type);
+            session.persist(country);
             tx.commit();
-            ret = true;
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
-        return ret;
+
     }
 
-    public static Type getType(long id) {
+    public static Country getCountry(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        Object type = null;
+        Object country = null;
         try {
             tx = session.beginTransaction();
-            type = session.get(Type.class, id);
+            country = session.get(Country.class, id);
             tx.commit();
         } catch (HibernateException e) {
             if (tx != null) tx.rollback();
@@ -40,7 +37,7 @@ public abstract class TypeDAO {
         } finally {
             session.close();
         }
-        return (Type) type;
+        return (Country) country;
     }
 
 
