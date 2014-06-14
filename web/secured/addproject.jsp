@@ -85,7 +85,7 @@
                                             <h3>Start Date<span class="semi-bold"> Picker</span></h3>
                                             <br>
                                             <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="startDate">
                                                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                                             <br>
                                             <br>
@@ -93,7 +93,7 @@
 
                                             <h3>End Date<span class="semi-bold"> Picker</span></h3>
                                             <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" name="endDate">
                                                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                                             <br>
                                             <br>
@@ -141,7 +141,7 @@
                                             <div class="row-fluid">
                                                 <h3>Tag <span class="semi-bold">Input</span></h3>
                                                 <br>
-                                                <input class="span12 tagsinput" id="source-tags" type="text"  />
+                                                <input class="span12 tagsinput" id="source-tags" type="text" name="source-tags"  />
                                             </div>
                                         </div>
                                     </div>

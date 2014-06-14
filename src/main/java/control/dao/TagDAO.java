@@ -52,6 +52,11 @@ public  class TagDAO {
         return (Tag) tag;
     }
 
+    public static List<Tag> getAll(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (List<Tag>) session.createCriteria(Tag.class).list();
+    }
+
     public static Tag getSingleTag(@NotNull String tag) throws IllegalAccessError {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -70,7 +75,6 @@ public  class TagDAO {
             session.close();
         }
         return (Tag) user;
-
     }
 
 }
