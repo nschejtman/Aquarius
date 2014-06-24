@@ -32,11 +32,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 <c:forEach var="project" items="${requestScope.projects}" >
                                     <tr >
                                         <td class="v-align-middle"><div class="checkbox check-default">
-                                            <input type="checkbox" value="3" id="checkbox2">
-                                            <label for="checkbox2"></label>
+                                            <input type="checkbox" value="3" onload="name(this)">
                                         </div></td>
                                         <td class="v-align-middle"><c:out value="${project.name}"/></td>
                                         <td class="v-align-middle"><span class="muted"><c:out value="${project.description}" escapeXml="false"/></span></td>
@@ -59,5 +59,12 @@
     </navigation:main_nav>
     <import:js_files/>
     <import:js_projectlist/>
+    <script>
+        var i = 2;
+        function name(element){
+            $("element").attr("id","checkbox" + i);
+            i++;
+        }
+    </script>
 </body>
 </html>

@@ -3,6 +3,7 @@ package control.dao;
 
 import control.HibernateUtil;
 import model.Project;
+import model.User;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -70,6 +71,25 @@ public abstract class ProjectDAO {
             session.close();
         }
         return (Project) project;
+    }
+
+    public static List<Project> getProjectsByUser(User user){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        List<Project> projects = null;
+        try{
+            tx = session.beginTransaction();
+            Criteria criteria = session.createCriteria(Project.class);
+            criteria.add(Restrictions.eq("user", user));
+            projects = (List<Project>) criteria.list();
+            tx.commit();
+        } catch (HibernateException e){
+            if(tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return projects;
     }
 
     public static List<Project> getProjectList(Project project) {

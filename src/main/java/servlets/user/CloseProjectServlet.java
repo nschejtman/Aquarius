@@ -19,7 +19,7 @@ public class CloseProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long projectID = Long.parseLong(req.getAttribute("projectID").toString());
         Project project = ProjectDAO.getProject(projectID);
-        project.setActive(false);
+//        project.setActive(false);
         ProjectDAO.addProject(project);
         resp.sendRedirect("/aquarius/goTo?goto&projectID=" + project.getId());
     }

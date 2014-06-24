@@ -25,7 +25,8 @@ public class Initializer {
         ImageDAO.addImage(image);
 
         //Create users for franco & nico
-        User nico = new User("Nicoas", "Schejtman", System.currentTimeMillis(), "nschejtman", "nschejtman@hotmail.com",
+        User nico = new User("Nicol+" +
+                "as", "Schejtman", System.currentTimeMillis(), "nschejtman", "nschejtman@hotmail.com",
                 "1234", ImageDAO.getImage(1));
         User franco = new User("Franco", "Testori", System.currentTimeMillis(), "ftestori", "franco.testori@hotmail.com",
                 "1234", ImageDAO.getImage(1));

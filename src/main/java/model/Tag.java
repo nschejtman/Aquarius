@@ -18,8 +18,7 @@ public class Tag {
         this.name = name;
     }
 
-    public Tag() {
-    }
+    public Tag() {}
 
     public long getId() {
         return id;

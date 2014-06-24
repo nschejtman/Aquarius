@@ -18,7 +18,6 @@
                             <div class="grid simple">
                                 <div class="grid-title no-border">
                                     <h4>Project <span class="semi-bold">Data</span></h4>
-                                    <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
                                 </div>
                                 <div class="grid-body no-border"> <br>
                                     <div class="row">
@@ -27,6 +26,12 @@
                                                 <label class="form-label">Project Name</label>
                                                 <div class="controls">
                                                     <input name="projectName" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Description Name</label>
+                                                <div class="controls">
+                                                    <input name="description" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -46,15 +51,14 @@
 
                     <!-- BEGIN DROPDOWN CONTROLS-->
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="grid simple">
                                 <div class="grid-title no-border">
                                     <h4>Select <span class="semi-bold">Type</span></h4>
-                                    <div class="tools"> <a class="collapse" href="javascript:;"></a> <a class="config" data-toggle="modal" href="#grid-config"></a> <a class="reload" href="javascript:;"></a> <a class="remove" href="javascript:;"></a> </div>
                                 </div>
                                 <div class="grid-body no-border">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <br>
                                             <select id="source" name = "type" style="width:100%">
                                                 <optgroup label="TYPES">
@@ -68,6 +72,22 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="grid simple">
+                                <div class="grid-title no-border">
+                                    <h4>Tags <span class="semi-bold">Input</span></h4>
+                                </div>
+                                <div class="grid-body no-border">
+                                    <div class="row-fluid">
+                                        <h3>Tag <span class="semi-bold">Input</span></h3>
+                                        <br>
+                                        <input class="span12 tagsinput" id="source-tags" type="text" name="source-tags"  />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- END DROPDOWN CONTROLS-->
 
@@ -77,7 +97,6 @@
                             <div class="grid simple">
                                 <div class="grid-title no-border">
                                     <h4>Date <span class="semi-bold">Controls</span></h4>
-                                    <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
                                 </div>
                                 <div class="grid-body no-border">
                                     <div class="row">
@@ -90,20 +109,23 @@
                                             <br>
                                             <br>
                                             <div class="clearfix"></div>
+                                            </div>
 
+                                            <div class="col-md-4">
                                             <h3>End Date<span class="semi-bold"> Picker</span></h3>
                                             <div class="input-append success date col-md-10 col-lg-6 no-padding">
                                                 <input type="text" class="form-control" name="endDate">
                                                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                                             <br>
                                             <br>
+                                            </div>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                     <!-- END DATEPICKER CONTROLS-->
 
                     <!-- BEGIN HTML5 WYSIWG CONTROLS-->
@@ -112,14 +134,13 @@
                             <div class="grid simple">
                                 <div class="grid-title no-border">
                                     <h4>Describe your <span class="semi-bold">Project</span></h4>
-                                    <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
                                 </div>
                                 <div class="grid-body no-border">
 
                                     <h3>Write <span class="semi-bold">Description</span></h3>
-                                    <code>textarea</code> </p>
+                                    <code>textarea</code>
                                     <br>
-                                    <textarea id="text-editor" name="description" placeholder="Enter text ..." class="form-control" rows="10"></textarea>
+                                    <textarea id="text-editor" name="html" placeholder="Enter text ..." class="form-control" rows="10"></textarea>
 
                                 </div>
                             </div>
@@ -127,29 +148,6 @@
                     </div>
                     <!-- END HTML5 WYSIWG CONTROLS-->
 
-                    <!-- BEGIN TAG INPUTS -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="grid simple">
-                                        <div class="grid-title no-border">
-                                            <h4>Tags <span class="semi-bold">Input</span></h4>
-                                            <div class="tools"> <a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal" class="config"></a> <a href="javascript:;" class="reload"></a> <a href="javascript:;" class="remove"></a> </div>
-                                        </div>
-                                        <div class="grid-body no-border">
-                                            <div class="row-fluid">
-                                                <h3>Tag <span class="semi-bold">Input</span></h3>
-                                                <br>
-                                                <input class="span12 tagsinput" id="source-tags" type="text" name="source-tags"  />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END TAG INPUTS -->
                     <button type="submit" class="btn btn-primary btn-cons"><i class="fa fa-check"></i>&nbsp;Submit</button>
                 </form>
     </jsp:attribute>

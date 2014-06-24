@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -49,14 +48,15 @@ public class AddProjectServlet extends HttpServlet {
         Type type = TypeDAO.getType(req.getParameter("type"));
         project.setType(type);
         project.setDescription(req.getParameter("description"));
+        project.setHtml(req.getParameter("html"));
         String[] strTags = req.getParameter("source-tags").split(",");
         for (String strTag : strTags) {
             Tag tag = new Tag(strTag);
             TagDAO.addTag(tag);
-            project.addTags(tag);
+            project.addSingleTag(tag);
         }
-        project.setStart(Date.valueOf(req.getParameter("startDate")));
-        project.setEnd(Date.valueOf(req.getParameter("endDate")));
+//        project.setStart((req.getParameter("startDate")).);
+//        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 
         ProjectDAO.addProject(project);
     }

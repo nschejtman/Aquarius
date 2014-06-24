@@ -22,7 +22,7 @@ public class FilterTagServlet extends HttpServlet {
         Long tagId = (long) req.getAttribute("tagID");
         Tag tag = TagDAO.getTag(tagId);
         req.setAttribute("tag", tag);
-        req.setAttribute("projectByTag", tag.getProjects());
+//        req.setAttribute("projectByTag", tag.getProjects());
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
         rd.forward(req, resp);

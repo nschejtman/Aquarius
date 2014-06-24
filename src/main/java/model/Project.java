@@ -141,4 +141,50 @@ public class Project {
         funds = new ArrayList<Fund>();
 
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStart(long start) {
+        this.start = start;
+    }
+
+    public void setEnd(long end) {
+        this.end = end;
+    }
+
+    public void setObjective(int objective) {
+        this.objective = objective;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
+    }
+
+    public void setTags(Collection<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void addTags(Tag...tags){
+        for(Tag tag: tags){
+            this.tags.add(tag);
+        }
+    }
+
+    public void addSingleTag(Tag tag){
+        this.tags.add(tag);
+    }
 }
