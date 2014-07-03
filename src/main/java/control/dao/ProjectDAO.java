@@ -3,6 +3,8 @@ package control.dao;
 
 import control.HibernateUtil;
 import model.Project;
+import model.Tag;
+import model.Type;
 import model.User;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -146,8 +148,44 @@ public abstract class ProjectDAO {
         } finally {
             session.close();
         }
-
-
     }
 
+    public static Project makeProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
+        return editProject(project, name, description, objective,html,type,user,tags);
+    }
+
+    public static void generateTags(Project project, String[] tags) {
+        boolean bTag = false;
+        for (int i = 0; i < tags.length; i++) {
+            Tag tag = new Tag(tags[i]);
+            if (TagDAO.getTag(tag.getId())== null) {
+                TagDAO.addTag(tag);
+                project.addTag(tag);
+                System.out.println(bTag);
+                bTag = false;
+            } else {
+                project.addTag(TagDAO.getTag(tag.getId()));
+            }
+        }
+    }
+
+    public static void deleteAllTags(Project project) {
+        List<Tag> tags = null;
+        if(project.getTags() != null) tags = (List<Tag>)project.getTags();
+        project.deleteAllTags();
+        for (Tag tag : tags) {
+            TagDAO.addTag(tag);
+        }
+    }
+
+    public static Project editProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
+        project.setUser(user);
+        project.setName(name);
+        project.setDescription(description);
+        project.setObjective(objective);
+        project.setHtml(html);
+        project.setType(type);
+        generateTags(project, tags);
+        return project;
+    }
 }

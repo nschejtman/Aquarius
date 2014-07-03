@@ -7,6 +7,7 @@ import control.dao.UserDAO;
 import model.Project;
 import model.Tag;
 import model.Type;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,20 +42,14 @@ public class AddProjectServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Project project = new Project();
-        project.setUser(UserDAO.getUser(req.getRemoteUser()));
-        project.setName(req.getParameter("projectName"));
-        project.setObjective(Integer.parseInt(req.getParameter("objective")));
+        User user = UserDAO.getUser(req.getRemoteUser());
+        String name = req.getParameter("projectName");
+        int objective = Integer.parseInt(req.getParameter("objective"));
         Type type = TypeDAO.getType(req.getParameter("type"));
-        project.setType(type);
-        project.setDescription(req.getParameter("description"));
-        project.setHtml(req.getParameter("html"));
+        String description = req.getParameter("description");
+        String html = req.getParameter("html");
         String[] strTags = req.getParameter("source-tags").split(",");
-        for (String strTag : strTags) {
-            Tag tag = new Tag(strTag);
-            TagDAO.addTag(tag);
-            project.addSingleTag(tag);
-        }
+        Project project = ProjectDAO.makeProject(new Project(),name,description,objective,html,type,user,strTags);
 //        project.setStart((req.getParameter("startDate")).);
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 

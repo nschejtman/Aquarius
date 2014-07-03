@@ -33,7 +33,7 @@ public class EditProjectServlet extends HttpServlet {
         project.setType(new Type(type));
         for (String strTag : strTags) {
             Tag tag = new Tag(strTag);
-            project.addTags(tag);
+            project.addTag(tag);
         }
 
         ProjectDAO.addProject(project);

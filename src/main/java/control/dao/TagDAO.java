@@ -1,6 +1,5 @@
 package control.dao;
 
-import com.sun.istack.internal.NotNull;
 import control.HibernateUtil;
 import model.Tag;
 import org.hibernate.Criteria;
@@ -57,14 +56,14 @@ public  class TagDAO {
         return (List<Tag>) session.createCriteria(Tag.class).list();
     }
 
-    public static Tag getSingleTag(@NotNull String tag) throws IllegalAccessError {
+    public static Tag getSingleTag(String tag) throws IllegalAccessError {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Object user = null;
         try {
             tx = session.beginTransaction();
             Criteria criteria = session.createCriteria(Tag.class);
-            criteria.add(Restrictions.eq("tag", tag));
+            criteria.add(Restrictions.eq("name", tag));
             List list = criteria.list();
             if (list.size()>0 && list.get(0) != null) user = list.get(0);
             tx.commit();

@@ -118,9 +118,16 @@ public class Project {
     Collection<Fund> funds;
 
     public Project() {
+        //Initialize
+        updates = new ArrayList<Update>();
+        followers = new ArrayList<User>();
+        comments = new ArrayList<Comment>();
+        images = new ArrayList<Image>();
+        funds = new ArrayList<Fund>();
+        tags = new ArrayList<Tag>();
     }
 
-    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user, Collection<Tag> tags) {
+    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user) {
         this.name = name;
         this.description = description;
         this.faq = faq;
@@ -131,7 +138,7 @@ public class Project {
         this.country = country;
         this.type = type;
         this.user = user;
-        this.tags = tags;
+
 
         //Initialize
         updates = new ArrayList<Update>();
@@ -139,7 +146,7 @@ public class Project {
         comments = new ArrayList<Comment>();
         images = new ArrayList<Image>();
         funds = new ArrayList<Fund>();
-
+        tags = new ArrayList<Tag>();
     }
 
     public void setName(String name) {
@@ -178,13 +185,12 @@ public class Project {
         this.type = type;
     }
 
-    public void addTags(Tag...tags){
-        for(Tag tag: tags){
-            this.tags.add(tag);
-        }
+    public void addTag(Tag tag){
+        tags.add(tag);
     }
 
-    public void addSingleTag(Tag tag){
-        this.tags.add(tag);
+    public void deleteAllTags() {
+        tags.clear();
     }
+
 }
