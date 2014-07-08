@@ -104,30 +104,23 @@ public class Project {
         return funds;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
     Collection<User> followers;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     Collection<Comment> comments;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     Collection<Image> images;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     Collection<Fund> funds;
 
     public Project() {
-        //Initialize
-        updates = new ArrayList<Update>();
-        followers = new ArrayList<User>();
-        comments = new ArrayList<Comment>();
-        images = new ArrayList<Image>();
-        funds = new ArrayList<Fund>();
-        tags = new ArrayList<Tag>();
     }
 
-    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user) {
+    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user, Collection<Tag> tags) {
         this.name = name;
         this.description = description;
         this.faq = faq;
@@ -138,7 +131,7 @@ public class Project {
         this.country = country;
         this.type = type;
         this.user = user;
-
+        this.tags = tags;
 
         //Initialize
         updates = new ArrayList<Update>();
@@ -146,49 +139,42 @@ public class Project {
         comments = new ArrayList<Comment>();
         images = new ArrayList<Image>();
         funds = new ArrayList<Fund>();
-        tags = new ArrayList<Tag>();
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getFundsRaised() {
+        int total = 0;
+        for (Fund fund : funds) {
+            total = total + fund.getAmount();
+        }
+        return total;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public int getObjectiveCompletion() {
+        return 100 * getFundsRaised() / objective;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getDaysRemaining() {
+        if (end > System.currentTimeMillis()) {
+            return (int) (end - System.currentTimeMillis()) / (24 * 3600000) + 1;
+        } else {
+            return 0;
+        }
+
     }
 
-    public void setStart(long start) {
-        this.start = start;
+    public int getTimeCompletion() {
+        if (end > System.currentTimeMillis()) {
+            final long dummy = 100 * (end - System.currentTimeMillis()) / (end - start);
+            return (int) (100 - dummy);
+        } else {
+            return 100;
+        }
     }
 
-    public void setEnd(long end) {
-        this.end = end;
+    public int getFollowersQty() {
+        return followers.size();
     }
 
-    public void setObjective(int objective) {
-        this.objective = objective;
-    }
-
-    public void setHtml(String html) {
-        this.html = html;
-    }
-
-    public void setTags(Collection<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public void addTag(Tag tag){tags.add(tag);}
-
-    public void deleteAllTags() {
-        tags.clear();
-    }
 
 }

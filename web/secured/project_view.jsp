@@ -8,7 +8,7 @@
     <import:css_files/>
     <link rel="stylesheet" type="text/css" href="../assets/plugins/jquery-superbox/css/style.css">
 </head>
-<body>
+<body style="background-color: white">
 <style type="text/css">
     h1.project-title {
         font-weight: bold;
@@ -18,11 +18,16 @@
 </style>
 <nav:main_nav title="Projects - ${requestScope.project.getName()}" active="projects">
     <jsp:attribute name="body">
+        <!--first row start-->
         <div class="row">
             <div class="grid simple">
                 <div class="grid-body no-border invoice-body"><br>
 
                     <h1 class="project-title">${requestScope.project.getName()}</h1>
+                    <br>
+                    <br>
+
+                    <p style="font-size: 20px; text-align: justify">${requestScope.project.getDescription()}</p>
 
                     <div class="clearfix"></div>
                     <br>
@@ -32,7 +37,7 @@
                     <div class="superbox">
                         <c:forEach var="image" items="${requestScope.project.images}">
                             <div class="superbox-list">
-                                    <%--<img src="${image.path}" class="superbox-img">--%>
+                                <img src="${image.path}" class="superbox-img">
                             </div>
 
                         </c:forEach>
@@ -46,6 +51,87 @@
                 </div>
             </div>
         </div>
+        <!--first row end-->
+        <!--second row start-->
+        <div class="row spacing-bottom 2col">
+            <div class="col-md-4 col-sm-8">
+                <div class="tiles blue added-margin">
+                    <div class="tiles-body">
+                        <div class="controller">
+                            <a href="javascript:;" class="reload"></a>
+                        </div>
+                        <div class="tiles-title">
+                            DAYS REMAINING
+                        </div>
+                        <div class="heading">
+                            <span class="animate-number" data-value="${requestScope.project.getDaysRemaining()}"
+                                  data-animation-duration="1200">${requestScope.project.getDaysRemaining()}</span>
+
+                        </div>
+                        <div class="progress transparent progress-small no-radius">
+                            <div class="progress-bar progress-bar-white animate-progress-bar"
+                                 data-percentage="${requestScope.project.getTimeCompletion()}%"
+                                 style="${requestScope.project.getTimeCompletion()}%"></div>
+                        </div>
+                        <div class="description"><span class="text-white mini-description ">Ends: <span
+                                class="blend">${requestScope.project.getEnd()}</span></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-8">
+                <div class="tiles green added-margin">
+                    <div class="tiles-body">
+                        <div class="controller">
+                            <a href="javascript:;" class="reload"></a>
+                        </div>
+                        <div class="tiles-title">
+                            FUNDS
+                        </div>
+                        <div class="heading">
+                            $<span class="animate-number" data-value="${requestScope.project.getFundsRaised()}"
+                                   data-animation-duration="1000">${requestScope.project.getFundsRaised()}</span>
+                        </div>
+                        <div class="progress transparent progress-small no-radius">
+                            <div class="progress-bar progress-bar-white animate-progress-bar"
+                                 data-percentage="${requestScope.project.getObjectiveCompletion()}%"
+                                 style="width: ${requestScope.project.getObjectiveCompletion()}%;"></div>
+                        </div>
+                        <div class="description"><span class="text-white mini-description ">Objective:<span
+                                class="blend"> $${requestScope.project.getObjective()}</span></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-8">
+                <div class="tiles red added-margin">
+                    <div class="tiles-body">
+                        <div class="controller">
+                            <a href="javascript:;" class="reload"></a>
+                        </div>
+                        <div class="tiles-title">
+                            FOLLOWERS
+                        </div>
+                        <div class="heading">
+                            <span class="animate-number" data-value="${requestScope.project.getFollowersQty()}"
+                                  data-animation-duration="1200"
+                                  style="font-size: 50px; text-align: center">${requestScope.project.getFollowersQty()}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--second row end-->
+        <!--third row start-->
+        <div class="row">
+            <div class="grid simple">
+                <div class="grid-body no-border invoice-body"><br>
+                        ${requestScope.project.getHtml()}
+                </div>
+            </div>
+        </div>
+        <!--third row end-->
 
 
     <div class="col-md-12">
