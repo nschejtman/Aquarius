@@ -185,9 +185,7 @@ public class Project {
         this.type = type;
     }
 
-    public void addTag(Tag tag){
-        tags.add(tag);
-    }
+    public void addTag(Tag tag){tags.add(tag);}
 
     public void deleteAllTags() {
         tags.clear();
