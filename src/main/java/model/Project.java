@@ -104,17 +104,17 @@ public class Project {
         return funds;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
     Collection<User> followers;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     Collection<Comment> comments;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     Collection<Image> images;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     Collection<Fund> funds;
 
     public Project() {
@@ -141,4 +141,40 @@ public class Project {
         funds = new ArrayList<Fund>();
 
     }
+
+    public int getFundsRaised() {
+        int total = 0;
+        for (Fund fund : funds) {
+            total = total + fund.getAmount();
+        }
+        return total;
+    }
+
+    public int getObjectiveCompletion() {
+        return 100 * getFundsRaised() / objective;
+    }
+
+    public int getDaysRemaining() {
+        if (end > System.currentTimeMillis()) {
+            return (int) (end - System.currentTimeMillis()) / (24 * 3600000) + 1;
+        } else {
+            return 0;
+        }
+
+    }
+
+    public int getTimeCompletion() {
+        if (end > System.currentTimeMillis()) {
+            final long dummy = 100 * (end - System.currentTimeMillis()) / (end - start);
+            return (int) (100 - dummy);
+        } else {
+            return 100;
+        }
+    }
+
+    public int getFollowersQty() {
+        return followers.size();
+    }
+
+
 }

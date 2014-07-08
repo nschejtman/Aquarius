@@ -209,7 +209,7 @@
 </div>
 <!-- END SIDEBAR -->
 <!-- BEGIN PAGE CONTAINER-->
-<div class="page-content">
+<div class="page-content" style="background-color: #f5f5f5;">
     <div class="clearfix"></div>
     <div class="content">
         <div class="page-title">
