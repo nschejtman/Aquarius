@@ -43,7 +43,7 @@
                                         <td><span class="muted"><c:out value="${project.objective}"/></span></td>
                                         <td class="v-align-middle">
                                             <div class="progress ">
-                                                <div data-percentage="<c:out value="${project.getProgress()}"/>"  class="progress-bar progress-bar-primary animate-progress-bar"></div>
+                                                <div data-percentage="<c:out value="${project.getObjectiveCompletion()}"/>"  class="progress-bar progress-bar-primary animate-progress-bar"></div>
                                             </div>
                                         </td>
                                     </tr>

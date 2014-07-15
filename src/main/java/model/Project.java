@@ -26,7 +26,7 @@ public class Project {
     @ManyToOne
     Type type;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
     @ManyToMany
@@ -114,13 +114,20 @@ public class Project {
     @OneToMany(fetch = FetchType.EAGER)
     Collection<Image> images;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     Collection<Fund> funds;
 
     public Project() {
+        //Initialize
+        updates = new ArrayList<Update>();
+        followers = new ArrayList<User>();
+        comments = new ArrayList<Comment>();
+        images = new ArrayList<Image>();
+        funds = new ArrayList<Fund>();
+        tags = new ArrayList<Tag>();
     }
 
-    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user, Collection<Tag> tags) {
+    public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user) {
         this.name = name;
         this.description = description;
         this.faq = faq;
@@ -131,7 +138,6 @@ public class Project {
         this.country = country;
         this.type = type;
         this.user = user;
-        this.tags = tags;
 
         //Initialize
         updates = new ArrayList<Update>();
@@ -139,8 +145,24 @@ public class Project {
         comments = new ArrayList<Comment>();
         images = new ArrayList<Image>();
         funds = new ArrayList<Fund>();
+        tags = new ArrayList<Tag>();
 
     }
+    public void setName(String name) {this.name = name;}
+
+    public void setDescription(String description) {this.description = description;}
+
+    public void setFaq(String faq) {this.faq = faq;}
+
+    public void setEnd(long end) {this.end = end;}
+
+    public void setObjective(int objective) {this.objective = objective;}
+
+    public void setHtml(String html) {this.html = html;}
+
+    public void setType(Type type) {this.type = type;}
+
+    public void setUser(User user) {this.user = user;}
 
     public int getFundsRaised() {
         int total = 0;
@@ -172,9 +194,11 @@ public class Project {
         }
     }
 
-    public int getFollowersQty() {
-        return followers.size();
-    }
+    public int getFollowersQty() {return followers.size();}
+
+    public void addTag(Tag tag) {tags.add(tag);}
+
+    public void deleteAllTags(){tags = new ArrayList<Tag>();};
 
 
 }
