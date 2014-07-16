@@ -25,9 +25,9 @@ public class ViewProjectListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = UserDAO.getUser(req.getRemoteUser());
-        List<Project> projects = ProjectDAO.getProjectsByUser(user) ;
+        List<Project> projects = ProjectDAO.getProjectsByUser(user);
         //checking if projects load
-        if(projects.get(0)== null) {
+        if(projects.size() > 0) {
             req.setAttribute("projects", projects);
             req.getRequestDispatcher("/secured/projectlist.jsp").forward(req, resp);
         } else resp.sendRedirect("/secured/index.jsp");

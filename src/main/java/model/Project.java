@@ -104,14 +104,14 @@ public class Project {
         return funds;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
     Collection<User> followers;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     Collection<Comment> comments;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     Collection<Image> images;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
@@ -119,12 +119,12 @@ public class Project {
 
     public Project() {
         //Initialize
-        updates = new ArrayList<Update>();
-        followers = new ArrayList<User>();
-        comments = new ArrayList<Comment>();
-        images = new ArrayList<Image>();
-        funds = new ArrayList<Fund>();
-        tags = new ArrayList<Tag>();
+        updates = new ArrayList<>();
+        followers = new ArrayList<>();
+        comments = new ArrayList<>();
+        images = new ArrayList<>();
+        funds = new ArrayList<>();
+        tags = new ArrayList<>();
     }
 
     public Project(String name, String description, String faq, long start, long end, int objective, String html, Country country, Type type, User user) {
@@ -140,12 +140,12 @@ public class Project {
         this.user = user;
 
         //Initialize
-        updates = new ArrayList<Update>();
-        followers = new ArrayList<User>();
-        comments = new ArrayList<Comment>();
-        images = new ArrayList<Image>();
-        funds = new ArrayList<Fund>();
-        tags = new ArrayList<Tag>();
+        updates = new ArrayList<>();
+        followers = new ArrayList<>();
+        comments = new ArrayList<>();
+        images = new ArrayList<>();
+        funds = new ArrayList<>();
+        tags = new ArrayList<>();
 
     }
     public void setName(String name) {this.name = name;}
@@ -198,7 +198,7 @@ public class Project {
 
     public void addTag(Tag tag) {tags.add(tag);}
 
-    public void deleteAllTags(){tags = new ArrayList<Tag>();};
+    public void deleteAllTags(){tags = new ArrayList<>();}
 
 
 }

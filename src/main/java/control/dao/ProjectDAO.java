@@ -84,7 +84,6 @@ public abstract class ProjectDAO {
             Criteria criteria = session.createCriteria(Project.class);
             criteria.add(Restrictions.eq("user", user));
             projects = (List<Project>) criteria.list();
-            System.out.println(projects.get(0).getName());
             tx.commit();
         } catch (HibernateException e){
             if(tx != null) tx.rollback();
@@ -138,7 +137,6 @@ public abstract class ProjectDAO {
             Criteria criteria = session.createCriteria(Project.class);
             List list = criteria.list();
             for (Object project : list) {
-                project = (Project) project;
                 session.delete(project);
             }
             tx.commit();
@@ -155,9 +153,9 @@ public abstract class ProjectDAO {
     }
 
     public static void generateTags(Project project, String[] tags) {
-        for (int i = 0; i < tags.length; i++) {
-            Tag tag = new Tag(tags[i]);
-            if (TagDAO.getTag(tag.getId())== null) {
+        for (String tag1 : tags) {
+            Tag tag = new Tag(tag1);
+            if (TagDAO.getTag(tag.getId()) == null) {
                 TagDAO.addTag(tag);
                 project.addTag(tag);
             } else {

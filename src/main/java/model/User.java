@@ -33,7 +33,7 @@ public class User implements Serializable {
     @JoinTable(name = "USER_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
     Collection<User> followers;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     Collection<Notification> notifications;
 
     @OneToMany(mappedBy = "recipient")
@@ -44,6 +44,13 @@ public class User implements Serializable {
 
 
     public User() {
+        //Initialize
+        notifications = new ArrayList<>();
+        followers = new ArrayList<>();
+        projects = new ArrayList<>();
+        inbox = new ArrayList<>();
+        funds = new ArrayList<>();
+        reputation = 0;
     }
 
     public User(String userName) {
@@ -60,11 +67,11 @@ public class User implements Serializable {
         this.profilePicture = profilePicture;
 
         //Initialize
-        notifications = new ArrayList<Notification>();
-        followers = new ArrayList<User>();
-        projects = new ArrayList<Project>();
-        inbox = new ArrayList<Message>();
-        funds = new ArrayList<Fund>();
+        notifications = new ArrayList<>();
+        followers = new ArrayList<>();
+        projects = new ArrayList<>();
+        inbox = new ArrayList<>();
+        funds = new ArrayList<>();
         reputation = 0;
 
     }
