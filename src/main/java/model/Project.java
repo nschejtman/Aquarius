@@ -114,7 +114,7 @@ public class Project {
     @OneToMany
     Collection<Image> images;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     Collection<Fund> funds;
 
     public Project() {
@@ -172,8 +172,8 @@ public class Project {
         return total;
     }
 
-    public int getObjectiveCompletion() {
-        return 100 * getFundsRaised() / objective;
+    public String getObjectiveCompletion() {
+        return (100 * getFundsRaised() / objective) + "%";
     }
 
     public int getDaysRemaining() {
