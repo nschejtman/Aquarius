@@ -32,7 +32,7 @@ public class AddProjectServlet extends HttpServlet {
             req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
         } else resp.sendRedirect("/secured/index.jsp");
 
-        List<Tag> tags = TagDAO.getAll();
+        List<Tag> tags = TagDAO.getInstance().getAll();
         if(tags.size() > 0){
             req.setAttribute("tagList", tags);
             req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
@@ -53,7 +53,7 @@ public class AddProjectServlet extends HttpServlet {
 //        project.setStart((req.getParameter("startDate")).);
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 
-        ProjectDAO.addProject(project);
+        ProjectDAO.getInstance().addProject(project);
         resp.sendRedirect("/secured/project?id=" + project.getId());
     }
 }

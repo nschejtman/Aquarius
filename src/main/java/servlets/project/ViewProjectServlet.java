@@ -18,7 +18,7 @@ public class ViewProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Get the project id from the url
         Long id = Long.parseLong(req.getParameter("id"));
-        Project project = ProjectDAO.getProject(id);
+        Project project = ProjectDAO.getInstance().getProject(id);
 
         //Forward request to the project_view.jsp
         ServletContext servletContext = getServletContext();

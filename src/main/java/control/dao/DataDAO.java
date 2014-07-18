@@ -17,7 +17,7 @@ public abstract class DataDAO {
         }
     }
 
-    protected void endTransaction(Session session) {
+    protected void endTransaction() {
         try {
             tx.commit();
         } catch (RuntimeException e) {
