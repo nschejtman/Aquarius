@@ -23,11 +23,11 @@
             <div class="grid simple">
                 <div class="grid-body no-border invoice-body"><br>
 
-                    <h1 class="project-title">${requestScope.project.getName()}</h1>
+                    <h1 class="project-title">${requestScope.project.name}</h1>
                     <br>
                     <br>
 
-                    <p style="font-size: 20px; text-align: justify">${requestScope.project.getDescription()}</p>
+                    <p style="font-size: 20px; text-align: justify">${requestScope.project.description}</p>
 
                     <div class="clearfix"></div>
                     <br>

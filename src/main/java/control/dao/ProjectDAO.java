@@ -17,25 +17,21 @@ import java.util.List;
 /**
  * Created by franco on 25/04/2014.
  */
-public abstract class ProjectDAO {
+public class ProjectDAO extends DataDAO {
 
-    public static boolean addProject(Project project) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        boolean ret = false;
-        try {
-            tx = session.beginTransaction();
-//            project.setActive(true);
-            session.persist(project);
-            tx.commit();
-            ret = true;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return ret;
+    private static ProjectDAO ourInstance = new ProjectDAO();
+
+    private ProjectDAO() {
+    }
+
+    public static ProjectDAO getInstance() {
+        return ourInstance;
+    }
+
+    public void addProject(Project project,Session session) {
+        beginTransaction(session);
+        session.persist(project);
+        endTransaction(session);
     }
 
     public static Project getProject(long id) {

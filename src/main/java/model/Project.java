@@ -111,10 +111,10 @@ public class Project {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     Collection<Comment> comments;
 
-    @OneToMany
+    @OneToMany//(fetch = FetchType.EAGER)
     Collection<Image> images;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     Collection<Fund> funds;
 
     public Project() {

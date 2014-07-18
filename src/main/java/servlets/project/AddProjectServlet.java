@@ -54,5 +54,7 @@ public class AddProjectServlet extends HttpServlet {
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 
         ProjectDAO.addProject(project);
+
+        resp.sendRedirect("/secured/projectlist.jsp");
     }
 }

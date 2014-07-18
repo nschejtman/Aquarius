@@ -15,7 +15,7 @@ public class Notification {
 
     private long date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     //Non-constructor variables

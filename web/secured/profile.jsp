@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports"%>
+<%@taglib prefix="navigation" tagdir="/WEB-INF/tags/navigation" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: franco
@@ -8,9 +12,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <import:css_files/>
 </head>
 <body>
+    <navigation:main_nav title="User Profile" active="projects">
+        <jsp:attribute name="body">
 
+        </jsp:attribute>
+    </navigation:main_nav>
+
+<import:js_files/>
 </body>
 </html>
