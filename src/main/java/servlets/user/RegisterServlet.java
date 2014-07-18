@@ -1,4 +1,4 @@
-package servlets;
+package servlets.user;
 
 import control.dao.ImageDAO;
 import control.dao.UserDAO;

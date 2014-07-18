@@ -1,13 +1,15 @@
 <%@ tag import="control.dao.UserDAO" %>
 <%@tag body-content="tagdependent" %>
 <%@ attribute name="title" required="true" %>
-<%--TODO tiene que recibir el user como parametro del jsp que se lo pasa--%>
-
+<%@ attribute name="active" required="true" %>
+<%@ taglib prefix="import" tagdir="/WEB-INF/tags/imports" %>
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
 <% User user = UserDAO.getUser(request.getRemoteUser()); %>
+<%@ attribute name="body" fragment="true" %>
 <base href="../../../">
+
 
 <!--TODO agregarlo en un css aparte-->
 <style>
@@ -19,17 +21,13 @@
         margin-top: 12px;
         margin-left: 28px;
     }
-    /*TODO agregarlo al css del login
-    /*@font-face {*/
-        /*font-family: 'FontsGotSwag';*/
-        /*src: url('../../../assets/fonts/PeachMilk.eot?') format('eot'),*/
-        /*url('../../../assets/fonts/PeachMilk.woff') format('woff'),*/
-        /*url('../../../assets/fonts/PeachMilk.ttf')  format('truetype'),*/
-        /*url('../../../assets/fonts/PeachMilk.svg#PeachMilk') format('svg');*/
-    /*}*/
 
-    div.page-sidebar{
+    div.page-sidebar {
         position: fixed;
+    }
+
+    span.space {
+        margin-left: 5px;
     }
 
 </style>
@@ -40,16 +38,29 @@
     <div class="navbar-inner">
         <!--LOGO START-->
         <div class="header-seperation">
-            <a href="/index"><img src="assets/img/logo.png" class="logo"></a>
+            <ul class="nav pull-left notifcation-center" id="main-menu-toggle-wrapper"
+                style="display:none; background: none">
+                <li class="dropdown"><a id="main-menu-toggle" href="#main-menu" class=""
+                                        style="background-color: #80C9C3;">
+                    <div class="iconset top-menu-toggle-white"></div>
+                </a></li>
+            </ul>
+            <a href="/index"><img src="/assets/img/logo.png" class="logo"></a>
         </div>
         <!--LOGO END-->
 
         <div class="header-quick-nav">
             <div class="pull-left">
                 <ul class="nav quick-section">
+                    <li class="quicklinks"><a class="" id="layout-condensed-toggle">
+                        <div class="iconset top-menu-toggle-dark"></div>
+                    </a></li>
+                </ul>
+                <ul class="nav quick-section">
+
                     <li class="m-r-10 input-prepend inside search-form no-boarder">
                         <span class="add-on"> <span class="iconset top-search"></span></span>
-                        <input name="navSearch" type="text" class="no-boarder " placeholder="Search"
+                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard"
                                style="width:250px;">
                     </li>
                 </ul>
@@ -62,7 +73,7 @@
                        data-toggle="dropdown" data-original-title="Notifications">
                         <div class="user-details">
                             <div class="username">
-                                <span class="badge badge-important"><%=user.unreadNotifications()%></span>
+                                <span class="badge badge-important" id="top-unread-notifications"></span>
                                 <%=user.getFirstName()%> <span class="bold"><%=user.getLastName()%></span>
                             </div>
                         </div>
@@ -70,7 +81,7 @@
                     </a>
 
                     <div class="profile-pic">
-                        <img src="assets/img/profiles/avatar_small.jpg" width="35" height="35"/>
+                        <img src="<%=user.getProfilePicture().getPath()%>" width="35" height="35"/>
                     </div>
                 </div>
                 <ul class="nav quick-section ">
@@ -108,59 +119,81 @@
     <!-- BEGIN SIDEBAR MENU -->
     <br>
     <ul>
-        <li class="start active ">
-            <a href="/index">
+        <li id="sidenav-home">
+            <a href="secured/index.jsp">
                 <i class="icon-custom-home"></i>
                 <span class="title">Home</span>
-                <span class="selected"></span>
-                <span class="badge badge-important pull-right">5</span>
+
+
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-notifications">
+            <a>
                 <i class="fa fa-flag"></i>
                 <span class="title">Notifications</span>
+                <span class="badge badge-important pull-right" id="side-unread-notifications"></span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-messages">
+            <a href="javascript:;">
                 <i class="fa fa-envelope"></i>
                 <span class="title">Messages</span>
-                <span class=" badge badge-disable pull-right ">203</span>
+                <span class="arrow"></span>
             </a>
+            <ul class="sub-menu" style="overflow: hidden;">
+                <li><a> Inbox </a></li>
+                <li><a> Sent </a></li>
+                <li><a> Create new </a></li>
+
+            </ul>
+
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-profile">
+            <a>
                 <i class="fa fa-user"></i>
                 <span class="title">Profile</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-projects">
+            <a href="javascript:;">
                 <i class="icon-custom-chart"></i>
                 <span class="title">Projects</span>
+                <span class="arrow"></span>
+
+
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Projects </a></li>
+                    <li><a> Followed projects </a></li>
+                    <li><a> Faved projects </a></li>
+                    <li><a href="/secured/addproject"> Create new project</a></li>
+                </ul>
             </a>
         </li>
-        <li>
-            <a href="">
+        <li id="sidenav-community">
+            <a href="javascript:;">
                 <i class="fa fa-users"></i>
                 <span class="title">Community</span>
+                <span class="arrow"></span>
+                <ul class="sub-menu" style="overflow: hidden;">
+                    <li><a> My Community </a></li>
+                    <li><a> Followed users </a></li>
+                </ul>
             </a>
         </li>
-        <li>
-            <a href="">
+        <li id="sidenav-advanced_search">
+            <a>
                 <i class="fa fa-search"></i>
-                <span class="title">Advanced Search</span>
+                <span class="title">Search</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-settings">
+            <a>
                 <i class="icon-custom-settings"></i>
                 <span class="title">Settings</span>
             </a>
         </li>
-        <li class="">
-            <a href="">
+        <li id="sidenav-about">
+            <a>
                 <i class="fa fa-info"></i>
                 <span class="title">About</span>
             </a>
@@ -175,17 +208,34 @@
 </div>
 <!-- END SIDEBAR -->
 <!-- BEGIN PAGE CONTAINER-->
-<div class="page-content">
+<div class="page-content" style="background-color: #f5f5f5;">
     <div class="clearfix"></div>
     <div class="content">
         <div class="page-title">
-            <h3>${title} </h3>
+            <h3><span class="semi-bold">${title}</span></h3>
         </div>
         <div id="container">
-
+            <jsp:invoke fragment="body"/>
             <!-- END PAGE -->
         </div>
     </div>
     <!-- END CONTAINER -->
 </div>
+<import:js_files></import:js_files>
+
+<!--Lights up active in side menu-->
+<script>
+    //Sets the corresponding section to the side nav as active
+    $("#sidenav-${active}").addClass("start active");
+</script>
+
+<!--Notifications-->
+<script>
+    var unreadNotifications = <%=user.getUnreadNotificationsQty()%>;
+    if (unreadNotifications != 0) {
+        $("#side-unread-notifications").innerHTML(unreadNotifications);
+        $("#top-unread-notifications").innerHTML(unreadNotifications);
+    }
+</script>
+
 

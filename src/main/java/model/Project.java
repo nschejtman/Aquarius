@@ -111,10 +111,10 @@ public class Project {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
     Collection<Comment> comments;
 
-    @OneToMany//(fetch = FetchType.EAGER)
+    @OneToMany
     Collection<Image> images;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     Collection<Fund> funds;
 
     public Project() {
@@ -172,8 +172,8 @@ public class Project {
         return total;
     }
 
-    public String getObjectiveCompletion() {
-        return (100 * getFundsRaised() / objective) + "%";
+    public int getObjectiveCompletion() {
+        return 100 * getFundsRaised() / objective;
     }
 
     public int getDaysRemaining() {

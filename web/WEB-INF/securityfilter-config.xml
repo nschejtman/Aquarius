@@ -8,7 +8,7 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>SecuredPage</web-resource-name> <!--TODO descablear para que empieze a filtrar-->
+            <web-resource-name>SecuredPage</web-resource-name>
             <url-pattern>/secured/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>

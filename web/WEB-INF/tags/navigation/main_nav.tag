@@ -120,7 +120,7 @@
     <br>
     <ul>
         <li id="sidenav-home">
-            <a href="/index">
+            <a href="secured/index.jsp">
                 <i class="icon-custom-home"></i>
                 <span class="title">Home</span>
 
@@ -165,8 +165,7 @@
                     <li><a> My Projects </a></li>
                     <li><a> Followed projects </a></li>
                     <li><a> Faved projects </a></li>
-                    <li><a> Recomended me! <span class="badge">beta</span> </a></li>
-                    <li><a> Create new project</a></li>
+                    <li><a href="/secured/addproject"> Create new project</a></li>
                 </ul>
             </a>
         </li>
