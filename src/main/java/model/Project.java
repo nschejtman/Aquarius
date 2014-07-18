@@ -3,7 +3,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -30,11 +30,11 @@ public class Project {
     User user;
 
     @ManyToMany
-    Collection<Tag> tags;
+    List<Tag> tags;
 
     //Non-constructor variables
     @OneToMany(mappedBy = "project")
-    Collection<Update> updates;
+    List<Update> updates;
 
     public long getId() {
         return id;
@@ -80,42 +80,42 @@ public class Project {
         return user;
     }
 
-    public Collection<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public Collection<Update> getUpdates() {
+    public List<Update> getUpdates() {
         return updates;
     }
 
-    public Collection<User> getFollowers() {
+    public List<User> getFollowers() {
         return followers;
     }
 
-    public Collection<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public Collection<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public Collection<Fund> getFunds() {
+    public List<Fund> getFunds() {
         return funds;
     }
 
     @ManyToMany
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
-    Collection<User> followers;
+    List<User> followers;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
-    Collection<Comment> comments;
+    List<Comment> comments;
 
-    @OneToMany
-    Collection<Image> images;
+    @OneToMany(fetch = FetchType.LAZY)
+    List<Image> images;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    Collection<Fund> funds;
+    List<Fund> funds;
 
     public Project() {
         //Initialize
@@ -148,21 +148,38 @@ public class Project {
         tags = new ArrayList<>();
 
     }
-    public void setName(String name) {this.name = name;}
 
-    public void setDescription(String description) {this.description = description;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setFaq(String faq) {this.faq = faq;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public void setEnd(long end) {this.end = end;}
+    public void setFaq(String faq) {
+        this.faq = faq;
+    }
 
-    public void setObjective(int objective) {this.objective = objective;}
+    public void setEnd(long end) {
+        this.end = end;
+    }
 
-    public void setHtml(String html) {this.html = html;}
+    public void setObjective(int objective) {
+        this.objective = objective;
+    }
 
-    public void setType(Type type) {this.type = type;}
+    public void setHtml(String html) {
+        this.html = html;
+    }
 
-    public void setUser(User user) {this.user = user;}
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getFundsRaised() {
         int total = 0;
@@ -194,11 +211,17 @@ public class Project {
         }
     }
 
-    public int getFollowersQty() {return followers.size();}
+    public int getFollowersQty() {
+        return followers.size();
+    }
 
-    public void addTag(Tag tag) {tags.add(tag);}
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
 
-    public void deleteAllTags(){tags = new ArrayList<>();}
+    public void deleteAllTags() {
+        tags = new ArrayList<>();
+    }
 
 
 }

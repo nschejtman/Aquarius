@@ -2,6 +2,7 @@ package control.dao;
 
 import control.HibernateUtil;
 import model.Project;
+import model.Tag;
 import model.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -14,12 +15,30 @@ import java.util.List;
  */
 public class SearchDAO {
 
-    public static List<Project> searchProject(String criteriaStr) {
+    public static List<Project> searchProjectNames(String criteriaStr) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Project.class);
-        criteria.add(Restrictions.like("title", "%" + criteriaStr + "%"));
-        return (List<Project>)criteria.list();
+        criteria.add(Restrictions.like("name", "%" + criteriaStr + "%"));
+        return (List<Project>) criteria.list();
     }
+
+    public static List<Project> searchProjectDescriptions(String criteriaStr) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Project.class);
+        criteria.add(Restrictions.like("description", "%" + criteriaStr + "%"));
+        return (List<Project>) criteria.list();
+    }
+
+    public static List<Project> searchProjectTags(String criteriaStr) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(Tag.class);
+        TagDAO.getSingleTag(criteriaStr);
+
+
+        criteria.add(Restrictions.like("tag", "%" + criteriaStr + "%"));
+        return (List<Project>) criteria.list();
+    }
+
 
     public static List<Project> searchProject(String title, String body, String userName) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -33,14 +52,14 @@ public class SearchDAO {
         if (userName != null) {
             criteria.add(Restrictions.like("userName", "%" + userName + "%"));
         }
-        return (List<Project>)criteria.list();
+        return (List<Project>) criteria.list();
     }
 
     public static List<User> searchUser(String criteriaStr) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Project.class);
         criteria.add(Restrictions.like("title", "%" + criteriaStr + "%"));
-        return (List<User>)criteria.list();
+        return (List<User>) criteria.list();
     }
 
     public static List<User> searchUser(String userName, String name) {
@@ -53,6 +72,6 @@ public class SearchDAO {
             criteria.add(Restrictions.like("description", "%" + name + "%"));
         }
 
-        return (List<User>)criteria.list();
+        return (List<User>) criteria.list();
     }
 }
