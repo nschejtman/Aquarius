@@ -148,21 +148,38 @@ public class Project {
         tags = new ArrayList<>();
 
     }
-    public void setName(String name) {this.name = name;}
 
-    public void setDescription(String description) {this.description = description;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setFaq(String faq) {this.faq = faq;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public void setEnd(long end) {this.end = end;}
+    public void setFaq(String faq) {
+        this.faq = faq;
+    }
 
-    public void setObjective(int objective) {this.objective = objective;}
+    public void setEnd(long end) {
+        this.end = end;
+    }
 
-    public void setHtml(String html) {this.html = html;}
+    public void setObjective(int objective) {
+        this.objective = objective;
+    }
 
-    public void setType(Type type) {this.type = type;}
+    public void setHtml(String html) {
+        this.html = html;
+    }
 
-    public void setUser(User user) {this.user = user;}
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getFundsRaised() {
         int total = 0;
@@ -194,11 +211,17 @@ public class Project {
         }
     }
 
-    public int getFollowersQty() {return followers.size();}
+    public int getFollowersQty() {
+        return followers.size();
+    }
 
-    public void addTag(Tag tag) {tags.add(tag);}
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
 
-    public void deleteAllTags(){tags = new ArrayList<>();}
+    public void deleteAllTags() {
+        tags = new ArrayList<>();
+    }
 
 
 }

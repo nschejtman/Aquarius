@@ -27,7 +27,7 @@ public class InitializeDB {
                 "1234", ImageDAO.getInstance().getImage(1)
         );
         User franco = new User("Franco", "Testori", System.currentTimeMillis(), "ftestori", "franco.testori@hotmail.com",
-                "1234", ImageDAO.getImage(1));
+                "1234", ImageDAO.getInstance().getImage(1));
         UserDAO.getInstance().addUser(nico);
         UserDAO.getInstance().addUser(franco);
 
