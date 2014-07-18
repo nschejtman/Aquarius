@@ -17,8 +17,6 @@ import java.io.IOException;
  */
 public class InitializeDB {
     public static void main(String[] args) {
-        //Update the schema
-        UpdateDBSchema.main(null);
 
         //Add default image
         Image image = new Image("secured/media/img/defaultuserpic.png");
@@ -31,8 +29,8 @@ public class InitializeDB {
         );
         User franco = new User("Franco", "Testori", System.currentTimeMillis(), "ftestori", "franco.testori@hotmail.com",
                 "1234", ImageDAO.getImage(1));
-        UserDAO.addUser(nico);
-        UserDAO.addUser(franco);
+        UserDAO.getInstance().addUser(nico);
+        UserDAO.getInstance().addUser(franco);
 
         //Adds countries
         Country testCountry = new Country("Test Country");
@@ -53,14 +51,14 @@ public class InitializeDB {
 
         //Adds types
         Type testType = new Type("Test type");
-        TypeDAO.addType(testType);
+        TypeDAO.getInstance().addType(testType);
         try {
             br = new BufferedReader(new FileReader(InitializeDB.class.getClassLoader().getResource("initial_data/types.txt").getPath().replaceAll("%20", " ")));
             String typeName = null;
             typeName = br.readLine();
             while (typeName != null) {
                 Type type = new Type(typeName);
-                TypeDAO.addType(type);
+                TypeDAO.getInstance().addType(type);
                 typeName = br.readLine();
             }
         } catch (IOException e) {

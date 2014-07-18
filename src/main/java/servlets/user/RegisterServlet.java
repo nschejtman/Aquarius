@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("reg_password");
         long birthdate = Date.valueOf(req.getParameter("reg_birthdate")).getTime();
         User user = new User(firstname, lastname, birthdate, username, email, password, ImageDAO.getImage(1));
-        UserDAO.addUser(user);
+        UserDAO.getInstance().addUser(user);
         //TODO apendearle el nuevo user a la session para que lo deje pasar el security filter
 
 

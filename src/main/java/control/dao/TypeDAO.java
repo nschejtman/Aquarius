@@ -3,74 +3,55 @@ package control.dao;
 import control.HibernateUtil;
 import model.Type;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-public abstract class TypeDAO {
+public class TypeDAO extends DataDAO {
 
-    public static boolean addType(Type type) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        boolean ret = false;
-        try {
-            tx = session.beginTransaction();
-            session.persist(type);
-            tx.commit();
-            ret = true;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return ret;
+
+    private static TypeDAO ourInstance = new TypeDAO();
+
+    private TypeDAO() {
     }
 
-    public static Type getType(String name){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Object type = null;
-        try{
-            tx = session.beginTransaction();
-            Criteria criteria = session.createCriteria(Type.class);
-            criteria.add(Restrictions.eq("name",name));
-            List list = criteria.list();
-            if(list != null) type = list.get(0);
-            tx.commit();
-        } catch (HibernateException e){
-            if(tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return (Type) type;
+    public static TypeDAO getInstance() {
+        return ourInstance;
     }
 
-    public static Type getType(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Object type = null;
-        try {
-            tx = session.beginTransaction();
-            type = session.get(Type.class, id);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return (Type) type;
+    public void addType(Type type) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.persist(type);
+        endTransaction();
     }
 
-    public static List<Type> getAll(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    public Type getType(String name) {
+        Session session = HibernateUtil.getGuestSession();
+        Type type = null;
+        beginTransaction(session);
         Criteria criteria = session.createCriteria(Type.class);
-        return  (List<Type>)criteria.list();
+        criteria.add(Restrictions.eq("name", name));
+        List list = criteria.list();
+        if (list != null) type = (Type) list.get(0);
+        endTransaction();
+        return type;
+    }
+
+    public Type getType(long id) {
+        Session session = HibernateUtil.getGuestSession();
+        Type type = null;
+        beginTransaction(session);
+        type = (Type) session.get(Type.class, id);
+        endTransaction();
+        return type;
+    }
+
+    public static List<Type> getAll() {
+        Session session = HibernateUtil.getGuestSession();
+        Criteria criteria = session.createCriteria(Type.class);
+        return (List<Type>) criteria.list();
     }
 
 

@@ -13,7 +13,7 @@ public class UserTest {
         for (int i = 1; i <= qty; i++) {
             User user = new User("first name" + i,
                     "last name" + i, System.currentTimeMillis(), "username" + i, i + "@test", "1234", ImageDAO.getImage(1));
-            UserDAO.addUser(user);
+            UserDAO.getInstance().addUser(user);
         }
 
     }

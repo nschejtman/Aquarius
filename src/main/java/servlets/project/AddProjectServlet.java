@@ -17,9 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by franco on 30/04/2014.
- */
 
 @WebServlet(name = "AddProject", urlPatterns = "/secured/addproject")
 public class AddProjectServlet extends HttpServlet {
@@ -27,29 +24,29 @@ public class AddProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Type> types = TypeDAO.getAll();
-        if(types.size() > 0){
+        if (types.size() > 0) {
             req.setAttribute("types", types);
-            req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
+            req.getRequestDispatcher("/secured/addproject.jsp").forward(req, resp);
         } else resp.sendRedirect("/secured/index.jsp");
 
         List<Tag> tags = TagDAO.getAll();
-        if(tags.size() > 0){
+        if (tags.size() > 0) {
             req.setAttribute("tagList", tags);
-            req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
+            req.getRequestDispatcher("/secured/addproject.jsp").forward(req, resp);
         } else resp.sendRedirect("/secured/index.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User user = UserDAO.getUser(req.getRemoteUser());
+        User user = UserDAO.getInstance().getUser(req.getRemoteUser());
         String name = req.getParameter("projectName");
         int objective = Integer.parseInt(req.getParameter("objective"));
-        Type type = TypeDAO.getType(req.getParameter("type"));
+        Type type = TypeDAO.getInstance().getType(req.getParameter("type"));
         String description = req.getParameter("description");
         String html = req.getParameter("html");
         String[] strTags = req.getParameter("source-tags").split(",");
-        Project project = ProjectDAO.makeProject(new Project(),name,description,objective,html,type,user,strTags);
+        Project project = ProjectDAO.makeProject(new Project(), name, description, objective, html, type, user, strTags);
 //        project.setStart((req.getParameter("startDate")).);
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 

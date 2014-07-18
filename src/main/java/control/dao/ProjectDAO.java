@@ -14,9 +14,6 @@ import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
-/**
- * Created by franco on 25/04/2014.
- */
 public class ProjectDAO extends DataDAO {
 
     private static ProjectDAO ourInstance = new ProjectDAO();
@@ -28,10 +25,10 @@ public class ProjectDAO extends DataDAO {
         return ourInstance;
     }
 
-    public void addProject(Project project,Session session) {
+    public void addProject(Project project, Session session) {
         beginTransaction(session);
         session.persist(project);
-        endTransaction(session);
+        endTransaction();
     }
 
     public static Project getProject(long id) {
@@ -71,18 +68,18 @@ public class ProjectDAO extends DataDAO {
         return (Project) project;
     }
 
-    public static List<Project> getProjectsByUser(User user){
+    public static List<Project> getProjectsByUser(User user) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         List<Project> projects = null;
-        try{
+        try {
             tx = session.beginTransaction();
             Criteria criteria = session.createCriteria(Project.class);
             criteria.add(Restrictions.eq("user", user));
             projects = (List<Project>) criteria.list();
             tx.commit();
-        } catch (HibernateException e){
-            if(tx != null) tx.rollback();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -144,8 +141,8 @@ public class ProjectDAO extends DataDAO {
         }
     }
 
-    public static Project makeProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
-        return editProject(project, name, description, objective,html,type,user,tags);
+    public static Project makeProject(Project project, String name, String description, int objective, String html, Type type, User user, String[] tags) {
+        return editProject(project, name, description, objective, html, type, user, tags);
     }
 
     public static void generateTags(Project project, String[] tags) {
@@ -162,14 +159,14 @@ public class ProjectDAO extends DataDAO {
 
     public static void deleteAllTags(Project project) {
         List<Tag> tags = null;
-        if(project.getTags() != null) tags = (List<Tag>)project.getTags();
+        if (project.getTags() != null) tags = (List<Tag>) project.getTags();
         project.deleteAllTags();
         for (Tag tag : tags) {
             TagDAO.addTag(tag);
         }
     }
 
-    public static Project editProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
+    public static Project editProject(Project project, String name, String description, int objective, String html, Type type, User user, String[] tags) {
         project.setUser(user);
         project.setName(name);
         project.setDescription(description);

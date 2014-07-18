@@ -4,117 +4,72 @@ import com.sun.istack.internal.NotNull;
 import control.HibernateUtil;
 import model.User;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
 
-public abstract class UserDAO {
+public class UserDAO extends DataDAO {
 
-    public static boolean addUser(User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        boolean ret = false;
-        try {
-            tx = session.beginTransaction();
-            session.persist(user);
-            tx.commit();
-            ret = true;
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return ret;
+    private static UserDAO ourInstance = new UserDAO();
+
+    private UserDAO() {
     }
 
-    public static User getUser(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Object user = null;
-        try {
-            tx = session.beginTransaction();
-            user = session.get(User.class, id);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return (User) user;
+    public static UserDAO getInstance() {
+        return ourInstance;
     }
 
-    public static User getUser(@NotNull String username) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Object user = null;
-        try {
-            tx = session.beginTransaction();
-            Criteria criteria = session.createCriteria(User.class);
-            criteria.add(Restrictions.eq("userName", username));
-            List list = criteria.list();
-            if (list.size() > 0 && list.get(0) != null) user = list.get(0);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return (User) user;
+    public void addUser(User user) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.persist(user);
+        endTransaction();
+    }
+
+    public User getUser(long id) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        User user = (User) session.get(User.class, id);
+        endTransaction();
+        return user;
+    }
+
+    public User getUser(@NotNull String username) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        User user = null;
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.eq("userName", username));
+        List list = criteria.list();
+        endTransaction();
+        if (list.size() > 0 && list.get(0) != null) user = (User) list.get(0);
+        return user;
 
     }
 
-    public static void deleteUser(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            User user = getUser(id);
-            if (user == null) return;
-            session.delete(user);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+    public void deleteUser(long id) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        User user = getUser(id);
+        if (user == null) return;
+        session.delete(user);
+        endTransaction();
     }
 
-    public static void deleteUser(@NotNull User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            session.delete(user);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+    public void deleteUser(@NotNull User user) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.delete(user);
+        endTransaction();
     }
 
-    public static void updateUser(@NotNull User user) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        try {
-            tx = session.beginTransaction();
-            //TODO
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
+    public void updateUser(@NotNull User user) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.persist(user);
+        endTransaction();
     }
 
 

@@ -3,9 +3,6 @@ package control.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- * Created by franco on 18/07/2014.
- */
 public abstract class DataDAO {
     private Transaction tx;
 
@@ -17,7 +14,7 @@ public abstract class DataDAO {
         }
     }
 
-    protected void endTransaction(Session session) {
+    protected void endTransaction() {
         try {
             tx.commit();
         } catch (RuntimeException e) {
