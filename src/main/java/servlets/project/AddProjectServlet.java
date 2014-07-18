@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Created by franco on 30/04/2014.
+ */
 
 @WebServlet(name = "AddProject", urlPatterns = "/secured/addproject")
 public class AddProjectServlet extends HttpServlet {
@@ -24,15 +27,15 @@ public class AddProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Type> types = TypeDAO.getAll();
-        if (types.size() > 0) {
+        if(types.size() > 0){
             req.setAttribute("types", types);
-            req.getRequestDispatcher("/secured/addproject.jsp").forward(req, resp);
+            req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
         } else resp.sendRedirect("/secured/index.jsp");
 
-        List<Tag> tags = TagDAO.getAll();
-        if (tags.size() > 0) {
+        List<Tag> tags = TagDAO.getInstance().getAll();
+        if(tags.size() > 0){
             req.setAttribute("tagList", tags);
-            req.getRequestDispatcher("/secured/addproject.jsp").forward(req, resp);
+            req.getRequestDispatcher("/secured/addproject.jsp").forward(req,resp);
         } else resp.sendRedirect("/secured/index.jsp");
     }
 
@@ -50,7 +53,7 @@ public class AddProjectServlet extends HttpServlet {
 //        project.setStart((req.getParameter("startDate")).);
 //        project.setEnd(Date.valueOf(req.getParameter("endDate")));
 
-        ProjectDAO.addProject(project);
+        ProjectDAO.getInstance().addProject(project);
         resp.sendRedirect("/secured/project?id=" + project.getId());
     }
 }

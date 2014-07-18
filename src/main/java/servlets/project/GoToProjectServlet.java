@@ -20,7 +20,7 @@ public class GoToProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long projectID = Long.parseLong(req.getAttribute("projectID").toString());
-        Project project = ProjectDAO.getProject(projectID);
+        Project project = ProjectDAO.getInstance().getProject(projectID);
         req.setAttribute("project", project);
         req.setAttribute("filterByGoTo", true);
         ServletContext context = getServletContext();

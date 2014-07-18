@@ -24,7 +24,7 @@ public class EditProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Get the project id from the url
         Long id = Long.parseLong(req.getParameter("id"));
-        Project project = ProjectDAO.getProject(id);
+        Project project = ProjectDAO.getInstance().getProject(id);
 
         //If the user is owner redirect to edition view else redirect to not authorized page
         if (project.getUser().getUserName().equals(req.getUserPrincipal().getName())) {

@@ -17,12 +17,12 @@ public class ProjectTest {
                 "<h1>This is the header</h1><p>This is the first paragraph. This text is <b>bold</b></p>", CountryDAO.getCountry(1),
                 TypeDAO.getInstance().getType(1), UserDAO.getInstance().getUser(2)
         );
-        ProjectDAO.addProject(project);
+        ProjectDAO.getInstance().addProject(project);
 
 
     }
 
     public static void deleteProjects() {
-        ProjectDAO.deleteAll();
+        ProjectDAO.getInstance().deleteAll();
     }
 }

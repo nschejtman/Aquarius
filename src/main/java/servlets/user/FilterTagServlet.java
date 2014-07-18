@@ -20,7 +20,7 @@ public class FilterTagServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long tagId = (long) req.getAttribute("tagID");
-        Tag tag = TagDAO.getTag(tagId);
+        Tag tag = TagDAO.getInstance().getTag(tagId);
         req.setAttribute("tag", tag);
 //        req.setAttribute("projectByTag", tag.getProjects());
         ServletContext context = getServletContext();

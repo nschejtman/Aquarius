@@ -17,15 +17,14 @@ import java.io.IOException;
  */
 public class InitializeDB {
     public static void main(String[] args) {
-
         //Add default image
         Image image = new Image("secured/media/img/defaultuserpic.png");
-        ImageDAO.addImage(image);
+        ImageDAO.getInstance().addImage(image);
 
         //Create users for franco & nico
         User nico = new User("Nicol+" +
                 "as", "Schejtman", System.currentTimeMillis(), "nschejtman", "nschejtman@hotmail.com",
-                "1234", ImageDAO.getImage(1)
+                "1234", ImageDAO.getInstance().getImage(1)
         );
         User franco = new User("Franco", "Testori", System.currentTimeMillis(), "ftestori", "franco.testori@hotmail.com",
                 "1234", ImageDAO.getImage(1));
