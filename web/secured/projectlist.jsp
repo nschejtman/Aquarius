@@ -40,7 +40,7 @@
                                         </div></td>
                                         <td class="v-align-middle"><c:out value="${project.name}"/></td>
                                         <td class="v-align-middle"><span class="muted"><c:out value="${project.description}" escapeXml="false"/></span></td>
-                                        <td><span class="muted"><c:out value="${project.objective}"/></span></td>
+                                        <td><span class="muted"><c:out value="$ ${project.objective}"/></span></td>
                                         <td class="v-align-middle">
                                             <div class="progress ">
                                                 <div data-percentage="<c:out value="${project.getObjectiveCompletion()}"/>"  class="progress-bar progress-bar-primary animate-progress-bar"></div>

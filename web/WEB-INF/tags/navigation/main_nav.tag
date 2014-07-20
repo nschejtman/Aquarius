@@ -6,7 +6,7 @@
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
-<% User user = UserDAO.getUser(request.getRemoteUser()); %>
+<% User user = UserDAO.getInstance().getUser(request.getRemoteUser()); %>
 <%@ attribute name="body" fragment="true" %>
 <base href="../../../">
 

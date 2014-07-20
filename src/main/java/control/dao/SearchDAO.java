@@ -32,7 +32,7 @@ public class SearchDAO {
     public static List<Project> searchProjectTags(String criteriaStr) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Criteria criteria = session.createCriteria(Tag.class);
-        TagDAO.getSingleTag(criteriaStr);
+        TagDAO.getInstance().getSingleTag(criteriaStr);
 
 
         criteria.add(Restrictions.like("tag", "%" + criteriaStr + "%"));
