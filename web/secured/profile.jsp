@@ -56,21 +56,22 @@
                           </h3>
                           <h5>Followers</h5>
                           <h3 class="text-success semi-bold">
-                              457
+                              ${requestScope.followed}
                           </h3>
                           <h5>Following</h5>
                       </div>
                   </div>
-                  <div class="col-md-5 user-description-box  col-sm-5">
-                      <h4 class="semi-bold no-margin">${requestScope.profiling.getFirstName()} ${requestScope.profiling.getLastName()}</h4>
-                      <h6 class="no-margin">${requestScope.profiling.getUserName()}</h6>
+                  <div class="col-md-8 user-description-box  col-sm-8">
+                      <h3 class="semi-bold no-margin">${requestScope.profiling.getFirstName()} ${requestScope.profiling.getLastName()}</h3>
+                      <h4 class="no-margin">${requestScope.profiling.getUserName()}</h4>
+                      <h6 class="no-margin">Reputation: ${requestScope.profiling.reputation}</h6>
                   </div>
               </div>
               <br>
               <br>
               <div class="row">
                   <div class="col-md-12  col-sm-4">
-                      <h5 ><span class="semi-bold">TOP 3 PROJECTS</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
+                      <h5 ><span class="semi-bold">Top Owned Projects</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
                       <div class="row">
                           <!-- JSTL to display top 3 projects from progression standpoint-->
                           <c:forEach var="project" items="${requestScope.projects}" >
@@ -108,7 +109,7 @@
               <!-- Make TOP 3 projects following-->
               <div class="row">
                   <div class="col-md-12  col-sm-4">
-                      <h5 ><span class="semi-bold">TOP 3 FOLLOWING</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
+                      <h5 ><span class="semi-bold">Top Followed Projects</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
                       <div class="row">
                           <!-- JSTL to display top 3 projects from progression standpoint-->
                           <c:forEach var="project" items="${requestScope.following}" >
@@ -117,18 +118,18 @@
 
                                       <div class="friend-profile-pic">
                                           <div class="user-profile-pic-normal">
-                                              <img width="35" height="35" src="../assets/img/profiles/d.jpg" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" alt="">
+                                              <img width="35" height="35" src="${requestScope.project.user.profilePicture.path}" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" alt="">
                                           </div>
                                       </div>
                                       <div class="friend-details-wrapper">
                                           <div class="friend-name">
-                                                  ${following.name}
+                                                  ${project.name}
                                           </div>
                                           <div class="friend-description">
-                                              Objective: $ ${following.objective}
+                                              Objective: $ ${project.objective}
                                           </div>
                                           <div class="project-followers">
-                                              Followers: ${following.getFollowersQty()}
+                                              Followers: ${project.getFollowersQty()}
                                           </div>
                                       </div>
                                       <div class="action-bar pull-right">

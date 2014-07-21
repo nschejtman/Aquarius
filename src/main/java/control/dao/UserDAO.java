@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -70,6 +71,24 @@ public class UserDAO extends DataDAO {
         beginTransaction(session);
         session.persist(user);
         endTransaction();
+    }
+
+    public List<User> getFollowedUsers(User user){
+        Session session = HibernateUtil.getGuestSession();
+        List<User> raw;
+        List<User> projects = new ArrayList<>();
+        beginTransaction(session);
+        raw = (List<User>) session.createCriteria(User.class).list();
+        endTransaction();
+        // Find projects user is following
+        for(User userTested : raw){
+            for(User follower : userTested.getFollowers()){
+                if(follower.getId() == user.getId()){
+                    projects.add(userTested);
+                }
+            }
+        }
+        return projects;
     }
 
 

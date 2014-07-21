@@ -28,10 +28,13 @@ public class UserProfileServlet extends HttpServlet {
         User user = UserDAO.getInstance().getUser(id);
 
         //Get the User first 3 project from fund's raised stand point
-        List<Project> projects = ProjectDAO.getInstance().getTopProjectsByUser(user);
+        List<Project> projects = getTopOwned(user);
 
         //Get top following projects
-//        List<Project> following = ProjectDAO.getInstance().getTopProjectsUserIsFollowing(user);
+        List<Project> following = getTopFollowed(user);
+
+        // Get Follower's numbers
+        int followed = UserDAO.getInstance().getFollowedUsers(user).size();
 
         //Get Notifications
         List<Notification> notifications = (List<Notification>)user.getNotifications();
@@ -41,7 +44,8 @@ public class UserProfileServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/profile.jsp");
         req.setAttribute("profiling", user);
         req.setAttribute("projects", projects);
-//        req.setAttribute("following", following);
+        req.setAttribute("followed", followed);
+        req.setAttribute("following", following);
         req.setAttribute("notifications", notifications);
         requestDispatcher.forward(req, resp);
     }
@@ -51,5 +55,17 @@ public class UserProfileServlet extends HttpServlet {
         // Methods for editing profile. ONLY WHEN loggedIn = profiling
 
         // Add button to follow/unfollow. Commands to view projects
+    }
+
+    public static List<Project> getTopOwned(User user){
+        List<Project> projects = ProjectDAO.getInstance().getProjectsByUser(user);
+        if (projects.size() > 2) return projects.subList(0,3);
+        return projects;
+    }
+
+    public static List<Project> getTopFollowed(User user){
+        List<Project> projects = ProjectDAO.getInstance().getFollowedProjects(user);
+        if (projects.size() > 2) return projects.subList(0,3);
+        return projects;
     }
 }

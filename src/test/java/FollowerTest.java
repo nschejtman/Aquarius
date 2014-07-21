@@ -35,6 +35,6 @@ public class FollowerTest {
 
     public static List<Project> getFollower(){
         User user = UserDAO.getInstance().getUser(1);
-        return ProjectDAO.getInstance().getTopProjectsUserIsFollowing(user);
+        return ProjectDAO.getInstance().getFollowedProjects(user);
     }
 }
