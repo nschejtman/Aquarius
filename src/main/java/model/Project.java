@@ -100,9 +100,7 @@ public class Project {
         return images;
     }
 
-    public Collection<Fund> getFunds() {
-        return funds;
-    }
+    public Collection<Fund> getFunds() {return funds;}
 
     @ManyToMany
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
@@ -223,5 +221,5 @@ public class Project {
         tags = new ArrayList<>();
     }
 
-
+    public void addFollower(User user){followers.add(user);}
 }

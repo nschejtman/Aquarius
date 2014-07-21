@@ -2,6 +2,7 @@ package servlets.user;
 
 import control.dao.ProjectDAO;
 import control.dao.UserDAO;
+import model.Notification;
 import model.Project;
 import model.User;
 
@@ -26,20 +27,23 @@ public class UserProfileServlet extends HttpServlet {
         Long id = Long.parseLong(req.getParameter("id"));
         User user = UserDAO.getInstance().getUser(id);
 
-        //Get the User first 5 project from fund's raised stand point
-        List<Project> projects = ProjectDAO.getInstance().getProjectsByUser(user);
-        //Sort projects comparing with objectives
+        //Get the User first 3 project from fund's raised stand point
+        List<Project> projects = ProjectDAO.getInstance().getTopProjectsByUser(user);
+
+        //Get top following projects
+//        List<Project> following = ProjectDAO.getInstance().getTopProjectsUserIsFollowing(user);
+
+        //Get Notifications
+        List<Notification> notifications = (List<Notification>)user.getNotifications();
 
         //Forward request to the project_view.jsp
         ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/profile.jsp");
         req.setAttribute("profiling", user);
         req.setAttribute("projects", projects);
+//        req.setAttribute("following", following);
+        req.setAttribute("notifications", notifications);
         requestDispatcher.forward(req, resp);
-
-        //Same for users following
-        //Counters and Grids with followers and following
-
     }
 
     @Override

@@ -22,7 +22,6 @@ public class User implements Serializable {
     @OneToOne
     Image profilePicture;
 
-
     //Non-constructor variables
     long reputation;
 

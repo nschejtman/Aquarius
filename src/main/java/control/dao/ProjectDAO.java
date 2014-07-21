@@ -7,9 +7,7 @@ import model.Tag;
 import model.Type;
 import model.User;
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -40,7 +38,7 @@ public class ProjectDAO extends DataDAO {
         beginTransaction(session);
         Project project = (Project) session.get(Project.class, id);
         endTransaction();
-        return (Project) project;
+        return project;
     }
 
     public  Project getProject(String projectName) throws IllegalAccessError {
@@ -59,12 +57,45 @@ public class ProjectDAO extends DataDAO {
 
     public List<Project> getProjectsByUser(User user){
         Session session = HibernateUtil.getGuestSession();
-        List<Project> projects = null;
+        List<Project> projects;
         beginTransaction(session);
         Criteria criteria = session.createCriteria(Project.class);
         criteria.add(Restrictions.eq("user", user));
         projects = (List<Project>) criteria.list();
         endTransaction();
+        return projects;
+    }
+
+    public List<Project> getTopProjectsByUser(User user){
+        Session session = HibernateUtil.getGuestSession();
+        List<Project> projects;
+        beginTransaction(session);
+        Criteria criteria = session.createCriteria(Project.class);
+        criteria.add(Restrictions.eq("user", user));
+        projects = (List<Project>) criteria.list();
+        //add a sort from fund's stand point
+        endTransaction();
+        if(projects.size() > 2) return projects.subList(0,3);
+        return projects;
+    }
+
+    public List<Project> getTopProjectsUserIsFollowing(User user){
+        Session session = HibernateUtil.getGuestSession();
+        List<Project> raw;
+        List<Project> projects = null;
+        beginTransaction(session);
+        raw = (List<Project>) session.createCriteria(Project.class).list();
+        endTransaction();
+
+        // Find projects user is following
+        for(Project project : raw){
+            for(User follower : project.getFollowers()){
+                if(follower.getId() == user.getId()){
+                    projects.add(project);
+                    break;
+                }
+            }
+        }
         return projects;
     }
 

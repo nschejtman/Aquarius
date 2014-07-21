@@ -50,8 +50,8 @@ public class AddProjectServlet extends HttpServlet {
         String html = req.getParameter("html");
         String[] strTags = req.getParameter("source-tags").split(",");
         Project project = ProjectDAO.makeProject(new Project(), name, description, objective, html, type, user, strTags);
-//        project.setStart((req.getParameter("startDate")).);
-//        project.setEnd(Date.valueOf(req.getParameter("endDate")));
+//        project.setEnd(Long.getLong(req.getParameter("endDate")));
+
 
         ProjectDAO.getInstance().addProject(project);
         resp.sendRedirect("/secured/project?id=" + project.getId());

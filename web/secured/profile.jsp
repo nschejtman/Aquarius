@@ -15,7 +15,7 @@
     <import:css_files/>
 </head>
 <body>
-    <navigation:main_nav title= " User Profile" active="projects">
+    <navigation:main_nav title= "User Profile" active="profile">
         <jsp:attribute name="body">
           <!-- BEGIN PAGE CONTAINER-->
   <div class="page-content condensed">
@@ -37,7 +37,7 @@
               <div class="overlayer bottom-right">
                   <div class="overlayer-wrapper">
                       <div class="padding-10 hidden-xs">
-                          <button type="button" class="btn btn-primary btn-small"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</button> <button type="button" class="btn btn-primary btn-small">Add</button>
+                          <button type="button" class="btn btn-primary btn-small"><i class="fa fa-check"></i>&nbsp;&nbsp;Follow</button> <button type="button" class="btn btn-primary btn-small">Send Message</button>
                       </div>
                   </div>
               </div>
@@ -64,19 +64,19 @@
                   <div class="col-md-5 user-description-box  col-sm-5">
                       <h4 class="semi-bold no-margin">${requestScope.profiling.getFirstName()} ${requestScope.profiling.getLastName()}</h4>
                       <h6 class="no-margin">${requestScope.profiling.getUserName()}</h6>
-                      <br>
-                      <p><i class="fa fa-envelope"></i>Send Message</p>
                   </div>
               </div>
-
+              <br>
+              <br>
               <div class="row">
                   <div class="col-md-12  col-sm-4">
-                      <h5 ><span class="semi-bold">TOP 5 PROJECTS</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
+                      <h5 ><span class="semi-bold">TOP 3 PROJECTS</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
                       <div class="row">
-                          <!-- JSTL to display top 5 projects from progression standpoint-->
-                          <div class="col-md-3">
+                          <!-- JSTL to display top 3 projects from progression standpoint-->
+                          <c:forEach var="project" items="${requestScope.projects}" >
+                          <div class="col-md-4">
                               <div class="friend-list">
-                                  <c:forEach var="project" items="${requestScope.projects}" >
+
                                   <div class="friend-profile-pic">
                                       <div class="user-profile-pic-normal">
                                           <img width="35" height="35" src="../assets/img/profiles/d.jpg" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" alt="">
@@ -84,28 +84,70 @@
                                   </div>
                                   <div class="friend-details-wrapper">
                                       <div class="friend-name">
-                                          Johne Drake
+                                          ${project.name}
                                       </div>
                                       <div class="friend-description">
-                                          James Smith in commman
+                                         Objective: $ ${project.objective}
+                                      </div>
+                                      <div class="project-followers">
+                                              Followers: ${project.getFollowersQty()}
                                       </div>
                                   </div>
                                   <div class="action-bar pull-right">
-                                      <button class="btn btn-primary" type="button">Add</button>
+                                      <button class="btn btn-primary" type="button">Follow</button>
                                   </div>
                                   <div class="clearfix"></div>
-                                  </c:forEach>
                               </div>
                           </div>
+                          </c:forEach>
                       </div>
                   </div>
               </div>
+              <br>
+              <br>
+              <!-- Make TOP 3 projects following-->
+              <div class="row">
+                  <div class="col-md-12  col-sm-4">
+                      <h5 ><span class="semi-bold">TOP 3 FOLLOWING</span>&nbsp;&nbsp; <a href="#" class="text-info normal-text">view more</a></h5>
+                      <div class="row">
+                          <!-- JSTL to display top 3 projects from progression standpoint-->
+                          <c:forEach var="project" items="${requestScope.following}" >
+                              <div class="col-md-4">
+                                  <div class="friend-list">
 
+                                      <div class="friend-profile-pic">
+                                          <div class="user-profile-pic-normal">
+                                              <img width="35" height="35" src="../assets/img/profiles/d.jpg" data-src="assets/img/profiles/d.jpg" data-src-retina="assets/img/profiles/d2x.jpg" alt="">
+                                          </div>
+                                      </div>
+                                      <div class="friend-details-wrapper">
+                                          <div class="friend-name">
+                                                  ${following.name}
+                                          </div>
+                                          <div class="friend-description">
+                                              Objective: $ ${following.objective}
+                                          </div>
+                                          <div class="project-followers">
+                                              Followers: ${following.getFollowersQty()}
+                                          </div>
+                                      </div>
+                                      <div class="action-bar pull-right">
+                                          <button class="btn btn-primary" type="button">Follow</button>
+                                      </div>
+                                      <div class="clearfix"></div>
+                                  </div>
+                              </div>
+                          </c:forEach>
+                      </div>
+                  </div>
+              </div>
           </div>
       </div>
 
   </div>
-
+      <br>
+      <br>
+  <!-- Second column-->
   <div class="col-md-6">
       <div class="row">
           <div class="col-md-12 no-padding">
@@ -219,9 +261,6 @@
       </div>
   </div>
   </div>
-
-
-
   </div>
   </div>
 <!-- END CONTAINER -->
