@@ -41,6 +41,8 @@ public class EditProjectServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        edited.setStart(System.currentTimeMillis());
+        ProjectDAO.getInstance().addProject(edited);
         resp.sendRedirect("/secured/project?id=" + project.getId());
     }
 
@@ -53,6 +55,8 @@ public class EditProjectServlet extends HttpServlet {
         String tags = setTags((List<Tag>) project.getTags());
         //Type
         List<Type> types = setType();
+        //End Date
+        String dueDate = getDate(project);
 
         //If the user is owner redirect to edition view else redirect to not authorized page
         if (project.getUser().getUserName().equals(req.getUserPrincipal().getName())) {
@@ -60,6 +64,7 @@ public class EditProjectServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/editproject.jsp");
             req.setAttribute("project", project);
             req.setAttribute("tags", tags);
+            req.setAttribute("dueDate", dueDate);
             if(types.size() > 0) req.setAttribute("types",types);
             requestDispatcher.forward(req, resp);
         } else {
@@ -85,6 +90,6 @@ public class EditProjectServlet extends HttpServlet {
     }
 
     public static String getDate(Project project){
-        return "";
+        return new SimpleDateFormat("MM/dd/yyyy").format(project.getEnd());
     }
 }

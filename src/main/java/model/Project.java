@@ -191,6 +191,7 @@ public class Project {
         return 100 * getFundsRaised() / objective;
     }
 
+    //TODO replantear los metodos de getDaysRemaining y getTimeCompletion
     public int getDaysRemaining() {
         if (end > System.currentTimeMillis()) {
             return (int) (end - System.currentTimeMillis()) / (24 * 3600000) + 1;
@@ -216,6 +217,8 @@ public class Project {
     public void addTag(Tag tag) {
         tags.add(tag);
     }
+
+    public void setStart(long start) {this.start = start;}
 
     public void deleteAllTags() {
         tags = new ArrayList<>();

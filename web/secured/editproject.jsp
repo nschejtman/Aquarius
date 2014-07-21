@@ -10,9 +10,9 @@
 <body>
 <navigation:main_nav title="Add Project" active="projects">
     <jsp:attribute name="body">
-                 <form id="projectForm" method="post" action="secured/addproject">
+        <c:set var="project" value="${requestScope.project}"/>
+        <form id="projectForm" method="post" action="secured/editproject?id=${requestScope.project.id}">
                      <!-- BEGIN BASIC FORM ELEMENTS-->
-                     <c:set var="project" value="${requestScope.project}"/>
                      <div class="row">
                          <div class="col-md-12">
                              <div class="grid simple">
@@ -104,7 +104,7 @@
                                              <h3>End <span class="semi-bold"> Date</span></h3>
 
                                              <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                 <input type="text" class="form-control" name="endDate" >
+                                                 <input type="text" class="form-control" name="endDate" value="${requestScope.dueDate}">
                                                  <span class="add-on"><span class="arrow"></span><i
                                                          class="fa fa-th"></i></span></div>
                                              <br>
