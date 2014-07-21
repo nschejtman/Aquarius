@@ -12,6 +12,7 @@
     <jsp:attribute name="body">
                  <form id="projectForm" method="post" action="secured/addproject">
                      <!-- BEGIN BASIC FORM ELEMENTS-->
+                     <c:set var="project" value="${requestScope.project}"/>
                      <div class="row">
                          <div class="col-md-12">
                              <div class="grid simple">
@@ -22,7 +23,7 @@
                                              <label class="form-label">Project Name</label>
 
                                              <div class="controls">
-                                                 <input name="projectName" type="text" class="form-control">
+                                                 <input name="projectName" type="text" class="form-control" value="${project.name}">
                                              </div>
                                          </div>
                                          <div class="form-group">
@@ -30,7 +31,7 @@
 
                                              <div class="controls">
                                                  <textarea name="description"
-                                                           style="width: 100%; height: 80px"></textarea>
+                                                           style="width: 100%; height: 80px"> ${project.description}</textarea>
                                              </div>
                                          </div>
                                          <div class="form-group">
@@ -38,7 +39,7 @@
                                              <span class="help">e.g. "$45.50"</span>
 
                                              <div class="controls">
-                                                 <input name="objective" type="text" class="form-control"
+                                                 <input name="objective" type="text" class="form-control" value="${project.objective}"
                                                         data-a-sign="$ ">
                                              </div>
                                          </div>
@@ -61,6 +62,7 @@
                                          <div class="col-md-6">
                                              <select id="source" name="type" style="width:100%">
                                                  <optgroup label="TYPES">
+                                                     <!--TODO hacer que se seleccione $ {project.type.name} de la lista-->
                                                      <c:forEach var="type" items="${requestScope.types}">
                                                          <option> ${type.name} </option>
                                                      </c:forEach>
@@ -79,7 +81,7 @@
                                  </div>
                                  <div class="grid-body no-border">
                                      <div class="row-fluid">
-                                         <input class="span12 tagsinput" id="source-tags" type="text"
+                                         <input class="span12 tagsinput" id="source-tags" type="text" value="${requestScope.tags}"
                                                 name="source-tags"/>
                                      </div>
                                  </div>
@@ -99,23 +101,10 @@
                                  <div class="grid-body no-border">
                                      <div class="row">
                                          <div class="col-md-4">
-                                             <h3>Start <span class="semi-bold"> Date</span></h3>
-
-                                             <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                 <input type="text" class="form-control" name="startDate">
-                                                 <span class="add-on"><span class="arrow"></span><i
-                                                         class="fa fa-th"></i></span></div>
-                                             <br>
-                                             <br>
-
-                                             <div class="clearfix"></div>
-                                         </div>
-
-                                         <div class="col-md-4">
                                              <h3>End <span class="semi-bold"> Date</span></h3>
 
                                              <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                 <input type="text" class="form-control" name="endDate">
+                                                 <input type="text" class="form-control" name="endDate" >
                                                  <span class="add-on"><span class="arrow"></span><i
                                                          class="fa fa-th"></i></span></div>
                                              <br>
@@ -142,7 +131,7 @@
                                      <h3>Write <span class="semi-bold">Description</span></h3>
                                      <br>
                                      <textarea id="text-editor" name="html" placeholder="Enter text ..."
-                                               class="form-control" rows="10"></textarea>
+                                               class="form-control" rows="10" >${project.html}</textarea>
 
                                  </div>
                              </div>

@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,10 +53,19 @@ public class AddProjectServlet extends HttpServlet {
         String html = req.getParameter("html");
         String[] strTags = req.getParameter("source-tags").split(",");
         Project project = ProjectDAO.makeProject(new Project(), name, description, objective, html, type, user, strTags);
-//        project.setEnd(Long.getLong(req.getParameter("endDate")));
-
-
+        try {
+            project.setEnd(setDate(req));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         ProjectDAO.getInstance().addProject(project);
         resp.sendRedirect("/secured/project?id=" + project.getId());
+    }
+
+    public static long setDate(HttpServletRequest request) throws ParseException {
+        String date = request.getParameter("endDate");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date date1 = sdf.parse(date);
+        return date1.getTime();
     }
 }
