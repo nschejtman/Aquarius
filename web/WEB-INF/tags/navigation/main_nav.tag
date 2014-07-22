@@ -101,7 +101,7 @@
                                     class="badge badge-important animated bounceIn">2</span></a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                            <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
