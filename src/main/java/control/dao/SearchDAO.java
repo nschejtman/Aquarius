@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,10 +42,24 @@ public class SearchDAO  extends DataDAO{
         Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Tag.class);
         TagDAO.getInstance().getSingleTag(criteriaStr);
-
-
         criteria.add(Restrictions.like("tag", "%" + criteriaStr + "%"));
         return (List<Project>) criteria.list();
+    }
+
+    public static List<Project> searchResultSet(String criteriaStr){
+        List<Project> results = new ArrayList<>();
+
+        List<Project> names = searchProjectNames(criteriaStr);
+        List<Project> descriptions = searchProjectDescriptions(criteriaStr);
+
+        for(Project project : names){
+            results.add(project);
+        }
+        for(Project project: descriptions){
+            results.add(project);
+        }
+        // Must add some method so that there are no results reiterated
+        return results;
     }
 
 

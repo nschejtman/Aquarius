@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet {
         String criteria = req.getParameter("criteria");
         ServletContext context = getServletContext();
         if (criteria != null) {
-            List<Project> matchingProjects = SearchDAO.searchProjectNames(criteria);
+            List<Project> matchingProjects = SearchDAO.searchResultSet(criteria);
             req.setAttribute("projects", matchingProjects);
             RequestDispatcher rd = context.getRequestDispatcher("/secured/searchresults.jsp");
             rd.forward(req, resp);
