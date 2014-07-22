@@ -68,13 +68,13 @@
   <c:forEach var="project" items="${requestScope.projects}">
   <li class="mix northeast camping climbing fishing swimming" data-name="Acadia" data-area="47452.80">
       <div class="meta name">
-          <div class="img_wrapper"> <img src="${project.images.get(0)}" alt="" /> </div>
+          <div class="img_wrapper"> <img src="../assets/img/others/acadia.jpg" alt="" /> </div>
           <div class="titles">
               <h2>${project.name}</h2>
           </div>
       </div>
       <div class="meta region">
-          <p>${project.user.username}</p>
+          <p>${(project.user).userName}</p>
       </div>
       <div class="meta rec">
           <ul>

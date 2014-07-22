@@ -24,21 +24,21 @@ public class SearchDAO  extends DataDAO{
     }
 
     public static List<Project> searchProjectNames(String criteriaStr) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Project.class);
         criteria.add(Restrictions.like("name", "%" + criteriaStr + "%"));
         return (List<Project>) criteria.list();
     }
 
     public static List<Project> searchProjectDescriptions(String criteriaStr) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Project.class);
         criteria.add(Restrictions.like("description", "%" + criteriaStr + "%"));
         return (List<Project>) criteria.list();
     }
 
     public static List<Project> searchProjectTags(String criteriaStr) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Tag.class);
         TagDAO.getInstance().getSingleTag(criteriaStr);
 
@@ -49,7 +49,7 @@ public class SearchDAO  extends DataDAO{
 
 
     public static List<Project> searchProject(String title, String body, String userName) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Project.class);
         if (title != null) {
             criteria.add(Restrictions.like("projectName", "%" + title + "%"));
@@ -64,14 +64,14 @@ public class SearchDAO  extends DataDAO{
     }
 
     public static List<User> searchUser(String criteriaStr) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Project.class);
         criteria.add(Restrictions.like("title", "%" + criteriaStr + "%"));
         return (List<User>) criteria.list();
     }
 
     public static List<User> searchUser(String userName, String name) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getGuestSession();
         Criteria criteria = session.createCriteria(Project.class);
         if (userName != null) {
             criteria.add(Restrictions.like("projectName", "%" + userName + "%"));

@@ -58,11 +58,14 @@
                 </ul>
                 <ul class="nav quick-section">
 
+                    <form name="searchForm" action="/secured/search">
                     <li class="m-r-10 input-prepend inside search-form no-boarder">
                         <span class="add-on"> <span class="iconset top-search"></span></span>
-                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard"
+
+                        <input name="criteria" type="text" class="no-boarder " placeholder="Search Dashboard"
                                style="width:250px;">
                     </li>
+                    </form>
                 </ul>
             </div>
             <!-- END TOP NAVIGATION MENU -->
