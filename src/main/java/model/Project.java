@@ -100,7 +100,9 @@ public class Project {
         return images;
     }
 
-    public Collection<Fund> getFunds() {return funds;}
+    public Collection<Fund> getFunds() {
+        return funds;
+    }
 
     @ManyToMany
     @JoinTable(name = "PROJECT_FOLLOWERS", inverseJoinColumns = {@JoinColumn(name = "FOLLOWER_ID")})
@@ -218,11 +220,29 @@ public class Project {
         tags.add(tag);
     }
 
-    public void setStart(long start) {this.start = start;}
+    public void setStart(long start) {
+        this.start = start;
+    }
 
     public void deleteAllTags() {
         tags = new ArrayList<>();
     }
 
-    public void addFollower(User user){followers.add(user);}
+    public void addFollower(User user) {
+        followers.add(user);
+    }
+
+    public void addComment(String comment, User user, long time) {
+        Comment com = new Comment(this, user, comment, time);
+        comments.add(com);
+    }
+
+    public boolean isFollowedBy(User user) {
+        return followers.contains(user);
+    }
+
+    public void addFund(Fund fund) {
+        funds.add(fund);
+    }
+
 }

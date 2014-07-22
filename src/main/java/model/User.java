@@ -22,19 +22,33 @@ public class User implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     Image profilePicture;
 
-    public void setUserName(String userName) {this.userName = userName;}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public void setFirstName(String firstName) {this.firstName = firstName;}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public void setLastName(String lastName) {this.lastName = lastName;}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    public void setBirthday(long birthday){this.birthday = birthday;}
+    public void setBirthday(long birthday) {
+        this.birthday = birthday;
+    }
 
-    public void setEmail(String email) {this.email = email;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public void setPassword(String password) {this.password = password;}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public void setProfilePicture(Image profilePicture) {this.profilePicture = profilePicture;}
+    public void setProfilePicture(Image profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     //Non-constructor variables
     long reputation;
@@ -167,6 +181,10 @@ public class User implements Serializable {
             if (!message.isRead()) unread.add(message);
         }
         return unread;
+    }
+
+    public void addFund(Fund fund) {
+        funds.add(fund);
     }
 
 

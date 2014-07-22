@@ -13,9 +13,6 @@ import org.hibernate.criterion.Restrictions;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by franco on 25/04/2014.
- */
 public class ProjectDAO extends DataDAO {
 
     private static ProjectDAO ourInstance = new ProjectDAO();
@@ -34,7 +31,7 @@ public class ProjectDAO extends DataDAO {
         endTransaction();
     }
 
-    public  Project getProject(long id) {
+    public Project getProject(long id) {
         Session session = HibernateUtil.getGuestSession();
         beginTransaction(session);
         Project project = (Project) session.get(Project.class, id);
@@ -42,7 +39,7 @@ public class ProjectDAO extends DataDAO {
         return project;
     }
 
-    public  Project getProject(String projectName) throws IllegalAccessError {
+    public Project getProject(String projectName) throws IllegalAccessError {
         Session session = HibernateUtil.getGuestSession();
         Object project = null;
 
@@ -56,7 +53,7 @@ public class ProjectDAO extends DataDAO {
         return (Project) project;
     }
 
-    public List<Project> getProjectsByUser(User user){
+    public List<Project> getProjectsByUser(User user) {
         Session session = HibernateUtil.getGuestSession();
         List<Project> projects;
         beginTransaction(session);
@@ -67,7 +64,7 @@ public class ProjectDAO extends DataDAO {
         return projects;
     }
 
-    public List<Project> getFollowedProjects(User user){
+    public List<Project> getFollowedProjects(User user) {
         Session session = HibernateUtil.getGuestSession();
         List<Project> raw;
         List<Project> projects = new ArrayList<>();
@@ -75,9 +72,9 @@ public class ProjectDAO extends DataDAO {
         raw = (List<Project>) session.createCriteria(Project.class).list();
         endTransaction();
         // Find projects user is following
-        for(Project project : raw){
-            for(User follower : project.getFollowers()){
-                if(follower.getId() == user.getId()){
+        for (Project project : raw) {
+            for (User follower : project.getFollowers()) {
+                if (follower.getId() == user.getId()) {
                     projects.add(project);
                 }
             }
@@ -85,7 +82,7 @@ public class ProjectDAO extends DataDAO {
         return projects;
     }
 
-    public  List<Project> getProjectList(Project project) {
+    public List<Project> getProjectList(Project project) {
         List<Project> projectList = new ArrayList<>();
         //Set search parameters
 //        String projectName = project.getName();
@@ -96,8 +93,8 @@ public class ProjectDAO extends DataDAO {
 //        User user = project.getUser();
         Session session = HibernateUtil.getGuestSession();
         beginTransaction(session);
-            // Add restrictions unless parameter is null
-            Criteria criteria = session.createCriteria(Project.class);
+        // Add restrictions unless parameter is null
+        Criteria criteria = session.createCriteria(Project.class);
 //            if(projectName != null) criteria.add(Restrictions.eq("name", projectName));
 //            if(description != null) criteria.add(Restrictions.eq("description", description));
 //            if(start != null) criteria.add(Restrictions.eq("start", start));
@@ -105,26 +102,26 @@ public class ProjectDAO extends DataDAO {
 //            if(type != null) criteria.add(Restrictions.eq("type", type));
 //            if(user != null) criteria.add(Restrictions.eq("user", user));
 
-            // Add to display List
-            List list = criteria.list();
-            if (list.get(0) != null) projectList = (List<Project>) list;
+        // Add to display List
+        List list = criteria.list();
+        if (list.get(0) != null) projectList = (List<Project>) list;
         endTransaction();
         return projectList;
     }
 
-    public  void deleteAll() {
+    public void deleteAll() {
         Session session = HibernateUtil.getGuestSession();
         beginTransaction(session);
-            Criteria criteria = session.createCriteria(Project.class);
-            List list = criteria.list();
-            for (Object project : list) {
-                session.delete(project);
-            }
+        Criteria criteria = session.createCriteria(Project.class);
+        List list = criteria.list();
+        for (Object project : list) {
+            session.delete(project);
+        }
         endTransaction();
     }
 
-    public static Project makeProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
-        return editProject(project, name, description, objective,html,type,user,tags);
+    public static Project makeProject(Project project, String name, String description, int objective, String html, Type type, User user, String[] tags) {
+        return editProject(project, name, description, objective, html, type, user, tags);
     }
 
     public static void generateTags(Project project, String[] tags) {
@@ -141,14 +138,14 @@ public class ProjectDAO extends DataDAO {
 
     public static void deleteAllTags(Project project) {
         List<Tag> tags = new ArrayList<Tag>();
-        if(project.getTags() != null) tags = (List<Tag>)project.getTags();
+        if (project.getTags() != null) tags = (List<Tag>) project.getTags();
         project.deleteAllTags();
         for (Tag tag : tags) {
             TagDAO.getInstance().addTag(tag);
         }
     }
 
-    public static Project editProject(Project project,String name, String description, int objective, String html, Type type, User user, String[] tags) {
+    public static Project editProject(Project project, String name, String description, int objective, String html, Type type, User user, String[] tags) {
         project.setUser(user);
         project.setName(name);
         project.setDescription(description);
@@ -157,5 +154,28 @@ public class ProjectDAO extends DataDAO {
         project.setType(type);
         generateTags(project, tags);
         return project;
+    }
+
+    public void saveProject(Project project) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.persist(project);
+        endTransaction();
+    }
+
+    public List<Project> getFollowedProjectsByUser(User user) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+
+        Criteria criteria = session.createCriteria(Project.class);
+        List all = criteria.list();
+
+        List<Project> followed = new ArrayList<Project>();
+        for (Object obj : all) {
+            Project project = (Project) obj;
+            if (project.isFollowedBy(user)) followed.add(project);
+        }
+        endTransaction();
+        return followed;
     }
 }

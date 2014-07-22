@@ -143,7 +143,6 @@
                 </form>
     </jsp:attribute>
 </navigation:main_nav>
-<import:js_files/>
 <import:js_addproject/>
 </body>
 </html>

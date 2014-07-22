@@ -1,6 +1,7 @@
 package servlets.project;
 
 import control.dao.ProjectDAO;
+import control.dao.UserDAO;
 import model.Project;
 
 import javax.servlet.RequestDispatcher;
@@ -24,6 +25,7 @@ public class ViewProjectServlet extends HttpServlet {
         ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/project_view.jsp");
         req.setAttribute("project", project);
+        req.setAttribute("aquser", UserDAO.getInstance().getUser(req.getUserPrincipal().getName()));
         requestDispatcher.forward(req, resp);
     }
 
