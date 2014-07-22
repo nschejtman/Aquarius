@@ -48,7 +48,8 @@
               <div class="row">
                   <div class="col-md-3 col-sm-3" >
                       <div class="user-profile-pic">
-                          <img width="69" height="69" data-src-retina="secured/media/img/defaultuserpic.png" data-src="secured/media/img/defaultuserpic.png" src="secured/media/img/defaultuserpic.png" alt="">
+                          <img width="69" height="69" data-src-retina="${((requestScope.profiling).profilePicture).path}"
+                               data-src="${((requestScope.profiling).profilePicture).path}" src="${((requestScope.profiling).profilePicture).path}" alt="">
                       </div>
                       <div class="user-mini-description">
                           <h3 class="text-success semi-bold">

@@ -24,27 +24,26 @@
   <div class="page-title"> <i class="icon-custom-left"></i>
       <h3>Search - <span class="semi-bold">Results</span></h3>
   </div>
-  <div class="pull-left" id="Filters">
-      <div class="btn-group"> <a href="#" data-toggle="dropdown" class="btn dropdown-toggle btn-demo-space"> <span class="anim150">Region</span> <span class="caret"></span> </a>
-          <ul class="dropdown-menu">
-              <li class="active" data-filter="all" data-dimension="region"><a href="#">All</a></li>
-              <li data-filter="alaska" data-dimension="region"><a href="#">Alaska</a></li>
-              <li data-filter="intermountain" data-dimension="region"><a href="#">Intermountain</a></li>
-              <li data-filter="northeast" data-dimension="region"><a href="#">Northeast</a></li>
-              <li data-filter="pacific_west" data-dimension="region"><a href="#">Pacific</a> </li>
-              <li data-filter="southeast" data-dimension="region"><a href="#">Southeast</a></li>
-          </ul>
-      </div>
-      <div class="btn-group"> <a href="#" data-toggle="dropdown" class="btn dropdown-toggle btn-demo-space"> <span class="anim150">Recreation</span> <span class="caret"></span> </a>
-          <ul class="dropdown-menu">
-              <li class="active" data-filter="all" data-dimension="recreation"><a href="#">All</a></li>
-              <li data-filter="camping" data-dimension="recreation"><a href="#">Camping</a></li>
-              <li data-filter="climbing" data-dimension="recreation"><a href="#">Climbing</a></li>
-              <li data-filter="fishing" data-dimension="recreation"><a href="#">Fishing</a></li>
-              <li data-filter="swimming" data-dimension="recreation"><a href="#">AlSwimmingl</a></li>
-          </ul>
-      </div>
-  </div>
+      <!--TODO fix dropdowns filter-->
+  <%--<div class="pull-left" id="Filters">--%>
+      <%--<div class="btn-group"> <a href="#" data-toggle="dropdown" class="btn dropdown-toggle btn-demo-space"> <span class="anim150">Type</span> <span class="caret"></span> </a>--%>
+          <%--<ul class="dropdown-menu">--%>
+              <%--<c:forEach var="type" items="${requestScope.types}">--%>
+                  <%--<li class="active" data-filter="all" data-dimension="recreation"><a href="#">All</a></li>--%>
+                  <%--<li data-filter="${type.name}" data-dimension="region"><a href="#">${type.name}</a></li>--%>
+              <%--</c:forEach>--%>
+          <%--</ul>--%>
+      <%--</div>--%>
+      <%--<div class="btn-group"> <a href="#" data-toggle="dropdown" class="btn dropdown-toggle btn-demo-space"> <span class="anim150">Recreation</span> <span class="caret"></span> </a>--%>
+          <%--<ul class="dropdown-menu">--%>
+              <%--<li class="active" data-filter="all" data-dimension="recreation"><a href="#">All</a></li>--%>
+              <%--<li data-filter="camping" data-dimension="recreation"><a href="#">Camping</a></li>--%>
+              <%--<li data-filter="climbing" data-dimension="recreation"><a href="#">Climbing</a></li>--%>
+              <%--<li data-filter="fishing" data-dimension="recreation"><a href="#">Fishing</a></li>--%>
+              <%--<li data-filter="swimming" data-dimension="recreation"><a href="#">AlSwimmingl</a></li>--%>
+          <%--</ul>--%>
+      <%--</div>--%>
+  <%--</div>--%>
   <div class="pull-right">
       <div data-toggle="buttons-radio" class="btn-group">
           <button class="btn btn-primary active" type="button" id="ToList"><i class="fa fa-th-list"></i></button>
@@ -58,7 +57,7 @@
   <div class="list_header">
       <div class="meta name active desc" id="SortByName"> Name &nbsp; <span class="sort anim150 asc active" data-sort="data-name" data-order="desc"></span> <span class="sort anim150 desc" data-sort="data-name" data-order="asc"></span> </div>
       <div class="meta region">User</div>
-      <div class="meta rec">Tags</div>
+      <div class="meta rec">Email / Tags</div>
       <div class="meta area" id="SortByArea"> Funds &nbsp; <span class="sort anim150 asc" data-sort="data-area" data-order="asc"></span> <span class="sort anim150 desc" data-sort="data-area" data-order="desc"></span> </div>
   </div>
   <!-- FAIL ELEMENT -->
@@ -68,7 +67,7 @@
   <c:forEach var="user" items="${requestScope.user}">
       <li class="mix northeast camping climbing fishing swimming" data-name="Acadia" data-area="47452.80">
           <div class="meta name">
-              <div class="img_wrapper"> <img src="../assets/img/others/acadia.jpg" alt="" /> </div>
+              <div class="img_wrapper"> <img src="${(user.profilePicture).path}" alt="" /> </div>
               <div class="titles">
                   <h2>${user.userName}</h2>
               </div>
@@ -89,7 +88,7 @@
   <c:forEach var="project" items="${requestScope.projects}">
   <li class="mix northeast camping climbing fishing swimming" data-name="Acadia" data-area="47452.80">
       <div class="meta name">
-          <div class="img_wrapper"> <img src="../assets/img/others/acadia.jpg" alt="" /> </div>
+          <div class="img_wrapper"> <img src="../assets/img/PuzzlePiece2.jpg" alt="" /> </div>
           <div class="titles">
               <h2>${project.name}</h2>
           </div>

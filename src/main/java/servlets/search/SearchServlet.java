@@ -1,7 +1,9 @@
 package servlets.search;
 
 import control.dao.SearchDAO;
+import control.dao.TypeDAO;
 import model.Project;
+import model.Type;
 import model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -21,6 +23,11 @@ import java.util.List;
 public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Type> types = TypeDAO.getAll();
+        if(types.size() > 0){
+            req.setAttribute("types", types);
+        }
+
         String criteria = req.getParameter("criteria");
         ServletContext context = getServletContext();
         if (criteria != null) {
