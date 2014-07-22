@@ -16,16 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by franco on 03/07/2014.
- */
 @WebServlet(name = "UserProfileServlet", urlPatterns = "/secured/profile")
 public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Get the user id from the url
-        Long id = Long.parseLong(req.getParameter("id"));
-        User user = UserDAO.getInstance().getUser(id);
+        User user = UserDAO.getInstance().getUser(req.getRemoteUser());
 
         //Get the User first 3 project from fund's raised stand point
         List<Project> projects = getTopOwned(user);
@@ -37,7 +33,7 @@ public class UserProfileServlet extends HttpServlet {
         int followed = UserDAO.getInstance().getFollowedUsers(user).size();
 
         //Get Notifications
-        List<Notification> notifications = (List<Notification>)user.getNotifications();
+        List<Notification> notifications = (List<Notification>) user.getNotifications();
 
         //Forward request to the project_view.jsp
         ServletContext servletContext = getServletContext();
@@ -57,15 +53,15 @@ public class UserProfileServlet extends HttpServlet {
         // Add button to follow/unfollow. Commands to view projects
     }
 
-    public static List<Project> getTopOwned(User user){
+    public static List<Project> getTopOwned(User user) {
         List<Project> projects = ProjectDAO.getInstance().getProjectsByUser(user);
-        if (projects.size() > 2) return projects.subList(0,3);
+        if (projects.size() > 2) return projects.subList(0, 3);
         return projects;
     }
 
-    public static List<Project> getTopFollowed(User user){
+    public static List<Project> getTopFollowed(User user) {
         List<Project> projects = ProjectDAO.getInstance().getFollowedProjects(user);
-        if (projects.size() > 2) return projects.subList(0,3);
+        if (projects.size() > 2) return projects.subList(0, 3);
         return projects;
     }
 }

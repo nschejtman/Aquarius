@@ -22,6 +22,45 @@
         </init-param>
     </filter>
 
+    <servlet>
+        <servlet-name>MyProjectsServlet</servlet-name>
+        <servlet-class>servlets.project.ViewProjectListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyProjectsServlet</servlet-name>
+        <url-pattern>/secured/myprojects</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CommentProjectServlet</servlet-name>
+        <servlet-class>servlets.project.PostCommentAjaxServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CommentProjectServlet</servlet-name>
+        <url-pattern>/secured/comment_ajax</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlets.search.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/sercured/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddPledgeServlet</servlet-name>
+        <servlet-class>servlets.project.AddPledgeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddPledgeServlet</servlet-name>
+        <url-pattern>/secured/pledge</url-pattern>
+    </servlet-mapping>
+
     <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
     <filter-mapping>
         <filter-name>Security Filter</filter-name>

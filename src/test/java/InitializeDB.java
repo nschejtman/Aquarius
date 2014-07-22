@@ -22,8 +22,7 @@ public class InitializeDB {
         ImageDAO.getInstance().addImage(image);
 
         //Create users for franco & nico
-        User nico = new User("Nicol+" +
-                "as", "Schejtman", System.currentTimeMillis(), "nschejtman", "nschejtman@hotmail.com",
+        User nico = new User("Nicolas", "Schejtman", System.currentTimeMillis(), "nschejtman", "nschejtman@hotmail.com",
                 "1234", ImageDAO.getInstance().getImage(1)
         );
         User franco = new User("Franco", "Testori", System.currentTimeMillis(), "ftestori", "franco.testori@hotmail.com",

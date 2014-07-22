@@ -169,6 +169,10 @@ public class User implements Serializable {
         return unread;
     }
 
+    public void addFund(Fund fund) {
+        funds.add(fund);
+    }
+
     public int getFundsRaised() {
         int total = 0;
         for (Fund fund : funds) {
