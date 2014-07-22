@@ -100,19 +100,6 @@
                                 <div class="grid-body no-border">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <h3>Start <span class="semi-bold"> Date</span></h3>
-
-                                            <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                                                <input type="text" class="form-control" name="startDate">
-                                                <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
-                                            </div>
-                                            <br>
-                                            <br>
-
-                                            <div class="clearfix"></div>
-                                        </div>
-
-                                        <div class="col-md-4">
                                             <h3>End <span class="semi-bold"> Date</span></h3>
 
                                             <div class="input-append success date col-md-10 col-lg-6 no-padding">

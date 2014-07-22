@@ -43,7 +43,7 @@ public class EditProjectServlet extends HttpServlet {
         }
         edited.setStart(System.currentTimeMillis());
         ProjectDAO.getInstance().addProject(edited);
-        resp.sendRedirect("/secured/project?id=" + project.getId());
+        resp.sendRedirect("/secured/project?id=" + edited.getId());
     }
 
     @Override
