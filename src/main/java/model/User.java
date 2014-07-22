@@ -19,7 +19,7 @@ public class User implements Serializable {
     String email;
     String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Image profilePicture;
 
     public void setUserName(String userName) {this.userName = userName;}

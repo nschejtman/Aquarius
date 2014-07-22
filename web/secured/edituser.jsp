@@ -20,29 +20,23 @@
         <jsp:attribute name="body">
             <c:set var="user" value="${requestScope.user}"/>
             <form id="userForm" method="post" action="secured/edituser?id="${requestScope.user.id}>
-                <input type="text" name="reg_first_name" placeholder="First Name" value="${user.firstName}"><br>
-                <input type="text" name="reg_last_name" placeholder="Last Name" value="${user.lastName}"><br>
-                <input type="text" name="" placeholder="Username" value="${user.userName}"><br>
-                <input type="email" name="reg_email" placeholder="Email" value="${user.email}"><br>
-                <input type="password" name="" placeholder="Password" ><br>
+                <input type="text" name="userfirstname" placeholder="First Name" value="${user.firstName}"><br>
+                <input type="text" name="userlastname" placeholder="Last Name" value="${user.lastName}"><br>
+                <input type="email" name="useremail" placeholder="Email" value="${user.email}"><br>
+                <input type="password" name="password" placeholder="Password" ><br>
                 <!-- BEGIN DATEPICKER CONTROLS-->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="grid simple">
-                            <div class="grid-title no-border">
-                                <h4>Date <span class="semi-bold">Controls</span></h4>
-                            </div>
                             <div class="grid-body no-border">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>End <span class="semi-bold"> Date</span></h3>
+                                        <h3>Your <span class="semi-bold"> BirthDay</span></h3>
 
                                         <div class="input-append success date col-md-10 col-lg-6 no-padding">
                                             <input type="text" class="form-control" name="birthday" value="${requestScope.birthday}">
                                                  <span class="add-on"><span class="arrow"></span><i
                                                          class="fa fa-th"></i></span></div>
-                                        <br>
-                                        <br>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -50,6 +44,23 @@
                         </div>
                     </div>
                 </div>
+                <!--BEGIN DRAG AND DROP CONTROL FOR IMAGE-->
+                <%--<div class="row">--%>
+                    <%--<div class="col-md-6">--%>
+                    <%--<div class="grid simple">--%>
+                        <%--<div class="grid-body no-border">--%>
+                            <%--<div class="row">--%>
+                                <%--<h3>Profile <span class="semi-bold"> Picture</span></h3>--%>
+                                <%--<form action="/file-upload" class="dropzone no-margin">--%>
+                                    <%--<div class="fallback">--%>
+                                        <%--<input name="image_path" type="file" accept="image/*" />--%>
+                                    <%--</div>--%>
+                                <%--</form>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--</div>--%>
 
                 <button type="submit" class="btn btn-primary btn-cons"><i class="fa fa-check"></i>&nbsp;Submit
                 </button>

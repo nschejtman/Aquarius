@@ -1,5 +1,6 @@
 package servlets.user;
 
+import control.dao.ImageDAO;
 import control.dao.UserDAO;
 import model.Image;
 import model.User;
@@ -35,35 +36,33 @@ public class EditUserServlet extends HttpServlet {
             req.setAttribute("user", user);
             req.setAttribute("birthday", birthDate);
             rd.forward(req,resp);
+        }else {
+            resp.sendRedirect("/secured/index.jsp");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Get the user from url
-        Long id = Long.parseLong(req.getParameter("id"));
-        User user = UserDAO.getInstance().getUser(id);
+        User user = UserDAO.getInstance().getUser(req.getUserPrincipal().getName());
 
-        String firstName = req.getParameter("reg_firstname");
-        String lastName = req.getParameter("reg_lastname");
-        String username = req.getParameter("reg_username");
-        String email = req.getParameter("reg_email");
-        String password = req.getParameter("reg_password");
+        String firstName = req.getParameter("userfirstname");
+        String lastName = req.getParameter("userlastname");
+        String email = req.getParameter("useremail");
+        String password = req.getParameter("password");
         Image image = new Image(req.getParameter("image_path"));
 
-        User edited = setUserParameters(user,firstName,lastName,username,email,password,image);
+        User edited = setUserParameters(user,firstName,lastName,email,password, ImageDAO.getInstance().getImage(1));
         try{
             edited.setBirthday(setBirthDate(req));
         } catch (ParseException e) {e.printStackTrace();}
 
         UserDAO.getInstance().addUser(edited);
-        resp.sendRedirect("/secured/user?id=" + edited.getId());
+        resp.sendRedirect("/secured/profile?id=" + edited.getId());
     }
 
-    public static User setUserParameters(User user, String firstName, String lastName, String username, String email, String password, Image image){
+    public static User setUserParameters(User user, String firstName, String lastName, String email, String password, Image image){
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setUserName(username);
         user.setEmail(email);
         user.setProfilePicture(image);
         user.setPassword(password);

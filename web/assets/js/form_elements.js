@@ -65,8 +65,7 @@ $(document).ready(function(){
 	//HTML5 editor
 	$('#text-editor').wysihtml5();
 	
-	//Drag n Drop up-loader
-//	$("div#myId").dropzone({ url: "/file/post" });
+
 	
 	//Single instance of tag inputs  -  can be initiated with simply using data-role="tagsinput" attribute in any input field
 	$('#source-tags').tagsinput({
@@ -74,4 +73,7 @@ $(document).ready(function(){
 			source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
 		}	
 	});
+
+	//Drag n Drop up-loader
+    $("div#myId").dropzone({ url: "/file/post" });
 });
