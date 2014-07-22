@@ -2,6 +2,7 @@ package servlets.search;
 
 import control.dao.SearchDAO;
 import model.Project;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -24,6 +25,8 @@ public class SearchServlet extends HttpServlet {
         ServletContext context = getServletContext();
         if (criteria != null) {
             List<Project> matchingProjects = SearchDAO.searchResultSet(criteria);
+            List<User> matchingUsers = SearchDAO.searchUser(criteria);
+            req.setAttribute("user", matchingUsers);
             req.setAttribute("projects", matchingProjects);
             RequestDispatcher rd = context.getRequestDispatcher("/secured/searchresults.jsp");
             rd.forward(req, resp);

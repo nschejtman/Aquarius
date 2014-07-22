@@ -67,6 +67,24 @@ public class ProjectDAO extends DataDAO {
         return projects;
     }
 
+    public List<Project> getProjectByTag(Tag tag){
+        Session session = HibernateUtil.getGuestSession();
+        List<Project> raw;
+        List<Project> projects = new ArrayList<>();
+        beginTransaction(session);
+        raw = (List<Project>) session.createCriteria(Project.class).list();
+        endTransaction();
+        // Find projects user is following
+        for(Project project : raw){
+            for(Tag projectTag : project.getTags()){
+                if(projectTag.getName() == tag.getName()){
+                    projects.add(project);
+                }
+            }
+        }
+        return projects;
+    }
+
     public List<Project> getFollowedProjects(User user){
         Session session = HibernateUtil.getGuestSession();
         List<Project> raw;
