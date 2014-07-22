@@ -56,4 +56,15 @@ public  class TagDAO extends DataDAO {
         return (Tag) user;
     }
 
+    public List<Tag> getTagsByName(String name){
+        Session session = HibernateUtil.getGuestSession();
+        List<Tag> tags;
+        beginTransaction(session);
+        Criteria criteria = session.createCriteria(Tag.class);
+        criteria.add(Restrictions.eq("name", name));
+        tags = (List<Tag>) criteria.list();
+        endTransaction();
+        return tags;
+    }
+
 }

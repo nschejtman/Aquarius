@@ -38,12 +38,20 @@ public class SearchDAO  extends DataDAO{
         return (List<Project>) criteria.list();
     }
 
+    //Repasar para el final
     public static List<Project> searchProjectTags(String criteriaStr) {
         Session session = HibernateUtil.getGuestSession();
+        List<Project> projects = new ArrayList<>();
         Criteria criteria = session.createCriteria(Tag.class);
-        TagDAO.getInstance().getSingleTag(criteriaStr);
-        criteria.add(Restrictions.like("tag", "%" + criteriaStr + "%"));
-        return (List<Project>) criteria.list();
+        criteria.add(Restrictions.like("name", "%" + criteriaStr + "%"));
+        if(criteria.list().size() > 0) {
+            Tag tag = (Tag) criteria.list().get(0);
+            List<Project> projectTag = ProjectDAO.getInstance().getProjectByTag(tag);
+            for (Project project : projectTag) {
+                projects.add(project);
+            }
+        }
+        return  projects;
     }
 
     public static List<Project> searchResultSet(String criteriaStr){
@@ -51,11 +59,15 @@ public class SearchDAO  extends DataDAO{
 
         List<Project> names = searchProjectNames(criteriaStr);
         List<Project> descriptions = searchProjectDescriptions(criteriaStr);
+        List<Project> tags = searchProjectTags(criteriaStr);
 
         for(Project project : names){
             results.add(project);
         }
         for(Project project: descriptions){
+            results.add(project);
+        }
+        for(Project project : tags){
             results.add(project);
         }
         // Must add some method so that there are no results reiterated
@@ -80,8 +92,8 @@ public class SearchDAO  extends DataDAO{
 
     public static List<User> searchUser(String criteriaStr) {
         Session session = HibernateUtil.getGuestSession();
-        Criteria criteria = session.createCriteria(Project.class);
-        criteria.add(Restrictions.like("title", "%" + criteriaStr + "%"));
+        Criteria criteria = session.createCriteria(User.class);
+        criteria.add(Restrictions.like("userName", "%" + criteriaStr + "%"));
         return (List<User>) criteria.list();
     }
 
