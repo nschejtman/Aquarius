@@ -25,12 +25,12 @@ public class SearchServlet extends HttpServlet {
         if (criteria != null) {
             List<Project> matchingProjects = SearchDAO.searchProjectNames(criteria);
             req.setAttribute("projects", matchingProjects);
-            RequestDispatcher rd = context.getRequestDispatcher("/secured/projectlist.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/secured/searchresults.jsp");
             rd.forward(req, resp);
         } else {
             List<Project> matchingProjects = SearchDAO.searchProject(req.getParameter("projectName"), req.getParameter("description"), req.getParameter("userName"));
             req.setAttribute("projects", matchingProjects);
-            RequestDispatcher rd = context.getRequestDispatcher("/secured/projectlist.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/secured/searchresults.jsp");
             rd.forward(req, resp);
         }
     }

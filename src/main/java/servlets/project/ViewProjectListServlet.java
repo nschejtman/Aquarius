@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by franco on 10/05/2014.
  */
-@WebServlet(name = "ViewProjectList", urlPatterns = "/secured/projectlist")
+@WebServlet(name = "ViewProjectList", urlPatterns = "/secured/myprojects")
 public class ViewProjectListServlet extends HttpServlet {
 
     @Override
@@ -29,7 +29,7 @@ public class ViewProjectListServlet extends HttpServlet {
         //checking if projects load
         if(projects.size() > 0) {
             req.setAttribute("projects", projects);
-            req.getRequestDispatcher("/secured/projectlist.jsp").forward(req, resp);
+            req.getRequestDispatcher("/secured/myprojects.jsp").forward(req, resp);
         } else resp.sendRedirect("/secured/index.jsp");
     }
 }

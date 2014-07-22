@@ -13,7 +13,15 @@ import java.util.List;
 /**
  * Created by franco on 02/06/2014.
  */
-public class SearchDAO {
+public class SearchDAO  extends DataDAO{
+
+    private static SearchDAO ourInstance = new SearchDAO();
+
+    private SearchDAO() {}
+
+    public static SearchDAO getInstance() {
+        return ourInstance;
+    }
 
     public static List<Project> searchProjectNames(String criteriaStr) {
         Session session = HibernateUtil.getSessionFactory().openSession();
