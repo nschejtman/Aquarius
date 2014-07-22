@@ -28,9 +28,16 @@
                       <div class="overlayer bottom-right">
                           <div class="overlayer-wrapper">
                               <div class="padding-10 hidden-xs">
+                                  <c:if test="${(requestScope.profiling.userName) != (requestScope.user.userName)}">
                                   <button type="button" class="btn btn-primary btn-small"><i class="fa fa-check"></i>&nbsp;&nbsp;Follow
                                   </button>
+                                  </c:if>
+                                  <c:if test="${(requestScope.profiling.userName) != (requestScope.user.userName)}">
                                   <button type="button" class="btn btn-primary btn-small">Send Message</button>
+                                  </c:if>
+                                  <c:if test="${(requestScope.profiling.userName) == (requestScope.user.userName)}">
+                                      <a href="/secured/edituser?id=${requestScope.user.id}" type="button" class="btn btn-primary btn-small">Edit</a>
+                                  </c:if>
                               </div>
                           </div>
                       </div>
@@ -119,13 +126,9 @@
                                   <c:forEach var="project" items="${requestScope.following}">
                                       <div class="col-md-4">
                                           <div class="friend-list">
-
                                               <div class="friend-profile-pic">
                                                   <div class="user-profile-pic-normal">
-                                                      <img width="35" height="35"
-                                                           src="${requestScope.project.user.profilePicture.path}"
-                                                           data-src="assets/img/profiles/d.jpg"
-                                                           data-src-retina="assets/img/profiles/d2x.jpg" alt="">
+                                                      <img width="35" height="35" src="../assets/img/briefcase.png">
                                                   </div>
                                               </div>
                                               <div class="friend-details-wrapper">

@@ -21,24 +21,30 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Get the user id from the url
+        Long id = Long.parseLong(req.getParameter("id"));
+        User profiling = UserDAO.getInstance().getUser(id);
+
         User user = UserDAO.getInstance().getUser(req.getRemoteUser());
 
+
+
         //Get the User first 3 project from fund's raised stand point
-        List<Project> projects = getTopOwned(user);
+        List<Project> projects = getTopOwned(profiling);
 
         //Get top following projects
-        List<Project> following = getTopFollowed(user);
+        List<Project> following = getTopFollowed(profiling);
 
         // Get Follower's numbers
-        int followed = UserDAO.getInstance().getFollowedUsers(user).size();
+        int followed = UserDAO.getInstance().getFollowedUsers(profiling).size();
 
         //Get Notifications
-        List<Notification> notifications = (List<Notification>) user.getNotifications();
+        List<Notification> notifications = (List<Notification>) profiling.getNotifications();
 
         //Forward request to the project_view.jsp
         ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/secured/profile.jsp");
-        req.setAttribute("profiling", user);
+        req.setAttribute("user", user);
+        req.setAttribute("profiling", profiling);
         req.setAttribute("projects", projects);
         req.setAttribute("followed", followed);
         req.setAttribute("following", following);

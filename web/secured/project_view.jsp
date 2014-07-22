@@ -45,6 +45,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2 class="project-title">${requestScope.project.name}</h2>
+                    <h4>${((requestScope.project).user).userName}</h4>
 
                     <p style="text-align: justify">${requestScope.project.description}</p>
                 </div>
@@ -109,12 +110,23 @@
 </div>
 <div class="row">
     <div class="col-md-6">
+        <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
         <button type="button" class="btn btn-warning btn-cons" style="width: 100%; height: 80px" data-toggle="modal"
                 data-target="#donateModal">DONATE
         </button>
+        </c:if>
     </div>
     <div class="col-md-6">
+        <c:if test="${(((requestScope.project).user).userName) == (requestScope.aquser).userName}">
+            <a href="/secured/editproject?id=${requestScope.project.id}"  type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px; font-size: 30px"
+                    >EDIT
+            </a>
+        </c:if>
+    </div>
+    <div class="col-md-6">
+        <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
         <button type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px">FOLLOW</button>
+        </c:if>
     </div>
 </div>
 <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
