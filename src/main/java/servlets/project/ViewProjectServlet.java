@@ -28,7 +28,7 @@ public class ViewProjectServlet extends HttpServlet {
         req.setAttribute("aquser", UserDAO.getInstance().getUser(req.getUserPrincipal().getName()));
         requestDispatcher.forward(req, resp);
     }
-
+       //comment loco
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
