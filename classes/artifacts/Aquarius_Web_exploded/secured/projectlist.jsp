@@ -45,7 +45,7 @@
                                             </div>
                                         </td>
                                         <td class="v-align-middle">
-                                            <a href="/secured/project?id=${project.id}">
+                                            <a href="/secured/project">
                                                 <p><c:out value="${project.name}"/></p>
                                             </a>
                                         </td>
@@ -69,7 +69,6 @@
             </div>
         </jsp:attribute>
 </navigation:main_nav>
-<import:js_files/>
 <import:js_projectlist/>
 <script>
     var i = 2;

@@ -73,7 +73,7 @@ public class UserDAO extends DataDAO {
         endTransaction();
     }
 
-    public List<User> getFollowedUsers(User user){
+    public List<User> getFollowedUsers(User user) {
         Session session = HibernateUtil.getGuestSession();
         List<User> raw;
         List<User> projects = new ArrayList<>();
@@ -81,14 +81,21 @@ public class UserDAO extends DataDAO {
         raw = (List<User>) session.createCriteria(User.class).list();
         endTransaction();
         // Find projects user is following
-        for(User userTested : raw){
-            for(User follower : userTested.getFollowers()){
-                if(follower.getId() == user.getId()){
+        for (User userTested : raw) {
+            for (User follower : userTested.getFollowers()) {
+                if (follower.getId() == user.getId()) {
                     projects.add(userTested);
                 }
             }
         }
         return projects;
+    }
+
+    public void save(User user) {
+        Session session = HibernateUtil.getGuestSession();
+        beginTransaction(session);
+        session.persist(user);
+        endTransaction();
     }
 
 

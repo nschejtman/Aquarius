@@ -111,24 +111,28 @@
 <div class="row">
     <div class="col-md-6">
         <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
-        <button type="button" class="btn btn-warning btn-cons" style="width: 100%; height: 80px" data-toggle="modal"
-                data-target="#donateModal">DONATE
-        </button>
+            <button type="button" class="btn btn-warning btn-cons" style="width: 100%; height: 80px" data-toggle="modal"
+                    data-target="#donateModal">DONATE
+            </button>
         </c:if>
     </div>
     <div class="col-md-6">
         <c:if test="${(((requestScope.project).user).userName) == (requestScope.aquser).userName}">
-            <a href="/secured/editproject?id=${requestScope.project.id}"  type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px; font-size: 30px"
-                    >EDIT
+            <a href="/secured/editproject?id=${requestScope.project.id}" type="button"
+               class="btn btn-success btn-cons" style="width: 100%; height: 80px; font-size: 30px">
+                EDIT
             </a>
         </c:if>
-    </div>
-    <div class="col-md-6">
         <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
-        <button type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px">FOLLOW</button>
+            <button type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px"
+                    onclick="follow(this);">FOLLOW
+            </button>
         </c:if>
+
     </div>
 </div>
+
+<!--PLEDGE MODAL START-->
 <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
      style="display: none; margin-top: 80px; border: none">
     <div class="modal-dialog">
@@ -143,15 +147,18 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitPledge();">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-pledge-modal">Close
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitPledge();">Donate</button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
 </div>
-                    <!--Images start-->
+<!--PLEDGE MODAL END-->
+
+    <!--Images start-->
     <%--<div class="superbox">--%>
     <%--<c:forEach var="image" items="${requestScope.project.images}">--%>
     <%--<div class="superbox-list">--%>
@@ -200,10 +207,24 @@
                 pledge: $("#pledge").val()
             }
         }).done(function (resp) {
-            var old = $("#fundsraised").val();
-            var pledge = $("#pledge").val();
-            $("#fundsraised").val(old + pledge);
+            $("#close-pledge-modal").click();
+
         })
+    }
+
+    function follow(followButton) {
+        jQuery.ajax({
+            url: '/secured/pfollow',
+            type: 'post',
+            data: {
+                projectId: ${requestScope.project.id}
+            }
+        }).done(function () {
+            $(followButton).html(function () {
+                return "FOLLOWING";
+            })
+        })
+
     }
 
 

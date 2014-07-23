@@ -196,7 +196,7 @@ public class Project {
     //TODO replantear los metodos de getDaysRemaining y getTimeCompletion
     public int getDaysRemaining() {
         if (end > System.currentTimeMillis()) {
-            return (int) (end - System.currentTimeMillis()) / (24 * 3600000) + 1;
+            return (int) (end - System.currentTimeMillis()) / (24 * 3600000);
         } else {
             return 0;
         }
@@ -239,6 +239,13 @@ public class Project {
 
     public boolean isFollowedBy(User user) {
         return followers.contains(user);
+    }
+
+    public boolean isFollowedBy(String user) {
+        for (User follower : followers) {
+            if (follower.getUserName().equals(user)) return true;
+        }
+        return false;
     }
 
     public void addFund(Fund fund) {

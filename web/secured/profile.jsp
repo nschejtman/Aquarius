@@ -29,14 +29,16 @@
                           <div class="overlayer-wrapper">
                               <div class="padding-10 hidden-xs">
                                   <c:if test="${(requestScope.profiling.userName) != (requestScope.user.userName)}">
-                                  <button type="button" class="btn btn-primary btn-small"><i class="fa fa-check"></i>&nbsp;&nbsp;Follow
-                                  </button>
+                                      <button type="button" class="btn btn-primary btn-small" onclick="follow();"><i
+                                              class="fa fa-check"></i>&nbsp;&nbsp;Follow
+                                      </button>
                                   </c:if>
                                   <c:if test="${(requestScope.profiling.userName) != (requestScope.user.userName)}">
-                                  <button type="button" class="btn btn-primary btn-small">Send Message</button>
+                                      <button type="button" class="btn btn-primary btn-small">Send Message</button>
                                   </c:if>
                                   <c:if test="${(requestScope.profiling.userName) == (requestScope.user.userName)}">
-                                      <a href="/secured/edituser?id=${requestScope.user.id}" type="button" class="btn btn-primary btn-small">Edit</a>
+                                      <a href="/secured/edituser?id=${requestScope.user.id}" type="button"
+                                         class="btn btn-primary btn-small">Edit</a>
                                   </c:if>
                               </div>
                           </div>
@@ -162,6 +164,18 @@
 </div>
         </jsp:attribute>
 </navigation:main_nav>
+
+<script>
+    function follow() {
+        jQuery.ajax({
+            url: '/secured/ufollow',
+            type: 'post',
+            data: {
+                profilingId: ${requestScope.profiling.userName}
+            }
+        })
+    }
+</script>
 
 </body>
 </html>

@@ -93,12 +93,11 @@
                             <div class="iconset top-settings-dark "></div>
                         </a>
                         <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                            <li><a href="user-profile.html"> Profile</a>
+                            <li><a href="#"> Profile</a>
                             </li>
-                            <li><a href="calender.html">Notifications</a>
+                            <li><a href="#">Notifications</a>
                             </li>
-                            <li><a href="email.html"> Messages&nbsp;&nbsp;<span
-                                    class="badge badge-important animated bounceIn">2</span></a>
+                            <li><a href="#"> Messages</a>
                             </li>
                             <li class="divider"></li>
                             <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
@@ -152,7 +151,7 @@
 
         </li>
         <li id="sidenav-profile">
-            <a href="/secured/profile">
+            <a href="/secured/profile?id=<%=UserDAO.getInstance().getUser(request.getUserPrincipal().getName()).getId()%>">
                 <i class="fa fa-user"></i>
                 <span class="title">Profile</span>
             </a>

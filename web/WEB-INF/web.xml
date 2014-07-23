@@ -61,6 +61,24 @@
         <url-pattern>/secured/pledge</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FollowProjectServlet</servlet-name>
+        <servlet-class>servlets.project.FollowProjectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowProjectServlet</servlet-name>
+        <url-pattern>/secured/pfollow</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FollowUserServlet</servlet-name>
+        <servlet-class>servlets.user.FollowUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowUserServlet</servlet-name>
+        <url-pattern>/secured/ufollow</url-pattern>
+    </servlet-mapping>
+
+
     <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
     <filter-mapping>
         <filter-name>Security Filter</filter-name>

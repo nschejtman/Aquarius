@@ -69,7 +69,7 @@
           <div class="meta name">
               <div class="img_wrapper"> <img src="${(user.profilePicture).path}" alt="" /> </div>
               <div class="titles">
-                  <h2>${user.userName}</h2>
+                  <h2><a href="/secured/profile?id=${user.id}">${user.userName}</a></h2>
               </div>
           </div>
           <div class="meta region">
@@ -90,7 +90,7 @@
       <div class="meta name">
           <div class="img_wrapper"> <img src="../assets/img/PuzzlePiece2.jpg" alt="" /> </div>
           <div class="titles">
-              <h2>${project.name}</h2>
+              <h2><a href="/secured/project?id=${project.id}">${project.name}</a></h2>
           </div>
       </div>
       <div class="meta region">
@@ -115,7 +115,6 @@
   <!-- END PAGE -->
         </jsp:attribute>
     </navigation:main_nav>
-<import:js_files/>
     <script src="../assets/plugins/jquery-mixitup/jquery.mixitup.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="../assets/js/search_results.js" type="text/javascript"></script>
