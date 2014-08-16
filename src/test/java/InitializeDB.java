@@ -16,6 +16,7 @@ import java.io.IOException;
  * Run only once!
  */
 public class InitializeDB {
+
     public static void main(String[] args) {
         //Add default image
         Image image = new Image("secured/media/img/defaultuserpic.png");

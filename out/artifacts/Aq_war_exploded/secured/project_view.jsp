@@ -5,6 +5,11 @@
 <html>
 <head>
     <title></title>
+
+    <script src="../assets/plugins/jquery-1.8.3.min.js"></script>
+    <script src="../assets/plugins/jquery-superbox/js/superbox.js" type="text/javascript"></script>
+    <script src="../assets/js/tabs_accordian.js" type="text/javascript" rel="script"></script>
+
     <import:css_files/>
     <link rel="stylesheet" type="text/css" href="../assets/plugins/jquery-superbox/css/style.css">
 </head>
@@ -17,194 +22,213 @@
     }
 </style>
 <nav:main_nav title="Projects - ${requestScope.project.getName()}" active="projects">
-    <jsp:attribute name="body">
-        <!--first row start-->
-        <div class="row">
-            <div class="grid simple">
-                <div class="grid-body no-border invoice-body"><br>
+<jsp:attribute name="body">
+<div class="row">
+    <!--TAB SELECTOR-->
+    <ul class="nav nav-tabs" id="tab-01">
+        <li class="active"><a href="#info">INFO</a></li>
+        <li class=""><a href="#faq">FAQ</a></li>
+        <li class=""><a href="#updates">Updates</a></li>
+        <li class=""><a href="#comments-tab">Comments</a></li>
+    </ul>
+    <!--TAB UTILS-->
+    <div class="tools">
+        <a href="javascript:;" class="collapse"></a>
+        <a href="#grid-config" data-toggle="modal" class="config"></a>
+        <a href="javascript:;" class="reload"></a>
+        <a href="javascript:;" class="remove"></a>
+    </div>
+    <!--TAB CONTENTS-->
+    <div class="tab-content">
+        <!--INFO-->
+        <div class="tab-pane active" id="info">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="project-title">${requestScope.project.name}</h2>
+                    <h4>${((requestScope.project).user).userName}</h4>
 
-                    <h1 class="project-title">${requestScope.project.getName()}</h1>
-                    <br>
-                    <br>
+                    <p style="text-align: justify">${requestScope.project.description}</p>
+                </div>
+                <div class="col-md-4" style="border-radius: 5px; background-color: lightgray; text-align: right">
+                    <h3><span style="color:#0aa699" id="fundsraised">${requestScope.project.getFundsRaised()}</span>
+                        FUNDS</h3>
 
-                    <p style="font-size: 20px; text-align: justify">${requestScope.project.getDescription()}</p>
+                    <h3><span style="color:#0aa699">${requestScope.project.objective}</span> OBJECTIVE</h3>
 
-                    <div class="clearfix"></div>
-                    <br>
-                    <br>
+                    <h3><span style="color:#0aa699">${requestScope.project.getFollowersQty()}</span> FOLLOWERS</h3>
 
-                    <!--Images start-->
-                    <div class="superbox">
-                        <c:forEach var="image" items="${requestScope.project.images}">
-                            <div class="superbox-list">
-                                <img src="${image.path}" class="superbox-img">
-                            </div>
-
-                        </c:forEach>
-
-
-                        <div class="superbox-float"></div>
-                    </div>
-                    <!--Images end-->
-
-
+                    <h3><span style="color:#0aa699">${requestScope.project.getDaysRemaining()}</span> DAYS REMAINING
+                    </h3>
                 </div>
             </div>
+
+            <hr>
+                ${requestScope.project.getHtml()}
         </div>
-        <!--first row end-->
-        <!--second row start-->
-        <div class="row spacing-bottom 2col">
-            <div class="col-md-4 col-sm-8">
-                <div class="tiles blue added-margin">
-                    <div class="tiles-body">
-                        <div class="controller">
-                            <a href="javascript:;" class="reload"></a>
-                        </div>
-                        <div class="tiles-title">
-                            DAYS REMAINING
-                        </div>
-                        <div class="heading">
-                            <span class="animate-number" data-value="${requestScope.project.getDaysRemaining()}"
-                                  data-animation-duration="1200">${requestScope.project.getDaysRemaining()}</span>
-
-                        </div>
-                        <div class="progress transparent progress-small no-radius">
-                            <div class="progress-bar progress-bar-white animate-progress-bar"
-                                 data-percentage="${requestScope.project.getTimeCompletion()}%"
-                                 style="${requestScope.project.getTimeCompletion()}%"></div>
-                        </div>
-                        <div class="description"><span class="text-white mini-description ">Ends: <span
-                                class="blend">${requestScope.project.getEnd()}</span></span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-8">
-                <div class="tiles green added-margin">
-                    <div class="tiles-body">
-                        <div class="controller">
-                            <a href="javascript:;" class="reload"></a>
-                        </div>
-                        <div class="tiles-title">
-                            FUNDS
-                        </div>
-                        <div class="heading">
-                            $<span class="animate-number" data-value="${requestScope.project.getFundsRaised()}"
-                                   data-animation-duration="1000">${requestScope.project.getFundsRaised()}</span>
-                        </div>
-                        <div class="progress transparent progress-small no-radius">
-                            <div class="progress-bar progress-bar-white animate-progress-bar"
-                                 data-percentage="${requestScope.project.getObjectiveCompletion()}%"
-                                 style="width: ${requestScope.project.getObjectiveCompletion()}%;"></div>
-                        </div>
-                        <div class="description"><span class="text-white mini-description ">Objective:<span
-                                class="blend"> $${requestScope.project.getObjective()}</span></span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-8">
-                <div class="tiles red added-margin">
-                    <div class="tiles-body">
-                        <div class="controller">
-                            <a href="javascript:;" class="reload"></a>
-                        </div>
-                        <div class="tiles-title">
-                            FOLLOWERS
-                        </div>
-                        <div class="heading">
-                            <span class="animate-number" data-value="${requestScope.project.getFollowersQty()}"
-                                  data-animation-duration="1200"
-                                  style="font-size: 50px; text-align: center">${requestScope.project.getFollowersQty()}</span>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
+        <!--FAQ-->
+        <div class="tab-pane" id="faq">
+            <br>
+            <br>
         </div>
-        <!--second row end-->
-        <!--third row start-->
-        <div class="row">
-            <div class="grid simple">
-                <div class="grid-body no-border invoice-body"><br>
-                        ${requestScope.project.getHtml()}
-                </div>
-            </div>
+        <!--UPDATES-->
+        <div class="tab-pane" id="updates">
+            <br>
+            <br>
         </div>
-        <!--third row end-->
+        <!--COMMENTS-->
+        <div class="tab-pane" id="comments-tab">
+            <div id="comment-wrapper">
+                <c:forEach var="comm" items="${requestScope.project.comments}">
+                    <div class="row" style="padding-left: 20px">
+                        <h6>${comm.user.userName}</h6>
 
-
-    <div class="col-md-12">
-        <ul class="nav nav-tabs" id="tab-01">
-            <li class="active"><a href="#faq">FAQ</a></li>
-            <li class=""><a href="#updates">Updates</a></li>
-            <li class=""><a href="#comments">Comments</a></li>
-        </ul>
-        <div class="tools"><a href="javascript:;" class="collapse"></a> <a href="#grid-config" data-toggle="modal"
-                                                                           class="config"></a> <a href="javascript:;"
-                                                                                                  class="reload"></a> <a
-                href="javascript:;" class="remove"></a></div>
-        <div class="tab-content">
-            <div class="tab-pane active" id="faq">
-                <div class="row column-seperation">
-                    <div class="col-md-6">
-                        <h3><span class="semi-bold">Sometimes</span> Small
-                            things in life means
-                            the most</h3>
+                        <p>${comm.comment}</p>
                     </div>
-                    <div class="col-md-6">
-                        <h3 class="semi-bold">great tabs</h3>
+                </c:forEach>
+            </div>
+            <form name="comment-form">
+                <div class="col-md-12 no-padding">
+                    <div class="tiles white">
+                        <textarea rows="3" id="comment" class="form-control user-status-box post-input"
+                                  placeholder="Comment"
+                                  style="margin: 0px -10.5px 0px 0px; height: 84px; width: 648px; width: 100%; background-color: #eaeaea"></textarea>
+                    </div>
+                    <div class="tiles grey padding-10">
+                        <div class="pull-right">
+                            <button onclick="submitComment();" class="btn btn-primary btn-sm btn-small"
+                                    type="button">
+                                POST
+                            </button>
 
-                        <p class="light">default, the textarea element comes with a vertical scrollbar (and maybe even a
-                            horizontal scrollbar). This vertical scrollbar enables the user to continue entering and
-                            reviewing their text (by scrolling up and down).</p>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="updates">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>“ Nothing is<span class="semi-bold"> impossible</span>, the word itself says 'I'm <span
-                                class="semi-bold">possible</span>'! ”</h3>
-
-                        <p>A style represents visual customizations on top of a layout. By editing a style, you can use
-                            Squarespace's visual interface to customize your...</p>
-                        <br>
-
-                        <p class="pull-right">
-                            <button type="button" class="btn btn-white btn-cons">White</button>
-                            <button type="button" class="btn btn-success btn-cons">Success</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane" id="comments">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Follow us &amp; get updated!</h3>
-
-                        <p>Instantly connect to what's most important to you. Follow your friends, experts, favorite
-                            celebrities, and breaking news.</p>
-                        <br>
-
-                        <p><a href="#" class="btn-social"><i class="icon-facebook"></i></a> <a href="#"
-                                                                                               class="btn-social"><i
-                                class="icon-twitter"></i> </a> <a href="#" class="btn-social"><i
-                                class="icon-dribbble"></i></a> <a href="#" class="btn-social"><i
-                                class="icon-pinterest-sign"></i></a> <a href="#" class="btn-social"><i
-                                class="icon-tumblr"></i> </a> <a href="#" class="btn-social"><i
-                                class="icon-linkedin-sign"></i> </a></p>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
+            <button type="button" class="btn btn-warning btn-cons" style="width: 100%; height: 80px" data-toggle="modal"
+                    data-target="#donateModal">DONATE
+            </button>
+        </c:if>
+    </div>
+    <div class="col-md-6">
+        <c:if test="${(((requestScope.project).user).userName) == (requestScope.aquser).userName}">
+            <a href="/secured/editproject?id=${requestScope.project.id}" type="button"
+               class="btn btn-success btn-cons" style="width: 100%; height: 80px; font-size: 30px">
+                EDIT
+            </a>
+        </c:if>
+        <c:if test="${(((requestScope.project).user).userName) != (requestScope.aquser).userName}">
+            <button type="button" class="btn btn-success btn-cons" style="width: 100%; height: 80px"
+                    onclick="follow(this);">FOLLOW
+            </button>
+        </c:if>
+
+    </div>
+</div>
+
+<!--PLEDGE MODAL START-->
+<div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="display: none; margin-top: 80px; border: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                DONATE
+            </div>
+            <div class="modal-body">
+                <div class="row form-row">
+                    AMOUNT<input type="number" class="form-control" id="pledge">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-pledge-modal">Close
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitPledge();">Donate</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--PLEDGE MODAL END-->
+
+    <!--Images start-->
+    <%--<div class="superbox">--%>
+    <%--<c:forEach var="image" items="${requestScope.project.images}">--%>
+    <%--<div class="superbox-list">--%>
+    <%--<img src="${image.path}" class="superbox-img">--%>
+    <%--</div>--%>
+    <%--</c:forEach>--%>
+    <%--<div class="superbox-float"></div>--%>
+    <%--</div>--%>
+    <!--Images end-->
+
     </jsp:attribute>
-
-
 </nav:main_nav>
+<!--TEMPLATE COMMENT ROW-->
+<div class="row" id="template-comment-row" style="display: none; padding-left: 20px">
+    <h6 class="comment-user"></h6>
 
-<script src="../assets/plugins/jquery-superbox/js/superbox.js" type="text/javascript"></script>
-<script src="../assets/js/tabs_accordian.js" type="text/javascript" rel="script"></script>
+    <p class="comment-message"></p>
+</div>
+<script>
+    function submitComment() {
+        jQuery.ajax({
+            url: '/secured/comment_ajax',
+            type: 'post',
+            data: {
+                projectId: ${requestScope.project.id},
+                comment: $("#comment").val()
+            }
+        }).done(
+                function (resp) {
+
+                    $("#template-comment-row > h6").html("${requestScope.aquser.userName}");
+                    $("#template-comment-row > p").html($("#comment").val());
+                    var newRow = $("#template-comment-row").clone();
+                    $("#comment-wrapper").append(newRow);
+                    newRow.toggle(true);
+                    $("#comment").val("");
+                });
+    }
+
+    function submitPledge() {
+        jQuery.ajax({
+            url: '/secured/pledge',
+            type: 'post',
+            data: {
+                projectId: ${requestScope.project.id},
+                pledge: $("#pledge").val()
+            }
+        }).done(function (resp) {
+            $("#close-pledge-modal").click();
+
+        })
+    }
+
+    function follow(followButton) {
+        jQuery.ajax({
+            url: '/secured/pfollow',
+            type: 'post',
+            data: {
+                projectId: ${requestScope.project.id}
+            }
+        }).done(function () {
+            $(followButton).html(function () {
+                return "FOLLOWING";
+            })
+        })
+
+    }
+
+
+</script>
+
 </body>
 </html>

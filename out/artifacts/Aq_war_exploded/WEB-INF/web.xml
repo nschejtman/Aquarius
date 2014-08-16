@@ -5,58 +5,6 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>servlets.LoginServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Main</servlet-name>
-        <servlet-class>servlets.IndexServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>servlets.RegisterServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>servlets.search.SearchServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Search</servlet-name>
-        <url-pattern>/search</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>View Project</servlet-name>
-        <servlet-class>servlets.project.ViewProjectServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>View Project</servlet-name>
-        <url-pattern>/secured/project</url-pattern>
-    </servlet-mapping>
-
-
     <filter>
         <filter-name>Security Filter</filter-name>
         <filter-class>org.securityfilter.filter.SecurityFilter</filter-class>
@@ -73,6 +21,73 @@
             <!--<description>Validate config file if set to true</description>-->
         </init-param>
     </filter>
+
+    <servlet>
+        <servlet-name>MyProjectsServlet</servlet-name>
+        <servlet-class>servlets.project.ViewProjectListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MyProjectsServlet</servlet-name>
+        <url-pattern>/secured/myprojects</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CommentProjectServlet</servlet-name>
+        <servlet-class>servlets.project.PostCommentAjaxServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CommentProjectServlet</servlet-name>
+        <url-pattern>/secured/comment_ajax</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>servlets.search.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/sercured/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddPledgeServlet</servlet-name>
+        <servlet-class>servlets.project.AddPledgeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddPledgeServlet</servlet-name>
+        <url-pattern>/secured/pledge</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FollowProjectServlet</servlet-name>
+        <servlet-class>servlets.project.FollowProjectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowProjectServlet</servlet-name>
+        <url-pattern>/secured/pfollow</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FollowUserServlet</servlet-name>
+        <servlet-class>servlets.user.FollowUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowUserServlet</servlet-name>
+        <url-pattern>/secured/ufollow</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlets.user.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
 
     <!-- map all requests to the SecurityFilter, control what it does with configuration settings -->
     <filter-mapping>

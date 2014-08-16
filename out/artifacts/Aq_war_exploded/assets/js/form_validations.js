@@ -3,7 +3,7 @@ $(document).ready(function() {
 			 
 	//Traditional form validation sample
 	$('#form_traditional_validation').validate({
-                focusInvalid: false, 
+                focusInvalid: false,
                 ignore: "",
                 rules: {
                     form1Amount: {
@@ -12,7 +12,7 @@ $(document).ready(function() {
                     },
                     form1CardHolderName: {
 						minlength: 2,
-                        required: true,
+                        required: true
                     },
                     form1CardNumber: {
                         required: true,
@@ -21,33 +21,33 @@ $(document).ready(function() {
                 },
 
                 invalidHandler: function (event, validator) {
-					//display error alert on form submit    
+					//display error alert on form submit
                 },
 
-                errorPlacement: function (label, element) { // render error placement for each input type   
+                errorPlacement: function (label, element) { // render error placement for each input type
 					$('<span class="error"></span>').insertAfter(element).append(label)
                     var parent = $(element).parent('.input-with-icon');
-                    parent.removeClass('success-control').addClass('error-control');  
+                    parent.removeClass('success-control').addClass('error-control');
                 },
 
                 highlight: function (element) { // hightlight error inputs
 					var parent = $(element).parent();
-                    parent.removeClass('success-control').addClass('error-control'); 
+                    parent.removeClass('success-control').addClass('error-control');
                 },
 
                 unhighlight: function (element) { // revert the change done by hightlight
-                    
+
                 },
 
                 success: function (label, element) {
 					var parent = $(element).parent('.input-with-icon');
-					parent.removeClass('error-control').addClass('success-control'); 
+					parent.removeClass('error-control').addClass('success-control');
                 },
 
                 submitHandler: function (form) {
-                
+
                 }
-            });	
+            });
 	
 	//Iconic form validation sample	
 	   $('#form_iconic_validation').validate({
@@ -117,14 +117,14 @@ $(document).ready(function() {
                         required: true
                     },
                     form3Gender: {
-                        required: true,
+                        required: true
                     },
 					form3DateOfBirth: {
-                        required: true,
+                        required: true
                     },
 					form3Occupation: {
 						 minlength: 3,
-                        required: true,
+                        required: true
                     },
 					form3Email: {
                         required: true,
@@ -132,34 +132,34 @@ $(document).ready(function() {
                     },
                     form3Address: {
 						minlength: 10,
-                        required: true,
+                        required: true
                     },
 					form3City: {
 						minlength: 5,
-                        required: true,
+                        required: true
                     },
 					form3State: {
 						minlength: 3,
-                        required: true,
+                        required: true
                     },
 					form3Country: {
 						minlength: 3,
-                        required: true,
+                        required: true
                     },
 					form3PostalCode: {
 						number: true,
 						maxlength: 4,
-                        required: true,
+                        required: true
                     },
 					form3TeleCode: {
 						minlength: 3,
 						maxlength: 4,
-                        required: true,
+                        required: true
                     },
 					form3TeleNo: {
 						maxlength: 10,
-                        required: true,
-                    },
+                        required: true
+                    }
                 },
 
                 invalidHandler: function (event, validator) {

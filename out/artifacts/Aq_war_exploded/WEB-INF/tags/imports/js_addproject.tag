@@ -11,6 +11,8 @@
 <script src="../../../assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
 <script src="../../../assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
 <script src="../../../assets/plugins/bootstrap-tag/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+<script src="../../../assets/plugins/dropzone/dropzone.min.js" type="text/javascript"></script>
+
 
 <!-- END PAGE LEVEL PLUGINS -->
 <script src="../../../assets/js/form_elements.js" type="text/javascript"></script>

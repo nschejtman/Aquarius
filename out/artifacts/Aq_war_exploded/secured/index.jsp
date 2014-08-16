@@ -18,8 +18,9 @@
 <body>
 
 <navigation:main_nav title="Home" active="home">
-
-
+    <jsp:attribute name="body">
+        <img src="../assets/img/welcome.png" width="100%">
+    </jsp:attribute>
 </navigation:main_nav>
 
 

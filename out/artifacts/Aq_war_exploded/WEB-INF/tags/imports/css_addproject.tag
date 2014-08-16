@@ -7,4 +7,6 @@
 <!-- END PLUGIN CSS -->
 
 <link href="../../../assets/plugins/boostrap-slider/css/slider.css" rel="stylesheet" type="text/css"/>
+<link href="../../../assets/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css"/>
+
 <!-- END HEAD -->

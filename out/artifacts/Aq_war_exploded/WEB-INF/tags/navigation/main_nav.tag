@@ -6,7 +6,7 @@
 
 <!-- Get user -->
 <%@ tag import="model.User" %>
-<% User user = UserDAO.getUser(request.getRemoteUser()); %>
+<% User user = UserDAO.getInstance().getUser(request.getRemoteUser()); %>
 <%@ attribute name="body" fragment="true" %>
 <base href="../../../">
 
@@ -34,7 +34,7 @@
 
 
 <!-- NAVBAR START -->
-<div class="header navbar navbar-inverse ">
+<div class="header navbar navbar-inverse " style="z-index: 9999999999999999999;">
     <div class="navbar-inner">
         <!--LOGO START-->
         <div class="header-seperation">
@@ -58,11 +58,14 @@
                 </ul>
                 <ul class="nav quick-section">
 
-                    <li class="m-r-10 input-prepend inside search-form no-boarder">
-                        <span class="add-on"> <span class="iconset top-search"></span></span>
-                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard"
-                               style="width:250px;">
-                    </li>
+                    <form name="searchForm" action="/secured/search">
+                        <li class="m-r-10 input-prepend inside search-form no-boarder">
+                            <span class="add-on"> <span class="iconset top-search"></span></span>
+
+                            <input name="criteria" type="text" class="no-boarder " placeholder="Search Dashboard"
+                                   style="width:250px;">
+                        </li>
+                    </form>
                 </ul>
             </div>
             <!-- END TOP NAVIGATION MENU -->
@@ -90,15 +93,14 @@
                             <div class="iconset top-settings-dark "></div>
                         </a>
                         <ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
-                            <li><a href="user-profile.html"> Profile</a>
+                            <li><a href="#"> Profile</a>
                             </li>
-                            <li><a href="calender.html">Notifications</a>
+                            <li><a href="#">Notifications</a>
                             </li>
-                            <li><a href="email.html"> Messages&nbsp;&nbsp;<span
-                                    class="badge badge-important animated bounceIn">2</span></a>
+                            <li><a href="#"> Messages</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="login.html"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                            <li><a href="/logout"><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -149,7 +151,7 @@
 
         </li>
         <li id="sidenav-profile">
-            <a>
+            <a href="/secured/profile?id=<%=UserDAO.getInstance().getUser(request.getUserPrincipal().getName()).getId()%>">
                 <i class="fa fa-user"></i>
                 <span class="title">Profile</span>
             </a>
@@ -162,24 +164,23 @@
 
 
                 <ul class="sub-menu" style="overflow: hidden;">
-                    <li><a> My Projects </a></li>
-                    <li><a> Followed projects </a></li>
-                    <li><a> Faved projects </a></li>
+                    <li><a href="/secured/myprojects"> My Projects </a></li>
+                    <li><a href="/secured/followedprojects"> Followed projects </a></li>
                     <li><a href="/secured/addproject"> Create new project</a></li>
                 </ul>
             </a>
         </li>
-        <li id="sidenav-community">
-            <a href="javascript:;">
-                <i class="fa fa-users"></i>
-                <span class="title">Community</span>
-                <span class="arrow"></span>
-                <ul class="sub-menu" style="overflow: hidden;">
-                    <li><a> My Community </a></li>
-                    <li><a> Followed users </a></li>
-                </ul>
-            </a>
-        </li>
+        <%--<li id="sidenav-community">--%>
+        <%--<a href="javascript:;">--%>
+        <%--<i class="fa fa-users"></i>--%>
+        <%--<span class="title">Community</span>--%>
+        <%--<span class="arrow"></span>--%>
+        <%--<ul class="sub-menu" style="overflow: hidden;">--%>
+        <%--<li><a> My Community </a></li>--%>
+        <%--<li><a> Followed users </a></li>--%>
+        <%--</ul>--%>
+        <%--</a>--%>
+        <%--</li>--%>
         <li id="sidenav-advanced_search">
             <a>
                 <i class="fa fa-search"></i>
